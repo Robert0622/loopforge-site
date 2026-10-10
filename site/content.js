@@ -2,7 +2,7 @@ window.LF_T={
 zh:{
  nav:['流程','审查','断点续跑','看板','安装'],
  hero:{k:'LoopForge · 给编码 Agent 的开发流程',h:'别让 Agent<br>上来就写代码。',
-  sub:'装进你在用的 Claude Code、Codex、Cursor 或 CodeBuddy。它先跟你把需求问清楚，出了方案再动手，写完换个 Agent 来审，再跑测试。每一步都落盘，断了也能接着跑。',
+  sub:'装进你在用的 Claude Code、Codex、Cursor、CodeBuddy 或 Pi。它先跟你把需求问清楚，出了方案再动手，写完换个 Agent 来审，再跑测试。每一步都落盘，断了也能接着跑。',
   ghost:'往下滚，看一句需求怎么走完',
   r:['先翻了下项目：要动 <b>orders 接口</b>、<b>订单列表页</b>和测试。','算中等任务，走完整流程。','先别急着写，有几个问题想跟你对一下。'],route:['小改动','理解 → 实现 → 自检','中大型','澄清 → 方案 → 实现 → 审查 → 测试']},
  clarify:{k:'01 · 澄清',h:'先问清楚，<br>再动手。',sub:'它会先把现有代码翻一遍，再回来问你：筛哪几种状态？能不能多选？刷新以后还在不在？你点了头，它才往下走。',
@@ -20,14 +20,14 @@ zh:{
  deliver:{k:'06 · 交付',h:'代码之外，<br>还留了一整套记录。',sub:'需求、方案、审查意见、测试结果、总结，都在 artifacts/ 下面。下周回来看，或者直接丢给同事，都知道这活是怎么干的。',
   sum:'workflow-summary.md',lines:['状态筛选上线，支持多选，条件存在 URL 里','审查提了 2 条，都修了，复审通过','接口测试 12 条全过','没做：导出、统计报表（需求里排除了）']},
  dash:{k:'看板 · CodeBuddy',h:'钱花哪了，<br>一眼就知道。',sub:'CodeBuddy 版自带一个本地看板：Token、成本、每个 Agent 干了多少活、每一步花了多久。都在你自己机器上算，不往外传。',demo:'示例数据'},
- install:{k:'安装',h:'挑你在用的那个，装上就行。',sub:'需要 Node.js 20+ 和 Python 3.8+。装完在 Agent 里打一句需求：',copy:'复制',copied:'已复制',
+ install:{k:'安装 · 5 个 Agent',h:'挑你在用的那个，装上就行。',sub:'需要 Node.js 20+ 和 Python 3.8+。装完在 Agent 里打一句需求：',copy:'复制',copied:'已复制',
   note:'不知道选哪个版本？用默认的 Classic 就行。遇到问题先跑',gh:'在 GitHub 上看',foot:'非官方社区介绍页 · LoopForge 由腾讯开源，MIT 协议'},
  tray:'artifacts/order-list-status-filter/'
 },
 en:{
  nav:['Flow','Review','Resume','Dashboard','Install'],
  hero:{k:'LoopForge · a dev workflow for coding agents',h:'Stop your agent from<br>coding first.',
-  sub:'Drop it into Claude Code, Codex, Cursor or CodeBuddy. It clarifies the ask, writes a plan, builds, hands the diff to a different agent for review, then tests. Every step lands on disk, so you can pick up where it stopped.',
+  sub:'Drop it into Claude Code, Codex, Cursor, CodeBuddy or Pi. It clarifies the ask, writes a plan, builds, hands the diff to a different agent for review, then tests. Every step lands on disk, so you can pick up where it stopped.',
   ghost:'Scroll to follow one request',
   r:['Looked around: this touches the <b>orders API</b>, the <b>order list page</b> and tests.','Medium task, running the full flow.','Before I write anything, a few questions.'],route:['Small','understand → build → self-check','Medium / large','clarify → plan → build → review → test']},
  clarify:{k:'01 · Clarify',h:'Ask first.<br>Build second.',sub:'It reads the code, then comes back with questions: which statuses? Multi-select? Should it survive a refresh? Nothing moves until you say yes.',
@@ -45,7 +45,7 @@ en:{
  deliver:{k:'06 · Deliver',h:'Besides the code,<br>a full paper trail.',sub:'Requirement, plan, review notes, test results and a summary, all under artifacts/. Come back next week or hand it to a teammate, and the story is there.',
   sum:'workflow-summary.md',lines:['Status filter shipped, multi-select, kept in URL','Review raised 2 issues, both fixed, re-review passed','12 API tests passing','Not done: export, reports (excluded in sign-off)']},
  dash:{k:'Dashboard · CodeBuddy',h:'See where the<br>tokens went.',sub:'The CodeBuddy edition ships a local dashboard: tokens, cost, which agent did what, how long each step took. Computed on your machine, nothing sent out.',demo:'demo data'},
- install:{k:'Install',h:'Pick your agent. Install. Done.',sub:'Needs Node.js 20+ and Python 3.8+. Then type a request in your agent:',copy:'Copy',copied:'Copied',
+ install:{k:'Install · 5 agents',h:'Pick your agent. Install. Done.',sub:'Needs Node.js 20+ and Python 3.8+. Then type a request in your agent:',copy:'Copy',copied:'Copied',
   note:'Not sure which edition? The default Classic is fine. If anything breaks, run',gh:'View on GitHub',foot:'Unofficial community page · LoopForge is open-sourced by Tencent under MIT'},
  tray:'artifacts/order-list-status-filter/'
 }};

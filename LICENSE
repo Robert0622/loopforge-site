@@ -25,3 +25,10 @@ dash/index.html is copied from Tencent/LoopForge
 (.codebuddy/skills/agent-observability/scripts/dashboard/index.html),
 Copyright (C) 2026 Tencent, MIT License: https://github.com/Tencent/LoopForge/blob/main/LICENSE
 Local changes: data badge reads "演示数据" and the default range is 30 days.
+
+---
+Agent marks in site/flow.js: Claude, Codex, Cursor and CodeBuddy paths are from LobeHub Icons
+(@lobehub/icons-static-svg, MIT, https://github.com/lobehub/lobe-icons); the Pi mark is from
+https://pi.dev/favicon.svg. The marks themselves are trademarks of Anthropic, OpenAI, Anysphere,
+Tencent and Earendil respectively. They are not covered by this license and are used only to
+identify the agent each install command targets.
