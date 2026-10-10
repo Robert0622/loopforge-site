@@ -114,24 +114,23 @@ function deliver(t){const c=t.deliver;const TR=[[0,'01-requirement/',1],[1,'requ
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 const SCN=[{b:hero,len:1.4,nav:0,n:'hero',sd:'r'},{b:clarify,len:2.2,nav:0,sd:'l'},{b:plan,len:1.8,nav:0,sd:'r'},{b:implement,len:1.8,nav:0,sd:'l'},{b:review,len:2.4,nav:1,n:'review',sd:'r'},{b:test,len:1.8,nav:1,sd:'l'},{b:resume,len:2.4,nav:2,n:'resume',sd:'r'},{b:deliver,len:1.8,nav:2,sd:'l'},{b:dash,len:2.0,nav:3,n:'dash',sd:'r'},{b:install,len:1.2,nav:4,n:'install'}],TR=.8;
-let START=[],TOTAL=0;{let u=0;SCN.forEach((s,i)=>{START.push(u);u+=s.len+(i<SCN.length-1?TR:0)});TOTAL=u}
 let SC=[],MOB=false;
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
  const cv=document.getElementById('cv');
  cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO}<span>Loop<b>Forge</b></span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">中</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="#" data-go="${SCN.length-1}">npx loopforge-cli</a></nav>`+
- SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('');
+ SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}"><span>${String(i).padStart(2,'0')}</span></b>`).join('')}</div><button class="replay" type="button">↻ ${L==='zh'?'重播这一段':'Replay'}</button><div class="hint">${L==='zh'?'滚一下 / ↓ 下一段':'scroll / ↓ next'}</div>`;
  SC=[...cv.querySelectorAll('section.sc')].map(el=>{const m={el,at:[...el.querySelectorAll('[data-at]')],ty:[...el.querySelectorAll('[data-type]')]};el.querySelectorAll('[data-k]').forEach(e=>{if(!m[e.dataset.k])m[e.dataset.k]=e});return m});
+ cv.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',()=>go(+a.dataset.goto)));cv.querySelector('.replay').addEventListener('click',()=>replay());
  cv.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(+a.dataset.go)}));
  cv.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=+a.dataset.nav;const i=SCN.findIndex(s=>s.nav>=k);go(i<0?SCN.length-1:i)}));
- cv.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);build();frame()}));
+ cv.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
  const H=['claude','codex','cursor','codebuddy'],ST=['/start-devflow','$devflow-codex','/start-devflow','/start-devflow'];const ins=SC[SC.length-1];
  ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));const i=+b.dataset.i;
   ins.ic.textContent=`npx -y loopforge-cli@latest install ${H[i]}`;ins.is.textContent=`npx -y loopforge-cli@latest status ${H[i]}`;ins.ist.textContent=`› ${ST[i]} "为订单列表增加状态筛选，并补充接口测试"`}));
  ins.el.querySelector('[data-copy]').addEventListener('click',e=>{navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent);e.target.textContent=t.install.copied;setTimeout(()=>e.target.textContent=t.install.copy,1400)});
 }
-function go(i){scrollTo({top:(START[i]+(i?.02:0))*innerHeight,behavior:'smooth'})}
 const tilt=(w,e,side)=>{w.style.transform=`rotateY(${(side==='l'?9:-9)*(1-e)}deg) rotateX(${4*(1-e)}deg) translateZ(${-60*(1-e)}px)`};
 const UPD={
  hero:(m,p)=>{tilt(m.win,S(p,-.2,.3),'r');m.car.style.display=p>.36?'none':''},
@@ -142,19 +141,46 @@ const UPD={
 function REV(m,p){const fx=p>.72;m.f1.classList.toggle('fixd',fx);m.f2.classList.toggle('fixd',p>.76);
   m.fixln.style.height=p>.74?'24px':'0';m.fixln2.style.height=p>.78?'24px':'0';m.c1.classList.toggle('fixd',p>.74);m.c2.classList.toggle('fixd',p>.78);
   const FX=L==='zh'?'✓ 已修复 ':'✓ fixed ';[[m.c1,.74,0],[m.c2,.78,1]].forEach(([c,a,j])=>{c.querySelector('.tg').firstChild.textContent=p>a?FX:'● '+T[L].review.sev[j]+' '});m.f1.classList.toggle('d',p>.74);m.f1.classList.toggle('a',p<=.74)}
-let last=-1;
-function frame(){if(MOB)return;const s=Math.min(innerWidth/1440,innerHeight/900);const cv=document.getElementById('cv');cv.style.transform=`translate(${(innerWidth-1440*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`;
- const u=scrollY/innerHeight;let i=SCN.length-1;for(let k=0;k<SCN.length;k++){if(u<START[k]+SCN[k].len+TR){i=k;break}}
- const p=cl((u-START[i])/SCN[i].len),tr=u-START[i]-SCN[i].len;
- SC.forEach((m,k)=>{m.el.style.visibility=(k===i||(k===i+1&&tr>0))?'visible':'hidden';m.el.style.clipPath='none';m.el.style.zIndex=k===i+1?2:1});
- run(i,p);
- if(tr>0&&SC[i+1]){const t=S(tr,0,TR),n=SC[i+1].el,kind=i%3;
-  n.style.clipPath=kind===0?`circle(${t*120}% at 50% 55%)`:kind===1?`inset(0 0 0 ${100-t*100}%)`:`inset(${100-t*100}% 0 0 0)`;run(i+1,0)}
- document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',+a.dataset.nav===SCN[i].nav));}
+
 function run(i,p){const m=SC[i];m.at.forEach(e=>e.classList.toggle('on',p>=+e.dataset.at));
  m.ty.forEach(e=>{const s=[...e.dataset.type],k=R(p,+e.dataset.a,+e.dataset.b);e.innerHTML=esc(s.slice(0,Math.round(s.length*k)).join('')).replace(/(&quot;|")(.*)/,'<q>"$2</q>')});const sc=SCN[i];if(MOB){if(sc.n==='review')REV(m,1);if(sc.n==='resume'){m.before.style.display='none';m.after.style.display=''}return}if(UPD[sc.n])UPD[sc.n](m,p);else if(m.win)tilt(m.win,S(p,0,.2),sc.sd)}
-function boot(){MOB=innerWidth<760;document.body.classList.toggle('mob',MOB);build();document.getElementById('spacer').style.height=MOB?'0':(TOTAL*100+100)+'vh';
- if(MOB){const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const z=m.el.querySelector('.zoom');if(z){const w=m.el.querySelector('.vp').clientWidth;z.style.transform=`translate(0,-130px) scale(${w/1100*1.2})`}})}else frame()}
-window.LF={START,SCN,TR,TOTAL,go};
-addEventListener('scroll',()=>requestAnimationFrame(frame),{passive:true});let mw=innerWidth<760;addEventListener('resize',()=>{const n=innerWidth<760;if(n!==mw){mw=n;boot()}else frame()});boot();
+/* ---------- pager: one gesture = one scene; each scene plays on its own clock ---------- */
+const RM=matchMedia('(prefers-reduced-motion: reduce)');
+const DUR=SCN.map(s=>Math.round(s.len*3400)),TRMS=900;
+let cur=0,P=[],done=[],anim=null,busy=false,quietT=0,raf=0;
+function fit(){const s=Math.min(innerWidth/1440,innerHeight/900);document.getElementById('cv').style.transform=`translate(${(innerWidth-1440*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`}
+function paint(){SC.forEach((m,k)=>{m.el.style.visibility=k===cur?'visible':'hidden';m.el.style.clipPath='none';m.el.style.zIndex=1});run(cur,P[cur]);ui()}
+function ui(){document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',+a.dataset.nav===SCN[cur].nav));
+ document.querySelectorAll('.rail b').forEach((d,k)=>d.classList.toggle('on',k===cur));
+ const rp=document.querySelector('.replay');if(rp)rp.classList.toggle('on',done[cur]&&SCN[cur].n!=='install');
+ document.body.dataset.scene=cur;document.body.dataset.playing=anim!==null?'1':'0'}
+function play(i,from=0){cancelAnimationFrame(raf);if(RM.matches){P[i]=1;done[i]=true;anim=null;paint();return}
+ const t0=performance.now()-from*DUR[i];anim=i;ui();
+ (function tick(now){if(cur!==i){anim=null;return}P[i]=cl((now-t0)/DUR[i]);run(i,P[i]);if(P[i]<1)raf=requestAnimationFrame(tick);else{done[i]=true;anim=null;ui()}})(performance.now())}
+function go(j){j=Math.max(0,Math.min(SCN.length-1,j));if(j===cur||busy)return;
+ cancelAnimationFrame(raf);if(anim!==null){P[anim]=1;done[anim]=true;run(anim,1);anim=null}
+ const from=cur,fwd=j>from;cur=j;if(!done[j])P[j]=0;
+ const n=SC[j].el,o=SC[from].el;SC.forEach((m,k)=>{m.el.style.visibility=(k===j||k===from)?'visible':'hidden';m.el.style.zIndex=k===j?2:1});run(j,P[j]);ui();
+ const kind=(fwd?from:j)%3;const clip=t=>kind===0?`circle(${t*120}% at 50% 55%)`:kind===1?(fwd?`inset(0 0 0 ${100-t*100}%)`:`inset(0 ${100-t*100}% 0 0)`):(fwd?`inset(${100-t*100}% 0 0 0)`:`inset(0 0 ${100-t*100}% 0)`);
+ const fin=()=>{busy=false;o.style.visibility='hidden';n.style.clipPath='none';if(!done[j])play(j);else ui()};
+ if(RM.matches){fin();return}
+ busy=true;const t0=performance.now();(function tr(now){const t=E(cl((now-t0)/TRMS));n.style.clipPath=clip(t);if(t<1)requestAnimationFrame(tr);else fin()})(t0)}
+function replay(){if(busy)return;done[cur]=false;P[cur]=0;run(cur,0);play(cur)}
+let wheelAcc=0,lastWheel=0,gestureUsed=false;
+function onWheel(e){if(MOB)return;e.preventDefault();const now=performance.now();
+ if(now-lastWheel>220){gestureUsed=false;wheelAcc=0}lastWheel=now;if(gestureUsed||busy)return;
+ wheelAcc+=e.deltaY;if(Math.abs(wheelAcc)>=40){gestureUsed=true;go(cur+(wheelAcc>0?1:-1));wheelAcc=0}}
+function onKey(e){if(MOB||e.target.closest&&e.target.closest('input,textarea'))return;const k=e.key;
+ if(['ArrowDown','PageDown',' ','ArrowRight'].includes(k)){e.preventDefault();go(cur+1)}
+ else if(['ArrowUp','PageUp','ArrowLeft'].includes(k)){e.preventDefault();go(cur-1)}
+ else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(SCN.length-1)}}
+let ty0=null;
+function boot(){MOB=innerWidth<760;document.body.classList.toggle('mob',MOB);document.documentElement.classList.toggle('pager',!MOB);build();
+ if(MOB){cancelAnimationFrame(raf);anim=null;const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const z=m.el.querySelector('.zoom');if(z){const w=m.el.querySelector('.vp').clientWidth;z.style.transform=`translate(0,-130px) scale(${w/1100*1.2})`}});return}
+ fit();if(!P.length){P=SCN.map(()=>0);done=SCN.map(()=>false)}paint();if(!done[cur])play(cur,P[cur])}
+window.LF={SCN,go,replay,get cur(){return cur},get playing(){return anim!==null},get busy(){return busy},DUR,TRMS};
+addEventListener('wheel',onWheel,{passive:false});addEventListener('keydown',onKey);
+addEventListener('touchstart',e=>{ty0=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{if(MOB||ty0===null)return;const d=ty0-e.changedTouches[0].clientY;ty0=null;if(Math.abs(d)>50)go(cur+(d>0?1:-1))},{passive:true});
+let mw=innerWidth<760;addEventListener('resize',()=>{const n=innerWidth<760;if(n!==mw){mw=n;boot()}else if(!MOB)fit()});boot();
 })();
