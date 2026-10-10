@@ -1,0 +1,4651 @@
+{
+ "generated_at": "2026-10-10T06:30:00+00:00",
+ "source": {
+  "event_count": 1284
+ },
+ "daily": [
+  {
+   "iso": "2026-09-10",
+   "sessionCount": 5,
+   "input": 845000,
+   "output": 87617,
+   "cache": 515976,
+   "cost": 3.2342,
+   "toolCalls": 320,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 4,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-11",
+   "sessionCount": 4,
+   "input": 616000,
+   "output": 52456,
+   "cache": 426270,
+   "cost": 2.2358,
+   "toolCalls": 180,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 0,
+    "writing-plans": 0,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-12",
+   "sessionCount": 2,
+   "input": 460000,
+   "output": 52890,
+   "cache": 282260,
+   "cost": 1.8234,
+   "toolCalls": 134,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 1,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-13",
+   "sessionCount": 0,
+   "input": 0,
+   "output": 0,
+   "cache": 0,
+   "cost": 0.0,
+   "toolCalls": 0,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 0,
+    "writing-plans": 0,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-14",
+   "sessionCount": 3,
+   "input": 660000,
+   "output": 80999,
+   "cache": 477946,
+   "cost": 2.6994,
+   "toolCalls": 207,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 4,
+    "writing-plans": 3,
+    "knowledge-distillation": 1
+   }
+  },
+  {
+   "iso": "2026-09-15",
+   "sessionCount": 6,
+   "input": 1344000,
+   "output": 181986,
+   "cache": 913312,
+   "cost": 5.6834,
+   "toolCalls": 270,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 0,
+    "writing-plans": 2,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-16",
+   "sessionCount": 6,
+   "input": 1158000,
+   "output": 143321,
+   "cache": 768155,
+   "cost": 4.7295,
+   "toolCalls": 204,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 1,
+    "writing-plans": 2,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-17",
+   "sessionCount": 6,
+   "input": 1218000,
+   "output": 100305,
+   "cache": 909855,
+   "cost": 4.3998,
+   "toolCalls": 390,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 2,
+    "writing-plans": 2,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-18",
+   "sessionCount": 6,
+   "input": 1344000,
+   "output": 171781,
+   "cache": 826731,
+   "cost": 5.535,
+   "toolCalls": 210,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 0,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-19",
+   "sessionCount": 2,
+   "input": 378000,
+   "output": 44916,
+   "cache": 309385,
+   "cost": 1.539,
+   "toolCalls": 116,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 2,
+    "writing-plans": 0,
+    "knowledge-distillation": 1
+   }
+  },
+  {
+   "iso": "2026-09-20",
+   "sessionCount": 1,
+   "input": 171000,
+   "output": 19948,
+   "cache": 121172,
+   "cost": 0.6861,
+   "toolCalls": 43,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 1,
+    "writing-plans": 3,
+    "knowledge-distillation": 1
+   }
+  },
+  {
+   "iso": "2026-09-21",
+   "sessionCount": 6,
+   "input": 960000,
+   "output": 86382,
+   "cache": 660827,
+   "cost": 3.5388,
+   "toolCalls": 282,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 4,
+    "writing-plans": 2,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-22",
+   "sessionCount": 6,
+   "input": 1170000,
+   "output": 141527,
+   "cache": 799925,
+   "cost": 4.7463,
+   "toolCalls": 264,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 1,
+    "writing-plans": 1,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-23",
+   "sessionCount": 4,
+   "input": 604000,
+   "output": 65895,
+   "cache": 440682,
+   "cost": 2.3725,
+   "toolCalls": 184,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 1,
+    "writing-plans": 3,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-24",
+   "sessionCount": 5,
+   "input": 1140000,
+   "output": 129937,
+   "cache": 923036,
+   "cost": 4.5722,
+   "toolCalls": 310,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 3,
+    "writing-plans": 3,
+    "knowledge-distillation": 1
+   }
+  },
+  {
+   "iso": "2026-09-25",
+   "sessionCount": 6,
+   "input": 1200000,
+   "output": 103454,
+   "cache": 887452,
+   "cost": 4.3877,
+   "toolCalls": 198,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 1,
+    "writing-plans": 3,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-26",
+   "sessionCount": 0,
+   "input": 0,
+   "output": 0,
+   "cache": 0,
+   "cost": 0.0,
+   "toolCalls": 0,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 0,
+    "writing-plans": 0,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-27",
+   "sessionCount": 0,
+   "input": 0,
+   "output": 0,
+   "cache": 0,
+   "cost": 0.0,
+   "toolCalls": 0,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 0,
+    "writing-plans": 0,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-09-28",
+   "sessionCount": 6,
+   "input": 1254000,
+   "output": 136464,
+   "cache": 838433,
+   "cost": 4.8987,
+   "toolCalls": 234,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 2,
+    "writing-plans": 3,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-29",
+   "sessionCount": 4,
+   "input": 864000,
+   "output": 70317,
+   "cache": 699163,
+   "cost": 3.1272,
+   "toolCalls": 252,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 4,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-09-30",
+   "sessionCount": 5,
+   "input": 1160000,
+   "output": 152887,
+   "cache": 873669,
+   "cost": 4.8807,
+   "toolCalls": 230,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 1,
+    "writing-plans": 2,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-10-01",
+   "sessionCount": 7,
+   "input": 1533000,
+   "output": 194297,
+   "cache": 1030982,
+   "cost": 6.3201,
+   "toolCalls": 308,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 1,
+    "writing-plans": 3,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-10-02",
+   "sessionCount": 4,
+   "input": 700000,
+   "output": 77740,
+   "cache": 474756,
+   "cost": 2.7553,
+   "toolCalls": 124,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 3,
+    "writing-plans": 2,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-10-03",
+   "sessionCount": 2,
+   "input": 454000,
+   "output": 62375,
+   "cache": 317069,
+   "cost": 1.9332,
+   "toolCalls": 104,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 0,
+    "tech-design": 1,
+    "writing-plans": 0,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-10-04",
+   "sessionCount": 1,
+   "input": 175000,
+   "output": 17546,
+   "cache": 123582,
+   "cost": 0.6676,
+   "toolCalls": 69,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 2,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-10-05",
+   "sessionCount": 3,
+   "input": 597000,
+   "output": 75782,
+   "cache": 456723,
+   "cost": 2.4792,
+   "toolCalls": 180,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 3,
+    "tech-design": 2,
+    "writing-plans": 0,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-10-06",
+   "sessionCount": 6,
+   "input": 1254000,
+   "output": 130520,
+   "cache": 1013602,
+   "cost": 4.8799,
+   "toolCalls": 240,
+   "failures": 0,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 0,
+    "writing-plans": 1,
+    "knowledge-distillation": 2
+   }
+  },
+  {
+   "iso": "2026-10-07",
+   "sessionCount": 6,
+   "input": 1518000,
+   "output": 181175,
+   "cache": 1115041,
+   "cost": 6.1518,
+   "toolCalls": 408,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 1,
+    "writing-plans": 1,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-10-08",
+   "sessionCount": 3,
+   "input": 756000,
+   "output": 104519,
+   "cache": 561653,
+   "cost": 3.2371,
+   "toolCalls": 189,
+   "failures": 2,
+   "skillHits": {
+    "brainstorming": 1,
+    "tech-design": 3,
+    "writing-plans": 1,
+    "knowledge-distillation": 0
+   }
+  },
+  {
+   "iso": "2026-10-09",
+   "sessionCount": 3,
+   "input": 546000,
+   "output": 50650,
+   "cache": 387799,
+   "cost": 2.0345,
+   "toolCalls": 201,
+   "failures": 1,
+   "skillHits": {
+    "brainstorming": 2,
+    "tech-design": 4,
+    "writing-plans": 3,
+    "knowledge-distillation": 0
+   }
+  }
+ ],
+ "sessions": [
+  {
+   "id": "s001306",
+   "date": "2026-10-09",
+   "agent": "devflow-code-reviewer, devflow-architect, devflow-developer",
+   "turns": 3,
+   "toolCalls": 20,
+   "tokens": 453000,
+   "cost": 1.0481,
+   "duration": 1569,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7706,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8419,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 8777,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s019325",
+   "date": "2026-10-09",
+   "agent": "devflow-test-engineer, devflow-code-reviewer, devflow-developer",
+   "turns": 7,
+   "toolCalls": 51,
+   "tokens": 835000,
+   "cost": 2.879,
+   "duration": 1131,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 1211,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1938,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4271,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 891,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 656,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5534,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4741,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s104597",
+   "date": "2026-10-08",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-architect",
+   "turns": 7,
+   "toolCalls": 40,
+   "tokens": 529000,
+   "cost": 1.0198,
+   "duration": 1483,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7532,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 2192,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5377,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7217,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5160,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6199,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 2448,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s112377",
+   "date": "2026-10-08",
+   "agent": "devflow-developer, devflow-test-engineer, devflow-leader",
+   "turns": 7,
+   "toolCalls": 43,
+   "tokens": 576000,
+   "cost": 2.565,
+   "duration": 2278,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5756,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6042,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6195,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7714,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6497,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8592,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3944,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s205332",
+   "date": "2026-10-07",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-test-engineer",
+   "turns": 6,
+   "toolCalls": 63,
+   "tokens": 866000,
+   "cost": 1.6862,
+   "duration": 1148,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6851,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5558,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1142,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1386,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 1651,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3843,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s211251",
+   "date": "2026-10-07",
+   "agent": "devflow-leader, devflow-architect, devflow-developer",
+   "turns": 7,
+   "toolCalls": 80,
+   "tokens": 551000,
+   "cost": 3.0301,
+   "duration": 817,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 907,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 1993,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1025,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5311,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4950,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4632,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4303,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s301907",
+   "date": "2026-10-06",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-developer",
+   "turns": 6,
+   "toolCalls": 56,
+   "tokens": 548000,
+   "cost": 2.401,
+   "duration": 692,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6640,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3725,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3454,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5894,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 433,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7257,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s317252",
+   "date": "2026-10-06",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-architect",
+   "turns": 6,
+   "toolCalls": 84,
+   "tokens": 505000,
+   "cost": 1.2453,
+   "duration": 2189,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2781,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 259,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5589,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4205,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3769,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 217,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s405909",
+   "date": "2026-10-05",
+   "agent": "devflow-developer, devflow-architect, devflow-leader",
+   "turns": 3,
+   "toolCalls": 87,
+   "tokens": 458000,
+   "cost": 2.3096,
+   "duration": 2066,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4528,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6745,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6654,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s418395",
+   "date": "2026-10-05",
+   "agent": "devflow-test-engineer, devflow-leader, devflow-developer",
+   "turns": 7,
+   "toolCalls": 22,
+   "tokens": 844000,
+   "cost": 2.3697,
+   "duration": 1602,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5543,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4855,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 917,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8482,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3967,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 885,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1918,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s507267",
+   "date": "2026-10-04",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-developer",
+   "turns": 5,
+   "toolCalls": 56,
+   "tokens": 347000,
+   "cost": 2.2041,
+   "duration": 1916,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 7686,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8817,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4331,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4046,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7742,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s602630",
+   "date": "2026-10-03",
+   "agent": "devflow-architect, devflow-code-reviewer, devflow-test-engineer",
+   "turns": 4,
+   "toolCalls": 86,
+   "tokens": 592000,
+   "cost": 1.8081,
+   "duration": 1555,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2615,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5187,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 404,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8159,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s618363",
+   "date": "2026-10-03",
+   "agent": "devflow-developer, devflow-code-reviewer, devflow-leader",
+   "turns": 3,
+   "toolCalls": 46,
+   "tokens": 376000,
+   "cost": 2.1118,
+   "duration": 890,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5306,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 486,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1452,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s706178",
+   "date": "2026-10-02",
+   "agent": "devflow-leader, devflow-developer, devflow-test-engineer",
+   "turns": 7,
+   "toolCalls": 61,
+   "tokens": 646000,
+   "cost": 2.7817,
+   "duration": 845,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6090,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 2046,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 8357,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 606,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8255,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5147,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5835,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s715597",
+   "date": "2026-10-02",
+   "agent": "devflow-leader, devflow-test-engineer, devflow-developer",
+   "turns": 4,
+   "toolCalls": 56,
+   "tokens": 452000,
+   "cost": 1.2482,
+   "duration": 1144,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4948,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1264,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1451,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4708,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s808736",
+   "date": "2026-10-01",
+   "agent": "devflow-code-reviewer, devflow-developer, devflow-architect",
+   "turns": 6,
+   "toolCalls": 58,
+   "tokens": 561000,
+   "cost": 2.5215,
+   "duration": 1936,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3310,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 675,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 1520,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7586,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4889,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2285,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s818372",
+   "date": "2026-10-01",
+   "agent": "devflow-code-reviewer, devflow-architect, devflow-developer",
+   "turns": 5,
+   "toolCalls": 44,
+   "tokens": 549000,
+   "cost": 0.8359,
+   "duration": 1300,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4110,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6661,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2848,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 8401,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7621,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s909247",
+   "date": "2026-09-30",
+   "agent": "devflow-test-engineer, devflow-architect, devflow-leader",
+   "turns": 7,
+   "toolCalls": 54,
+   "tokens": 554000,
+   "cost": 1.5999,
+   "duration": 1922,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5431,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4432,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 529,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6981,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6374,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1216,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6100,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s913491",
+   "date": "2026-09-30",
+   "agent": "devflow-test-engineer, devflow-leader, devflow-developer",
+   "turns": 6,
+   "toolCalls": 78,
+   "tokens": 387000,
+   "cost": 2.0339,
+   "duration": 680,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5312,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 728,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8225,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6614,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7555,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3866,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1002837",
+   "date": "2026-09-29",
+   "agent": "devflow-leader, devflow-test-engineer, devflow-architect",
+   "turns": 3,
+   "toolCalls": 87,
+   "tokens": 896000,
+   "cost": 1.0984,
+   "duration": 1134,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4010,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5177,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8854,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1017747",
+   "date": "2026-09-29",
+   "agent": "devflow-developer, devflow-leader, devflow-code-reviewer",
+   "turns": 4,
+   "toolCalls": 44,
+   "tokens": 810000,
+   "cost": 2.9006,
+   "duration": 1925,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 371,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7747,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4170,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4247,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1104283",
+   "date": "2026-09-28",
+   "agent": "devflow-developer, devflow-architect, devflow-leader",
+   "turns": 6,
+   "toolCalls": 79,
+   "tokens": 526000,
+   "cost": 1.2891,
+   "duration": 1204,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4414,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6265,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 758,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6136,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 310,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3562,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1114488",
+   "date": "2026-09-28",
+   "agent": "devflow-leader, devflow-architect, devflow-code-reviewer",
+   "turns": 3,
+   "toolCalls": 26,
+   "tokens": 361000,
+   "cost": 1.0787,
+   "duration": 1520,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3268,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7032,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6646,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1401047",
+   "date": "2026-09-25",
+   "agent": "devflow-leader, devflow-developer, devflow-test-engineer",
+   "turns": 5,
+   "toolCalls": 64,
+   "tokens": 730000,
+   "cost": 3.0843,
+   "duration": 853,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 1500,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3324,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 722,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6325,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 2973,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1411571",
+   "date": "2026-09-25",
+   "agent": "devflow-code-reviewer, devflow-leader, devflow-test-engineer",
+   "turns": 7,
+   "toolCalls": 52,
+   "tokens": 499000,
+   "cost": 2.5429,
+   "duration": 1840,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6428,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7285,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 7957,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7512,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6167,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6930,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 866,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1507332",
+   "date": "2026-09-24",
+   "agent": "devflow-developer, devflow-code-reviewer, devflow-architect",
+   "turns": 5,
+   "toolCalls": 36,
+   "tokens": 808000,
+   "cost": 1.0756,
+   "duration": 2243,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4661,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4495,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5072,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 597,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 7985,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1518892",
+   "date": "2026-09-24",
+   "agent": "devflow-test-engineer, devflow-developer, devflow-leader",
+   "turns": 5,
+   "toolCalls": 74,
+   "tokens": 407000,
+   "cost": 3.1683,
+   "duration": 1142,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4068,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7749,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8586,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 2820,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1260,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1605265",
+   "date": "2026-09-23",
+   "agent": "devflow-architect, devflow-code-reviewer, devflow-leader",
+   "turns": 7,
+   "toolCalls": 43,
+   "tokens": 551000,
+   "cost": 1.2123,
+   "duration": 1176,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3613,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8367,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4037,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7751,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2185,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4777,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6310,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1614105",
+   "date": "2026-09-23",
+   "agent": "devflow-test-engineer, devflow-architect, devflow-leader",
+   "turns": 7,
+   "toolCalls": 67,
+   "tokens": 824000,
+   "cost": 2.8519,
+   "duration": 1519,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5546,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4323,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 1847,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 1876,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3986,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 861,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2153,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1704332",
+   "date": "2026-09-22",
+   "agent": "devflow-leader, devflow-code-reviewer, devflow-developer",
+   "turns": 7,
+   "toolCalls": 81,
+   "tokens": 364000,
+   "cost": 1.6612,
+   "duration": 2229,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 303,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3765,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5770,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3541,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3533,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6900,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5315,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1717401",
+   "date": "2026-09-22",
+   "agent": "devflow-code-reviewer, devflow-architect, devflow-leader",
+   "turns": 6,
+   "toolCalls": 75,
+   "tokens": 460000,
+   "cost": 1.7018,
+   "duration": 2280,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 8949,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6717,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4841,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1041,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 6984,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6160,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1802458",
+   "date": "2026-09-21",
+   "agent": "devflow-test-engineer, devflow-developer, devflow-code-reviewer",
+   "turns": 3,
+   "toolCalls": 84,
+   "tokens": 475000,
+   "cost": 0.9793,
+   "duration": 1180,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6175,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2329,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2534,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1817355",
+   "date": "2026-09-21",
+   "agent": "devflow-leader, devflow-architect, devflow-developer",
+   "turns": 4,
+   "toolCalls": 48,
+   "tokens": 714000,
+   "cost": 2.1983,
+   "duration": 1001,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 1299,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8236,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 2275,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5353,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s1908466",
+   "date": "2026-09-20",
+   "agent": "devflow-test-engineer, devflow-developer, devflow-code-reviewer",
+   "turns": 6,
+   "toolCalls": 73,
+   "tokens": 615000,
+   "cost": 2.1148,
+   "duration": 1471,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 3773,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8685,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 6085,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4247,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 824,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6587,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2003104",
+   "date": "2026-09-19",
+   "agent": "devflow-developer, devflow-code-reviewer, devflow-architect",
+   "turns": 6,
+   "toolCalls": 31,
+   "tokens": 752000,
+   "cost": 1.9113,
+   "duration": 1945,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 7520,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3128,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8219,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7520,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3142,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1954,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2013231",
+   "date": "2026-09-19",
+   "agent": "devflow-leader, devflow-test-engineer, devflow-developer",
+   "turns": 3,
+   "toolCalls": 34,
+   "tokens": 498000,
+   "cost": 0.9422,
+   "duration": 1607,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2334,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8580,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8456,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2105306",
+   "date": "2026-09-18",
+   "agent": "devflow-test-engineer, devflow-architect, devflow-code-reviewer",
+   "turns": 5,
+   "toolCalls": 67,
+   "tokens": 337000,
+   "cost": 1.1172,
+   "duration": 1426,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 3822,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4332,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 4705,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4364,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3613,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2117459",
+   "date": "2026-09-18",
+   "agent": "devflow-developer, devflow-test-engineer, devflow-architect",
+   "turns": 4,
+   "toolCalls": 67,
+   "tokens": 891000,
+   "cost": 0.9801,
+   "duration": 1277,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5571,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4530,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6094,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4329,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2206122",
+   "date": "2026-09-17",
+   "agent": "devflow-leader, devflow-test-engineer, devflow-code-reviewer",
+   "turns": 3,
+   "toolCalls": 39,
+   "tokens": 597000,
+   "cost": 2.2017,
+   "duration": 1485,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3969,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5055,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 5280,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2215934",
+   "date": "2026-09-17",
+   "agent": "devflow-test-engineer, devflow-architect, devflow-leader",
+   "turns": 6,
+   "toolCalls": 66,
+   "tokens": 786000,
+   "cost": 1.0124,
+   "duration": 628,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 982,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3923,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 565,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6015,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8770,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6970,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2308270",
+   "date": "2026-09-16",
+   "agent": "devflow-test-engineer, devflow-code-reviewer, devflow-leader",
+   "turns": 4,
+   "toolCalls": 41,
+   "tokens": 300000,
+   "cost": 0.7144,
+   "duration": 1688,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 7586,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2570,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4529,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5939,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2317769",
+   "date": "2026-09-16",
+   "agent": "devflow-architect, devflow-code-reviewer, devflow-developer",
+   "turns": 3,
+   "toolCalls": 42,
+   "tokens": 820000,
+   "cost": 1.4044,
+   "duration": 1214,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3241,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 1156,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3431,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2402724",
+   "date": "2026-09-15",
+   "agent": "devflow-developer, devflow-architect, devflow-test-engineer",
+   "turns": 3,
+   "toolCalls": 24,
+   "tokens": 426000,
+   "cost": 1.4723,
+   "duration": 2135,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 304,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7822,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3073,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2416355",
+   "date": "2026-09-15",
+   "agent": "devflow-architect, devflow-code-reviewer, devflow-test-engineer",
+   "turns": 5,
+   "toolCalls": 50,
+   "tokens": 688000,
+   "cost": 2.9597,
+   "duration": 1891,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4557,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 8772,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3755,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2981,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 3522,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2501470",
+   "date": "2026-09-14",
+   "agent": "devflow-leader, devflow-test-engineer, devflow-code-reviewer",
+   "turns": 7,
+   "toolCalls": 25,
+   "tokens": 369000,
+   "cost": 2.5156,
+   "duration": 734,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 7935,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 634,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5242,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1474,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2569,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2033,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5850,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2516513",
+   "date": "2026-09-14",
+   "agent": "devflow-code-reviewer, devflow-developer, devflow-leader",
+   "turns": 7,
+   "toolCalls": 64,
+   "tokens": 562000,
+   "cost": 3.0183,
+   "duration": 699,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 3465,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 6488,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 3570,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 754,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 4908,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 2373,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 5024,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2705704",
+   "date": "2026-09-12",
+   "agent": "devflow-architect, devflow-code-reviewer, devflow-leader",
+   "turns": 5,
+   "toolCalls": 87,
+   "tokens": 506000,
+   "cost": 1.3497,
+   "duration": 2137,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8453,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 707,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 7350,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5881,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 3748,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2715269",
+   "date": "2026-09-12",
+   "agent": "devflow-test-engineer, devflow-architect, devflow-code-reviewer",
+   "turns": 3,
+   "toolCalls": 47,
+   "tokens": 537000,
+   "cost": 1.8956,
+   "duration": 825,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5898,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 8252,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 5888,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2801412",
+   "date": "2026-09-11",
+   "agent": "devflow-developer, devflow-architect, devflow-code-reviewer",
+   "turns": 3,
+   "toolCalls": 53,
+   "tokens": 738000,
+   "cost": 2.9432,
+   "duration": 1626,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1913,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 1758,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 1611,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2818377",
+   "date": "2026-09-11",
+   "agent": "devflow-test-engineer, devflow-developer, devflow-leader",
+   "turns": 4,
+   "toolCalls": 79,
+   "tokens": 749000,
+   "cost": 2.3916,
+   "duration": 1126,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4026,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 8908,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 5909,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8748,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2903696",
+   "date": "2026-09-10",
+   "agent": "devflow-leader, devflow-architect, devflow-code-reviewer",
+   "turns": 7,
+   "toolCalls": 39,
+   "tokens": 451000,
+   "cost": 2.6667,
+   "duration": 2101,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2265,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4098,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4582,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 2755,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Bash",
+       "ms": 8755,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 6,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4070,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 7,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 4438,
+       "agent": "devflow-leader",
+       "err": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s2915853",
+   "date": "2026-09-10",
+   "agent": "devflow-code-reviewer, devflow-leader, devflow-test-engineer",
+   "turns": 5,
+   "toolCalls": 52,
+   "tokens": 714000,
+   "cost": 0.6143,
+   "duration": 1096,
+   "model": "claude-sonnet-4",
+   "status": "ok",
+   "timeline": [
+    {
+     "turn": 1,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 4686,
+       "agent": "devflow-architect",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 2,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 1950,
+       "agent": "devflow-developer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 3,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Edit",
+       "ms": 6562,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 4,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Read",
+       "ms": 406,
+       "agent": "devflow-code-reviewer",
+       "err": false
+      }
+     ]
+    },
+    {
+     "turn": 5,
+     "events": [
+      {
+       "kind": "tool",
+       "tool": "Grep",
+       "ms": 3844,
+       "agent": "devflow-test-engineer",
+       "err": false
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "modelCosts": [
+  {
+   "name": "claude-sonnet-4",
+   "cost": 49.69
+  },
+  {
+   "name": "gpt-5-codex",
+   "cost": 22.93
+  },
+  {
+   "name": "claude-opus-4",
+   "cost": 13.38
+  },
+  {
+   "name": "deepseek-v3",
+   "cost": 5.73
+  },
+  {
+   "name": "glm-4.6",
+   "cost": 3.82
+  }
+ ],
+ "unpricedModels": [],
+ "failures": [
+  {
+   "tool": "Bash",
+   "code": "exit 1",
+   "count": 6,
+   "last": "2026-10-08"
+  },
+  {
+   "tool": "Edit",
+   "code": "no_match",
+   "count": 3,
+   "last": "2026-10-06"
+  }
+ ],
+ "skills": [
+  {
+   "name": "brainstorming",
+   "count": 1
+  },
+  {
+   "name": "tech-design",
+   "count": 1
+  },
+  {
+   "name": "writing-plans",
+   "count": 1
+  },
+  {
+   "name": "knowledge-distillation",
+   "count": 1
+  }
+ ],
+ "neverUsed": [],
+ "dispatch": [
+  {
+   "agent": "devflow-developer",
+   "count": 41
+  },
+  {
+   "agent": "devflow-code-reviewer",
+   "count": 29
+  },
+  {
+   "agent": "devflow-test-engineer",
+   "count": 24
+  },
+  {
+   "agent": "devflow-architect",
+   "count": 18
+  },
+  {
+   "agent": "devflow-knowledge-engineer",
+   "count": 9
+  }
+ ],
+ "autoDispatchStats": {
+  "auto_dispatch": 312,
+  "fallback_to_main": 21,
+  "passthrough": 57
+ },
+ "devflowRuns": [
+  {
+   "slug": "order-list-status-filter",
+   "size": "medium",
+   "overall": "completed",
+   "cost": 4.86,
+   "duration": 2860,
+   "stages": [
+    {
+     "key": "PHASE-0",
+     "label": "P0",
+     "name": "初始化 + 判定大小",
+     "status": "completed",
+     "exec": "devflow-leader",
+     "duration": 40,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-01",
+     "label": "T01",
+     "name": "需求分析 + 澄清",
+     "status": "completed",
+     "exec": "devflow-leader",
+     "duration": 520,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-02",
+     "label": "T02",
+     "name": "技术方案",
+     "status": "completed",
+     "exec": "devflow-architect",
+     "duration": 610,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-03",
+     "label": "T03",
+     "name": "代码实现",
+     "status": "completed",
+     "exec": "devflow-developer",
+     "duration": 980,
+     "retry_count": 0
+    },
+    {
+     "key": "CODE-REVIEW",
+     "label": "CR",
+     "name": "代码审查",
+     "status": "completed",
+     "exec": "devflow-code-reviewer",
+     "duration": 330,
+     "retry_count": 1
+    },
+    {
+     "key": "TASK-04",
+     "label": "T04",
+     "name": "E2E 测试",
+     "status": "completed",
+     "exec": "devflow-test-engineer",
+     "duration": 410,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-05",
+     "label": "T05",
+     "name": "知识沉淀",
+     "status": "completed",
+     "exec": "devflow-knowledge-engineer",
+     "duration": 90,
+     "retry_count": 0
+    }
+   ]
+  },
+  {
+   "slug": "refund-webhook-retry",
+   "size": "large",
+   "overall": "running",
+   "cost": 3.12,
+   "duration": 2140,
+   "stages": [
+    {
+     "key": "PHASE-0",
+     "label": "P0",
+     "name": "初始化 + 判定大小",
+     "status": "completed",
+     "exec": "devflow-leader",
+     "duration": 30,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-01",
+     "label": "T01",
+     "name": "需求分析 + 澄清",
+     "status": "completed",
+     "exec": "devflow-leader",
+     "duration": 700,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-02",
+     "label": "T02",
+     "name": "技术方案",
+     "status": "completed",
+     "exec": "devflow-architect",
+     "duration": 820,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-03",
+     "label": "T03",
+     "name": "代码实现",
+     "status": "in_progress",
+     "exec": "devflow-developer",
+     "duration": 590,
+     "retry_count": 0
+    },
+    {
+     "key": "CODE-REVIEW",
+     "label": "CR",
+     "name": "代码审查",
+     "status": "pending",
+     "exec": null,
+     "duration": 0,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-04",
+     "label": "T04",
+     "name": "E2E 测试",
+     "status": "pending",
+     "exec": null,
+     "duration": 0,
+     "retry_count": 0
+    },
+    {
+     "key": "TASK-05",
+     "label": "T05",
+     "name": "知识沉淀",
+     "status": "pending",
+     "exec": null,
+     "duration": 0,
+     "retry_count": 0
+    }
+   ]
+  }
+ ]
+}
