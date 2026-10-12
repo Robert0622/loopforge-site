@@ -33,14 +33,14 @@ const W=(side,n,figs,title,body,extra='',top=150)=>`<div class="persp"><div clas
 const AV=`<div class="av">${LOGO}</div>`;
 const who=(c,n)=>`<span class="sp"></span><span class="who"><span class="dot ${c}">${({leader:'L',architect:'A',developer:'D'})[n.slice(8)]||'T'}</span>${n}</span>`;
 const TY=(s,a,b)=>`<span class="cmd" data-type="${esc(s).replace(/"/g,'&quot;')}" data-a="${a}" data-b="${b}"></span><span class="car tc"></span>`;
-const CMD='/start-devflow "为订单列表增加状态筛选，并补充接口测试"';
+const CMD=()=>'/start-devflow '+REQ();
 /* ---------- scenes ---------- */
 function hero(t){const h=t.hero;const em=x=>x.replace('写代码','<em>写代码</em>').replace('coding first','<em>coding first</em>');return `
  <div class="txt l" style="top:196px"><div class="kick rv" data-at="0">${h.k}</div><h1 class="h" style="font-size:64px">${lines(h.h,em)}</h1><p class="sub rv" data-at=".12">${h.sub}</p>
  <div class="rv" data-at=".18" style="margin-top:28px;display:flex;gap:12px;align-items:center"><span class="pill f" style="font-size:13px;padding:11px 16px">$ npx -y loopforge-cli@latest install claude</span></div>
  ${strip(.24)}</div>
  <div class="persp"><div class="win r" data-k="win" style="top:176px">${fig('01','terminal · claude')}${tb('~/shop — claude')}
- <div class="term"><div><span class="ps">›</span> ${TY(CMD,.1,.4)}</div>
+ <div class="term"><div><span class="ps">›</span> ${TY(CMD(),.1,.4)}</div>
  <div class="think rv" data-at=".43" data-off=".5"><i></i><i></i><i></i></div>
  <div class="ag rv" data-at=".5">${AV}<div><p class="rv" data-at=".5">${h.r[0]}</p><p class="rv" data-at=".58">${h.r[1]} <span class="chip rv pop" data-at=".62">MEDIUM</span></p>
  <div class="route rv" data-at=".66"><span class="k">${h.route[0]}</span><span class="v">${h.route[1]}</span><span class="k hot">${h.route[2]} ←</span><span class="v hot sweep" data-sw=".74">${h.route[3]}</span></div>
@@ -120,13 +120,13 @@ function deliver(t){const c=t.deliver;const TR=[[0,'01-requirement/',1],[1,'requ
   ${c.lines.map((l,i)=>`<div class="pl rv" data-at="${(.56+i*.06).toFixed(2)}"><i class="rv pop" data-at="${(.58+i*.06).toFixed(2)}">${['✓','✓','✓','–'][i]}</i>${l}</div>`).join('')}</div></div>`)}`}
 function dash(t){const d=t.dash;return `${txt(d,'l')}
  <div class="persp"><div class="win r bwin" data-k="win" style="top:150px">${fig('09','localhost:8765 · demo data')}${tb('','<div class="url">localhost:8765 · Agent Observability</div><span style="width:60px"></span>')}
- <div class="vp"><div class="zoom" data-k="zoom"><iframe src="dash/index.html" title="dashboard" tabindex="-1"></iframe></div><span class="demo">${d.demo}</span></div></div></div>
+ <div class="vp"><div class="zoom" data-k="zoom"><iframe src="dash/index.html${L==='en'?'?lang=en':''}" title="dashboard" tabindex="-1"></iframe></div><span class="demo">${d.demo}</span></div></div></div>
  <div class="stk rv pop" data-at=".66" style="left:548px;top:648px">${Z('近 30 天成本','30-day cost')}<b class="o" data-cnt="$95.55" data-a=".66" data-b=".8">$95.55</b></div>
  <div class="stk rv pop" data-at=".74" style="left:1200px;top:110px">devflow-code-reviewer<b data-cnt="${Z('29 次派发','29 dispatches')}" data-a=".74" data-b=".86">${Z('29 次派发','29 dispatches')}</b></div>`}
 const INS={claude:['npx -y loopforge-cli@latest install claude','npx -y loopforge-cli@latest status claude','/start-devflow','Classic'],codex:['npx -y loopforge-cli@latest install codex','npx -y loopforge-cli@latest status codex','$devflow-codex','Classic'],
  cursor:['npx -y loopforge-cli@latest install cursor','npx -y loopforge-cli@latest status cursor','/start-devflow','Classic'],codebuddy:['npx -y loopforge-cli@latest install codebuddy','npx -y loopforge-cli@latest status codebuddy','/start-devflow','Classic'],
  pi:['npx -y loopforge-cli@latest skills install pi','pi install npm:pi-subagents','/skill:devflow','Portable']};
-const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"为订单列表增加状态筛选，并补充接口测试"');
+const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"Add a status filter to the order list and cover the API with tests"');
 const edNote=id=>INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
 function install(t){const n=t.install;
  return `<div class="inst"><div class="kick rv" data-at="0" style="justify-content:center">${n.k}</div><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
@@ -149,9 +149,10 @@ function setCount(e,k){const o=e.dataset.cnt;if(k>=1){if(e.textContent!==o)e.tex
  e.textContent=o.replace(/\d+(?:\.\d+)?/g,m=>{const d=(m.split('.')[1]||'').length;return (parseFloat(m)*k).toFixed(d)})}
 /* ---------- build ---------- */
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
+ const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Stop your agent from coding first');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge: a dev workflow for Claude Code, Codex, Cursor, CodeBuddy and Pi. It clarifies the ask, writes a plan, builds, hands the diff to a different agent for review, then tests. Every step lands on disk, so you can pick up where it stopped.');
  const cv=document.getElementById('cv');
  cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO}<span>Loop<b>Forge</b></span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
- <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">中</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
+ <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="#" data-go="${SCN.length-1}">npx loopforge-cli</a></nav>`+
  SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}"><span>${String(i).padStart(2,'0')}</span></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button><div class="hint">${Z('滚一下 / ↓ 下一段','scroll / ↓ next')}</div>`;
  SC=[...cv.querySelectorAll('section.sc')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const m={el,at:q('[data-at]'),off:q('[data-off]'),ty:q('[data-type]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};

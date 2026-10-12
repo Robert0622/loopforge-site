@@ -1082,5 +1082,92 @@ footer.note code{font-family:"IBM Plex Mono",monospace; background:var(--surface
   });
 })();
 </script>
+<script>
+/* English rendering for the LoopForge site (iframe src gets ?lang=en). The Chinese page is untouched. */
+(function(){
+  if(!/[?&]lang=en\b/.test(location.search)) return;
+  document.documentElement.lang = "en";
+  var CJK = /[\u3000-\u9fff\uff00-\uffef]/;
+  var EXACT = {"少":"Less","多":"More","一":"Mon","三":"Wed","五":"Fri","有":"","其他":"Other","、":", ","。":".","，":", "};
+  var RX = [
+    [/近 (\d+) 天累计花费 /g, "Spent in the last $1 days: "],
+    [/近 (\d+) 天/g, "Last $1 days"],
+    [/ × (\d+) 次，合计 /g, " × $1, total "],
+    [/共 (\d+) 次工具调用 · 合并连续重复为 (\d+) 段/g, "$1 tool calls · consecutive repeats merged into $2"],
+    [/(^|[^\d])1 次工具调用/g, "$11 tool call"],
+    [/(\d+) 次工具调用/g, "$1 tool calls"],
+    [/ 等 (\d+) 个/g, " ($1 in total)"],
+    [/演示数据 · (\d+) 条事件 · 生成于 /g, "Demo data · $1 events · generated "]
+  ];
+  var S = [
+    ["读取本地 ","Reads local "],["（由 "," (built by "],["从 metrics.ndjson / workflow-state.json 聚合而成）","from metrics.ndjson / workflow-state.json) "],["LoopForge 项目","LoopForge project"],
+    ["加载中…","Loading…"],["时间范围","Range"],
+    ["会话数","Sessions"],["累计成本","Total cost"],["总 Token","Total tokens"],["平均会话时长","Avg session length"],["工具失败率","Tool failure rate"],["vs 前一周期","vs previous period"],
+    ["总览","Overview"],["会话浏览","Sessions"],["Agent 协作","Agents"],["Devflow 运行","Devflow runs"],
+    ["建议关注","Worth a look"],["按当前范围内的阈值规则实时算出，不是固定文案","Computed live from threshold rules over the current range, not canned text"],
+    ["每日成本","Daily cost"],["cost_usd（按 ","cost_usd (estimated with "],[" 估算）",")"],
+    ["Token 构成","Token mix"],["按模型的成本占比","Cost share by model"],["Top 4 + 其他","Top 4 + other"],
+    ["数据表","Data table"],["图表的完整数值备份","Full numbers behind the charts"],["日期","Date"],["成本 (USD)","Cost (USD)"],["工具失败面板","Tool failures"],["工具失败","Tool failures"],
+    ["最近会话","Recent sessions"],["点击一行展开该会话按 turn 的工具调用时间线","Click a row to expand that session's per-turn tool call timeline"],
+    ["工具调用","Tool calls"],["成本","Cost"],["时长","Duration"],["状态","Status"],["有失败","Has failures"],["正常","OK"],
+    ["Skill 触发热力图","Skill trigger heatmap"],["按天统计 ","Daily skill matches from "],[" 命中的 skill 次数",""],
+    ["Skill 使用排行","Skill usage ranking"],["按范围内触发次数","By trigger count in range"],["从未命中的 Skill / Rule","Skills / rules never matched"],
+    ["来自 ","From "],[" 的未命中原因"," (miss reasons)"],["Main → 子 Agent 派发次数","Main → sub-agent dispatches"],[" 的 agent_history"," (agent_history)"],
+    ["工具","Tool"],["错误码","Error code"],["次数","Count"],["最近一次","Last seen"],
+    ["Auto-Dispatch 健康度","Auto-Dispatch health"],[" 的派发决策统计"," (dispatch decisions)"],["auto_dispatch（零 token 直达）","auto_dispatch (zero-token direct)"],
+    ["fallback_to_main（唤醒 main）","fallback_to_main (wakes main)"],["fallback 率","fallback rate"],["passthrough（*_failed 等本就该回 main）","passthrough (*_failed etc., meant for main anyway)"],
+    ["最近 Devflow 运行","Recent Devflow runs"],["按 task_slug 分组，串起 main + 最多 7 个 team member 的跨 session 归因","Grouped by task_slug, attributing main + up to 7 team members across sessions"],
+    ["数据来源：","Data source: "],["devflow 项目根目录","devflow project root"],["会读取该项目下","reads"],["（Classic/Portable 两种 schema 自动识别）与"," (Classic/Portable schemas auto-detected) and"],
+    ["，聚合成同目录下的 ",", and aggregates them into "],
+    ["这个页面只读那份快照，不直接碰任何日志/状态文件——重新生成快照后刷新页面即可看到最新数据。","This page only reads that snapshot and never touches log or state files; regenerate it and refresh to see new data."],
+    ["全部处理在本机完成，不发往任何外部服务。","Everything runs on your machine; nothing is sent to any external service."],
+    ["成本预算","Cost budget"],["，预算阈值 ",", budget "],["已超出","exceeded"],["% 已用","% used"],
+    ["Prompt Cache 命中","Prompt cache hits"],["cache_read 占 input 的 ","cache_read is "],
+    ["，偏低，可能是 system prompt 频繁变化导致缓存失效，白花了 input 成本。"," of input: low, probably a frequently changing system prompt busting the cache and wasting input cost."],
+    ["，处于正常区间。"," of input, within the normal range."],
+    ["Skill 维护","Skill upkeep"],["有 ",""],[" 个 skill/rule 在范围内从未被命中，建议检查 description 或 globs。"," skills/rules never matched in this range; check their description or globs."],
+    ["所有已扫描的 skill/rule 近期均被命中过。","Every scanned skill/rule was matched recently."],
+    ["模型定价","Model pricing"],[" 个模型未命中价格表（"," models missing from the price table ("],[" 条 usage 事件缺少成本）："," usage events without cost): "],
+    ["。可写入 ",". Add prices to "],["，或用 ",", or point "],
+    [" 指定覆盖文件补充单价；补充后只影响之后的新事件，不回溯已落盘的历史成本。"," at an overrides file. This only affects new events, not cost already recorded."],
+    ["所有出现的模型都已命中价格表，成本估算完整。","Every model seen is in the price table, so cost estimates are complete."],
+    ["暂无数据 · 等真实会话跑起来后重新生成 dashboard-data.json","No data yet · regenerate dashboard-data.json once real sessions have run"],["暂无数据","No data"],
+    ["暂无会话记录","No sessions yet"],["暂无派发记录","No dispatches yet"],
+    ["暂无 devflow 运行记录（没有 artifacts/*/workflow-state.json，或者项目还没跑过 /start-devflow）","No devflow runs yet (no artifacts/*/workflow-state.json, or /start-devflow hasn't run in this project)"],
+    ["skill 命中","skill hits"],["已完成","Done"],["进行中","In progress"],["已暂停 · 待人工介入","Paused · needs a human"],
+    ["按真实起止跨度（最早 started_at 到最晚 completed_at）计算；阶段之间有重叠时，会小于各阶段耗时直接相加","Wall-clock span (earliest started_at to latest completed_at); shorter than the sum of stages when they overlap"],
+    ["还没有数据 · 见页脚生成说明","No data yet · see the footer for how to generate it"],["加载 dashboard-data.json 失败","Failed to load dashboard-data.json"],["错误详情：","Error: "],
+    ["（先运行 build_dashboard_data.py 生成这份快照，再用本地 HTTP server 打开本页——直接双击用 file:// 打开会因为浏览器禁止本地 fetch 而失败）。"," (run build_dashboard_data.py to generate the snapshot, then open this page from a local HTTP server; opening it via file:// fails because browsers block local fetch)."],
+    ["初始化 + 判定大小","Init + sizing"],["需求分析 + 澄清","Requirements + clarify"],["技术方案","Design"],["代码实现","Implementation"],["代码审查","Code review"],["E2E 测试","E2E tests"],["知识沉淀","Knowledge notes"],
+    ["（"," ("],["）",")"],["：",": "],["；","; "],["，",", "],["。","."],["、",", "]
+  ];
+  S.sort(function(a,b){ return b[0].length-a[0].length; });
+  function tr(s){
+    if(!s || !CJK.test(s)) return s;
+    var t = s.trim();
+    if(Object.prototype.hasOwnProperty.call(EXACT,t)) return s.replace(t,EXACT[t]);
+    for(var i=0;i<RX.length;i++) s = s.replace(RX[i][0],RX[i][1]);
+    for(var j=0;j<S.length && CJK.test(s);j++) if(s.indexOf(S[j][0])>=0) s = s.split(S[j][0]).join(S[j][1]);
+    return s;
+  }
+  function fixEl(e){ ["title","aria-label","alt","placeholder"].forEach(function(a){ var v=e.getAttribute && e.getAttribute(a); if(v && CJK.test(v)){ var n=tr(v); if(n!==v) e.setAttribute(a,n); } }); }
+  function walk(root){
+    if(root.nodeType===3){ var n=tr(root.data); if(n!==root.data) root.data=n; return; }
+    if(root.nodeType!==1 || /^(SCRIPT|STYLE)$/.test(root.tagName)) return;
+    fixEl(root);
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT), x;
+    while((x=w.nextNode())){
+      if(x.nodeType===3){ if(x.parentNode && /^(SCRIPT|STYLE)$/.test(x.parentNode.tagName)) continue; var v=tr(x.data); if(v!==x.data) x.data=v; }
+      else fixEl(x);
+    }
+  }
+  walk(document.body);
+  new MutationObserver(function(ms){ ms.forEach(function(m){
+    if(m.type==="characterData") walk(m.target);
+    else if(m.type==="attributes") fixEl(m.target);
+    else for(var k=0;k<m.addedNodes.length;k++) walk(m.addedNodes[k]);
+  }); }).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["title","aria-label","alt","placeholder"]});
+})();
+</script>
 </body>
 </html>
