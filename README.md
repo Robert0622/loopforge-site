@@ -1,6 +1,6 @@
 # LoopForge 社区介绍页 · Community intro page
 
-**在线访问 / Live:** https://yanami-2k.github.io/loopforge-site/
+**在线访问 / Live:** https://loopforge.cn/
 
 这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页：一个分段播放的单页（滚一下进入下一段，每段自动放完），跟着一句需求（`/start-devflow "为订单列表增加状态筛选，并补充接口测试"`）走完澄清、方案、实现、独立审查、测试、断点续跑、交付，最后是本地看板和安装命令。和腾讯官方无关，LoopForge 本身以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
 
