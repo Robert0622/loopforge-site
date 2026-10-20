@@ -19,7 +19,9 @@ const MARK={
  pi:['0 0 560 560','M420 280H280V140H0V0H420V280Z M560 560H420V280H560V560Z M140 560H0V140H140V280H280V420H140V560Z']};
 const mark=(id,cls='')=>`<svg class="mk ${cls}" viewBox="${MARK[id][0]}" fill="currentColor" aria-hidden="true"><path d="${MARK[id][1]}"/></svg>`;
 const AGENTS=[['claude','Claude Code'],['codex','Codex'],['cursor','Cursor'],['codebuddy','CodeBuddy'],['pi','Pi']];
-const strip=(at)=>`<div class="astrip"><div class="ac rv" data-at="${at}">${Z('支持 5 个 Agent ——','Works with 5 agents —')}</div>${AGENTS.map((a,i)=>`<span class="ai rv pop" data-at="${(at+.03+i*.035).toFixed(3)}">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
+const EXECS=[['codebuddy','CodeBuddy'],['codex','Codex'],['claude','Claude Code']];
+const TRY=()=>'playground/'+(L==='en'?'?lang=en':'');
+const strip=(at,list=AGENTS,lab=Z('支持 5 个 Agent ——','Works with 5 agents —'))=>`<div class="astrip"><div class="ac rv" data-at="${at}">${lab}</div>${list.map((a,i)=>`<span class="ai rv pop" data-at="${(at+.03+i*.035).toFixed(3)}">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
 const FD='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 4V13h13V5.5H7.5L6 4z"/></svg>';
 const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#16161A" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
 /* ---------- shared builders ---------- */
@@ -35,7 +37,39 @@ const who=(c,n)=>`<span class="sp"></span><span class="who"><span class="dot ${c
 const TY=(s,a,b)=>`<span class="cmd" data-type="${esc(s).replace(/"/g,'&quot;')}" data-a="${a}" data-b="${b}"></span><span class="car tc"></span>`;
 const CMD=()=>'/start-devflow '+REQ();
 /* ---------- scenes ---------- */
-function hero(t){const h=t.hero;const em=x=>x.replace('写代码','<em>写代码</em>').replace('coding first','<em>coding first</em>');return `
+/* platform hero: the built-in bug-fix SOP on the designer canvas (node names/outputs follow the public catalog) */
+const PN=[[0,0,'agent'],[1,0,'agent'],[2,0,'agent'],[3,0,'agent'],[3,1,'agent'],[2,1,'human'],[1,1,'agent']];
+const NX=c=>28+c*170,NY=r=>34+r*176,NW=146,NH=84;
+function plat(t){const c=t.plat;const em=x=>x.replace('你的流程','<em>你的流程</em>').replace('your way','<em>your way</em>');
+ const nd=(n,i)=>{const[col,row,ty]=PN[i];return `<div class="nd ${ty} rv pop" data-at="${(.08+i*.05).toFixed(3)}" style="left:${NX(col)}px;top:${NY(row)}px"><div class="nt"><span class="ty">${c.ty[ty]}</span>${ty==='agent'?'<span class="ex">codebuddy</span>':''}<i class="st" data-tick="${(.62+i*.045).toFixed(3)}" data-cls="dn"></i></div><b>${n[0]}</b><small>${n[1]}</small></div>`};
+ const my=r=>NY(r)+NH/2,cx=c=>NX(c)+NW/2;
+ const E=[[NX(0)+NW,my(0),NX(1),my(0)],[NX(1)+NW,my(0),NX(2),my(0)],[NX(2)+NW,my(0),NX(3),my(0)],[cx(3),NY(0)+NH,cx(3),NY(1)],[NX(3),my(1),NX(2)+NW,my(1)],[NX(2),my(1),NX(1)+NW,my(1)]];
+ const ah=(x2,y2,dx,dy)=>{const px=-dy,py=dx;return `M${x2} ${y2}L${x2-dx*7+px*4} ${y2-dy*7+py*4}L${x2-dx*7-px*4} ${y2-dy*7-py*4}z`};
+ const edges=E.map((e,i)=>{const a=(.14+i*.05).toFixed(3),dx=Math.sign(e[2]-e[0]),dy=Math.sign(e[3]-e[1]);return `<path class="eg dr" pathLength="1" data-at="${a}" d="M${e[0]} ${e[1]}L${e[2]} ${e[3]}"/><path class="ahd rvo" data-at="${(+a+.04).toFixed(3)}" d="${ah(e[2],e[3],dx,dy)}"/>`}).join('');
+ const rx=cx(2)+30;const rej=`<path class="eg rej rvo" data-at=".5" d="M${rx} ${NY(1)}L${rx} ${NY(0)+NH}"/><path class="ahd rj rvo" data-at=".5" d="${ah(rx,NY(0)+NH,0,-1)}"/>`;
+ return `
+ <div class="txt l" style="top:196px"><div class="kick rv" data-at="0">${c.k}</div><h1 class="h" style="font-size:64px">${lines(c.h,em)}</h1><p class="sub rv" data-at=".12">${c.sub}</p>
+ <div class="rv cta" data-at=".18"><a class="pill f" href="${TRY()}">${c.try} →</a><a class="pill" href="#" data-go="${SCN.length-1}">${c.deploy}</a></div>
+ ${strip(.24,EXECS,c.exec)}</div>
+ <div class="persp"><div class="win r" data-k="win" style="top:176px">${fig('01',Z('流程设计器 · 示例','sop designer · demo'))}${tb(c.win,`<span class="sp"></span><span class="chip">${c.pub}</span>`)}
+ <div class="cvs"><div class="cvi"><svg class="egs" width="718" height="330" viewBox="0 0 718 330">${edges}${rej}</svg>
+ <span class="rlab rvo" data-at=".52" style="left:${rx+8}px;top:${(NY(0)+NH+NY(1))/2-9}px">${c.rej}</span>
+ ${c.nodes.map(nd).join('')}
+ <div class="lgd rv" data-at=".5" style="left:${NX(0)}px;top:${NY(1)+8}px"><div><i class="l1"></i>${c.lg[0]}</div><div><i class="l2"></i>${c.lg[1]}</div></div></div></div></div></div>`}
+/* human approval gate inside a run */
+function gate(t){const c=t.gate;
+ return `${txt(c,'r')}
+ ${W('l','02',Z('运行详情 · 人工验收','run detail · sign-off'),'Run #1042',`<div class="gt">
+  <div class="gh"><div><div class="gid">${Z('通用缺陷修复 SOP','Bug fix SOP')} · v1</div><h3>${c.title}</h3></div><span class="gs" data-k="gs">${c.wait}</span></div>
+  <div class="topo">${c.short.map((x,i)=>`<span class="tp${i<5?' dn':''}${i===5?' wt':''}"${i===5?' data-k="t5"':''}${i===6?' data-k="t6"':''}><i></i>${x}</span>`).join('<b></b>')}</div>
+  <div class="apv rv" data-at=".08" data-k="apv"><div class="ah"><span class="gs">${c.wait}</span><b>${c.need}</b><span>${c.step}</span></div>
+   <p>${c.basis}</p>
+   ${c.arts.map((a,i)=>`<div class="ar rv" data-at="${(.14+i*.05).toFixed(2)}"><code>${a[0]}</code><span>${a[1]}</span><i>✓</i></div>`).join('')}
+   <div class="ctx rv" data-at=".3">${c.ctx}</div>
+   <div class="abt rv" data-at=".34"><span class="btn" data-k="okb" data-press=".56">${c.ok}</span><span class="gbtn">${c.back}</span><span class="stamp" data-at=".6">${c.stamp}</span></div></div>
+  <div class="tail rv" data-at=".86"><span class="ok">✓</span> ${c.tail}</div></div>
+  <div class="mcur" data-k="mc">${CUR}<i></i></div>`)}`}
+function hero(t){const h=t.hero;const em=x=>x.replace('怎么走完','<em>怎么走完</em>').replace('start to finish','<em>start to finish</em>');return `
  <div class="txt l" style="top:196px"><div class="kick rv" data-at="0">${h.k}</div><h1 class="h" style="font-size:64px">${lines(h.h,em)}</h1><p class="sub rv" data-at=".12">${h.sub}</p>
  <div class="rv" data-at=".18" style="margin-top:28px;display:flex;gap:12px;align-items:center"><span class="pill f" style="font-size:13px;padding:11px 16px">$ npx -y loopforge-cli@latest install claude</span></div>
  ${strip(.24)}</div>
@@ -123,20 +157,23 @@ function dash(t){const d=t.dash;return `${txt(d,'l')}
  <div class="vp"><div class="zoom" data-k="zoom"><iframe src="dash/index.html${L==='en'?'?lang=en':''}" title="dashboard" tabindex="-1"></iframe></div><span class="demo">${d.demo}</span></div></div></div>
  <div class="stk rv pop" data-at=".66" style="left:548px;top:648px">${Z('近 30 天成本','30-day cost')}<b class="o" data-cnt="$95.55" data-a=".66" data-b=".8">$95.55</b></div>
  <div class="stk rv pop" data-at=".74" style="left:1200px;top:110px">devflow-code-reviewer<b data-cnt="${Z('29 次派发','29 dispatches')}" data-a=".74" data-b=".86">${Z('29 次派发','29 dispatches')}</b></div>`}
-const INS={claude:['npx -y loopforge-cli@latest install claude','npx -y loopforge-cli@latest status claude','/start-devflow','Classic'],codex:['npx -y loopforge-cli@latest install codex','npx -y loopforge-cli@latest status codex','$devflow-codex','Classic'],
+const INS={platform:['git clone https://github.com/Tencent/LoopForge.git && cd LoopForge','bash scripts/install.sh','open http://localhost:8090','Platform'],claude:['npx -y loopforge-cli@latest install claude','npx -y loopforge-cli@latest status claude','/start-devflow','Classic'],codex:['npx -y loopforge-cli@latest install codex','npx -y loopforge-cli@latest status codex','$devflow-codex','Classic'],
  cursor:['npx -y loopforge-cli@latest install cursor','npx -y loopforge-cli@latest status cursor','/start-devflow','Classic'],codebuddy:['npx -y loopforge-cli@latest install codebuddy','npx -y loopforge-cli@latest status codebuddy','/start-devflow','Classic'],
  pi:['npx -y loopforge-cli@latest skills install pi','pi install npm:pi-subagents','/skill:devflow','Portable']};
 const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"Add a status filter to the order list and cover the API with tests"');
-const edNote=id=>INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
+const stLine=id=>id==='platform'?INS[id][2]:`${INS[id][2]} ${REQ()}`;
+const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账号自动成为管理员，新手引导里的“一键体验”不需要 API Key','Platform · the first account becomes admin; the onboarding demo needs no API key'):INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
+const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
+const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO}</span>`:mark(id);
 function install(t){const n=t.install;
  return `<div class="inst"><div class="kick rv" data-at="0" style="justify-content:center">${n.k}</div><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
- <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${AGENTS.map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.04).toFixed(2)}">${mark(a[0])}${a[1]}</button>`).join('')}</div>
- <div class="ibox rv" data-at=".3"><div class="row"><span>$</span><code data-k="ic">${INS.claude[0]}</code><button data-copy>${n.copy}</button></div>
- <div class="row"><span>$</span><code data-k="is">${INS.claude[1]}</code></div><div class="st"><span class="ps">›</span> <code data-k="ist">${INS.claude[2]} ${REQ()}</code></div><div class="ed" data-k="ied">${edNote('claude')}</div></div>
+ <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.035).toFixed(3)}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
+ <div class="ibox rv" data-at=".3"><div class="row"><span>$</span><code data-k="ic">${INS.platform[0]}</code><button data-copy>${n.copy}</button></div>
+ <div class="row"><span>$</span><code data-k="is">${INS.platform[1]}</code></div><div class="st"><span class="ps">›</span> <code data-k="ist">${stLine('platform')}</code></div><div class="ed" data-k="ied">${edNote('platform')}</div></div>
  <p class="inote rv" data-at=".4">${n.note} <code>npx -y loopforge-cli@latest doctor</code></p>
- <div class="ilinks rv" data-at=".44"><a class="pill f" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">${n.gh} →</a></div></div>
+ <div class="ilinks rv" data-at=".44"><a class="pill f" href="${TRY()}">${n.try} →</a><a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">${n.gh} →</a></div></div>
  <div class="foot"><span>${n.foot} · <a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span><span>loopforge-cli v0.2.2</span></div>`}
-const SCN=[{b:hero,len:1.6,nav:0,n:'hero',sd:'r'},{b:clarify,len:2.3,nav:0,n:'clarify',sd:'l'},{b:plan,len:1.9,nav:0,sd:'r'},{b:implement,len:1.9,nav:0,sd:'l'},{b:review,len:2.4,nav:1,n:'review',sd:'r'},{b:test,len:2.0,nav:1,n:'test',sd:'l'},{b:resume,len:2.4,nav:2,n:'resume',sd:'r'},{b:deliver,len:1.8,nav:2,sd:'l'},{b:dash,len:2.1,nav:3,n:'dash',sd:'r'},{b:install,len:2.0,nav:4,n:'install'}];
+const SCN=[{b:plat,len:1.9,nav:0,n:'plat',sd:'r'},{b:gate,len:2.2,nav:1,n:'gate',sd:'l'},{b:hero,len:1.6,nav:2,n:'flow',sd:'r'},{b:clarify,len:2.3,nav:2,n:'clarify',sd:'l'},{b:plan,len:1.9,nav:2,sd:'r'},{b:implement,len:1.9,nav:2,sd:'l'},{b:review,len:2.4,nav:3,n:'review',sd:'r'},{b:test,len:2.0,nav:3,n:'test',sd:'l'},{b:resume,len:2.4,nav:4,n:'resume',sd:'r'},{b:deliver,len:1.8,nav:4,sd:'l'},{b:dash,len:2.1,nav:5,n:'dash',sd:'r'},{b:install,len:2.0,nav:6,n:'install'}];
 let SC=[],MOB=false;
 /* ---------- typing with human cadence ---------- */
 function cadence(s){const a=[...s];let h=7,t=0;const out=[];for(let i=0;i<a.length;i++){h=(h*9301+49297)%233280;const j=.55+h/233280*.9;const prev=a[i-1]||'';
@@ -149,16 +186,16 @@ function setCount(e,k){const o=e.dataset.cnt;if(k>=1){if(e.textContent!==o)e.tex
  e.textContent=o.replace(/\d+(?:\.\d+)?/g,m=>{const d=(m.split('.')[1]||'').length;return (parseFloat(m)*k).toFixed(d)})}
 /* ---------- build ---------- */
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
- const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Stop your agent from coding first');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge: a dev workflow for Claude Code, Codex, Cursor, CodeBuddy and Pi. It clarifies the ask, writes a plan, builds, hands the diff to a different agent for review, then tests. Every step lands on disk, so you can pick up where it stopped.');
+ const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Agents that ship your way');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted platform that puts coding agents, scripts and human approvals into one delivery SOP: plan, build, independent review, real tests and sign-off. LoopForge Local brings the same workflow to Claude Code, Codex, Cursor, CodeBuddy and Pi.');
  const cv=document.getElementById('cv');
  cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO}<span>Loop<b>Forge</b></span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
- <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="#" data-go="${SCN.length-1}">npx loopforge-cli</a></nav>`+
+ <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${TRY()}">${Z('在线试用','Try it online')} →</a></nav>`+
  SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}"><span>${String(i).padStart(2,'0')}</span></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button><div class="hint">${Z('滚一下 / ↓ 下一段','scroll / ↓ next')}</div>`;
  SC=[...cv.querySelectorAll('section.sc')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const m={el,at:q('[data-at]'),off:q('[data-off]'),ty:q('[data-type]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};
   el.querySelectorAll('[data-k]').forEach(e=>{if(!m[e.dataset.k])m[e.dataset.k]=e});return m});
  cv.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',()=>go(+a.dataset.goto)));cv.querySelector('.replay').addEventListener('click',()=>replay());
- cv.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(+a.dataset.go)}));
+ cv.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(MOB){SC[+a.dataset.go].el.scrollIntoView({behavior:'smooth'});return}go(+a.dataset.go)}));
  cv.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=+a.dataset.nav;const i=SCN.findIndex(s=>s.nav>=k);go(i<0?SCN.length-1:i)}));
  cv.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
  const ins=SC[SC.length-1];ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.manual=true;pick(ins,b.dataset.id,!RM.matches)}));
@@ -169,7 +206,7 @@ function placeInd(m){const b=m.el.querySelector('.tabs button.act');if(!b)return
 function retype(el,text,delay=0){clearInterval(el._iv);clearTimeout(el._to);const c=cadence(text),dur=Math.min(900,180+text.length*16);
  el._to=setTimeout(()=>{const t0=performance.now();el._iv=setInterval(()=>{const k=cl((performance.now()-t0)/dur);let n=0;while(n<c.length&&c[n]<=k)n++;el.textContent=[...text].slice(0,n).join('');el.classList.toggle('typing',k<1);if(k>=1)clearInterval(el._iv)},16)},delay)}
 function pick(m,id,animate){m.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('act',x.dataset.id===id));m.cur=id;placeInd(m);const v=INS[id];
- const set=[[m.ic,v[0]],[m.is,v[1]],[m.ist,`${v[2]} ${REQ()}`]];
+ const set=[[m.ic,v[0]],[m.is,v[1]],[m.ist,stLine(id)]];
  if(animate){set.forEach(([e,s],i)=>retype(e,s,i*140));m.ied.classList.remove('on');void m.ied.offsetWidth;m.ied.textContent=edNote(id);m.ied.classList.add('on')}
  else{set.forEach(([e,s])=>{clearInterval(e._iv);clearTimeout(e._to);e.textContent=s;e.classList.remove('typing')});m.ied.textContent=edNote(id);m.ied.classList.add('on')}}
 /* ---------- cursor in the clarify step ---------- */
@@ -189,7 +226,11 @@ function dashFrame(m,p){const f=m.el.querySelector('iframe');const d=f&&f.conten
  const ld=EIO(R(p,.3,.62));m._ln.forEach(e=>e.style.strokeDashoffset=e._len*(1-ld));m._ar.forEach(e=>e.style.opacity=ld);m._dt.forEach(e=>e.style.opacity=ld>.98?1:0);
  m._br.forEach((r,i)=>{const k=EO(R(p,.34+i*.004,.5+i*.004));r.style.transform=k>=1?'':`scaleY(${k})`})}
 const UPD={
- hero:(m,p)=>{tilt(m.win,EO(R(p,-.1,.3)),'r')},
+ plat:(m,p)=>{tilt(m.win,EO(R(p,-.1,.3)),'r')},
+ gate:(m,p)=>{tilt(m.win,EO(R(p,0,.2)),'l');cursor(m,[[.38,[470,330]],[.56,'okb',1],[.72,[420,470]]],p);
+  const ok=p>=.58;m.t5.classList.toggle('wt',!ok);m.t5.classList.toggle('dn',ok);m.t6.classList.toggle('run',p>=.64&&p<.82);m.t6.classList.toggle('dn',p>=.82);
+  m.apv.classList.toggle('past',p>=.62);m.gs.classList.toggle('fin',p>=.84);m.gs.textContent=p>=.84?T[L].gate.done:T[L].gate.wait},
+ flow:(m,p)=>{tilt(m.win,EO(R(p,-.1,.3)),'r')},
  clarify:(m,p)=>{tilt(m.win,EO(R(p,0,.2)),'l');cursor(m,[[.15,[640,560]],[.215,'o1',1],[.33,[600,470]],[.415,'o2',1],[.62,[560,560]],[.79,'okb',1],[.86,[600,600]]],p)},
  review:(m,p)=>{tilt(m.win,EO(R(p,0,.2)),'r');const F1=.74,F2=.8;
   m.f1.classList.toggle('sweep',p>=.36);m.f2.classList.toggle('sweep',p>=.52);m.f1.classList.toggle('fixd',p>=F1);m.f2.classList.toggle('fixd',p>=F2);
@@ -201,15 +242,15 @@ const UPD={
   m.before.style.display=p<.46?'':'none';m.after.style.display=p>=.46?'':'none'},
  dash:(m,p)=>{tilt(m.win,EO(R(p,0,.2)),'r');const z=EIO(R(p,.2,.46));m.zoom.style.transform=`translate(${lerp(0,-8,z)}px,${lerp(0,-130,z)}px) scale(${lerp(.653,.8,z)})`;dashFrame(m,p)},
  install:(m,p)=>{if(m.manual)return;const st=p<.3?0:p<.6?1:p<.82?2:3;if(st===m.st)return;const live=anim===SC.indexOf(m)&&m.st!==undefined&&st===m.st+1;m.st=st;
-  if(st===0){['ic','is','ist'].forEach(k=>{clearInterval(m[k]._iv);clearTimeout(m[k]._to);m[k].textContent=''});m.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('act',x.dataset.id==='claude'));placeInd(m);m.ied.classList.remove('on');return}
-  pick(m,st===1?'claude':st===2?'codex':'pi',live)}};
+  if(st===0){['ic','is','ist'].forEach(k=>{clearInterval(m[k]._iv);clearTimeout(m[k]._to);m[k].textContent=''});m.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('act',x.dataset.id==='platform'));placeInd(m);m.ied.classList.remove('on');return}
+  pick(m,st===1?'platform':st===2?'claude':'pi',live)}};
 function run(i,p){const m=SC[i];
  m.at.forEach(e=>e.classList.toggle('on',p>=+e.dataset.at));m.off.forEach(e=>{if(p>=+e.dataset.off)e.classList.remove('on')});
  m.ty.forEach(e=>setTyped(e,R(p,+e.dataset.a,+e.dataset.b)));
  m.tick.forEach(e=>{const on=p>=+e.dataset.tick;e.classList.toggle(e.dataset.cls||'ok',on)});
  m.cnt.forEach(e=>setCount(e,EO(R(p,+e.dataset.a,+e.dataset.b))));
  m.sw.forEach(e=>e.classList.toggle('swon',p>=+e.dataset.sw));m.sel.forEach(e=>e.classList.toggle('sel',p>=+e.dataset.sel));m.press.forEach(e=>e.classList.toggle('press',p>=+e.dataset.press));
- const sc=SCN[i];if(MOB){if(sc.n==='review'){UPD.review(m,1);m.win.style.transform=''}if(sc.n==='resume'){m.before.style.display='none';m.after.style.display='';m.cut.classList.remove('on')}if(sc.n==='test')UPD.test(m,1);if(sc.n==='install'&&!m.cur)pick(m,'claude',false);return}
+ const sc=SCN[i];if(MOB){if(sc.n==='review'){UPD.review(m,1);m.win.style.transform=''}if(sc.n==='resume'){m.before.style.display='none';m.after.style.display='';m.cut.classList.remove('on')}if(sc.n==='test')UPD.test(m,1);if(sc.n==='gate'){UPD.gate(m,1);m.win.style.transform=''}if(sc.n==='install'&&!m.cur)pick(m,'platform',false);return}
  if(UPD[sc.n])UPD[sc.n](m,p);else if(m.win)tilt(m.win,EO(R(p,0,.2)),sc.sd)}
 /* ---------- pager: one gesture = one scene; each scene plays on its own clock ---------- */
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
@@ -244,7 +285,7 @@ function onKey(e){if(MOB||e.target.closest&&e.target.closest('input,textarea'))r
  else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(SCN.length-1)}}
 let ty0=null;
 function boot(){MOB=innerWidth<760;document.body.classList.toggle('mob',MOB);document.documentElement.classList.toggle('pager',!MOB);build();
- if(MOB){cancelAnimationFrame(raf);anim=null;document.body.classList.add('still');const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const z=m.el.querySelector('.zoom');if(z){const w=m.el.querySelector('.vp').clientWidth;z.style.transform=`translate(0,-130px) scale(${w/1100*1.2})`}});placeInd(SC[SC.length-1]);return}
+ if(MOB){cancelAnimationFrame(raf);anim=null;document.body.classList.add('still');const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const cvi=m.el.querySelector('.cvi');if(cvi){const w=cvi.parentElement.clientWidth,k=Math.min(1,w/718);cvi.style.transform=`scale(${k})`;cvi.parentElement.style.height=Math.round(340*k)+'px'}const z=m.el.querySelector('.zoom');if(z){const w=m.el.querySelector('.vp').clientWidth;z.style.transform=`translate(0,-130px) scale(${w/1100*1.2})`}});placeInd(SC[SC.length-1]);return}
  fit();if(!P.length){P=SCN.map(()=>0);done=SCN.map(()=>false)}if(done[cur])document.body.classList.add('still');paint();if(!done[cur])play(cur,P[cur]);placeInd(SC[SC.length-1])}
 window.LF={SCN,go,replay,get cur(){return cur},get playing(){return anim!==null},get busy(){return busy},DUR,TRMS,seek(i,p){cancelAnimationFrame(raf);anim=null;if(i!==cur){SC[cur].el.style.visibility='hidden';cur=i}SC[i].el.style.visibility='visible';SC[i].el.style.clipPath='none';P[i]=p;done[i]=p>=1;run(i,p);ui()}};
 addEventListener('wheel',onWheel,{passive:false});addEventListener('keydown',onKey);
