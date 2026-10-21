@@ -2,13 +2,17 @@
 
 **在线访问 / Live:** https://loopforge.cn/
 
-这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页：一个分段播放的单页（滚一下进入下一段，每段自动放完）。开头两段介绍自部署平台（SOP 流程设计器、人工审批关口），然后跟着一句需求（`/start-devflow "为订单列表增加状态筛选，并补充接口测试"`）用 LoopForge Local 走完澄清、方案、实现、独立审查、测试、断点续跑、交付，最后是本地看板和安装命令（平台 + 5 个 Agent）。和腾讯官方无关，LoopForge 本身以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
+这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页以自部署平台为主，展示真实 SOP 设计器、运行详情、产物、录屏和部署方式。旧的 Local 分段故事保留在 `local.html`，不再作为平台的主体介绍。
 
-**在线试用 / Playground:** https://loopforge.cn/playground/ —— 在浏览器里选一条内置 SOP、启动运行、看节点推进和产物，在人工验收节点放行或打回。
+**平台真实前端录制预览:** https://loopforge.cn/demo/ 。`demo/` 直接复制上游 `web/` 中的前端（来源基线见 `LF_RECORDINGS.meta`），只适配 `/demo/` 静态资源路径并接入内存回放层。接口数据来自一个只装公共目录、无模型/Git凭据的独立本地实例；脚本与审批运行及产物是真实录制，Agent SOP 的配置来自平台公共模板的真实项目副本。未录制的写操作默认拒绝，审批演示只在浏览器切换录制状态，不发网络请求、不执行脚本。无需登录或 API Key，请勿输入凭据。
 
-An **unofficial** community intro page for [Tencent/LoopForge](https://github.com/Tencent/LoopForge). A single paged story (one scroll per scene, each scene plays itself). It opens with the self-hosted platform (SOP designer, human approval gate), then follows one request through clarify, plan, build, independent review, test, resume and deliver with LoopForge Local, and ends with the local dashboard and install commands (platform + 5 agents). Not affiliated with Tencent.
+重新打包：`python3 build-demo.py --source /path/to/LoopForge/web --capture /path/to/local/capture`。原始录制文件可能包含登录请求，不能提交；打包仅保留成功 GET 响应，并移除敏感字段和本地运行路径。初始版本不包含工作区 VS Code、实时模型运行或任意修改保存能力。
 
-The playground (`playground/`) lets you pick a built-in SOP, start a run, watch nodes progress, and approve or send work back at the sign-off gate, all in the browser. LoopForge itself is [MIT licensed](https://github.com/Tencent/LoopForge/blob/main/LICENSE).
+原 `playground/` 是手工模拟，已不作为平台预览入口。LoopForge 以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
+
+An **unofficial** community intro page for [Tencent/LoopForge](https://github.com/Tencent/LoopForge), focused on the self-hosted platform. The original Local story is retained at `local.html`.
+
+`demo/` bundles the upstream Web UI with recorded responses from a clean local instance: browse SOPs, their designer, requirements, runs and real script-generated artifacts. Approval switches between recorded states in memory; unsupported writes are denied. No model calls, credentials or server are required. The preview does not include the workspace VS Code or arbitrary execution. `playground/` redirects to this real-UI preview. LoopForge is [MIT licensed](https://github.com/Tencent/LoopForge/blob/main/LICENSE).
 
 ## 演示数据 / Demo data
 
