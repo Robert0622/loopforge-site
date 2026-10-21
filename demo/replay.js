@@ -57,6 +57,7 @@
   // Neutralise credential and file-upload inputs in the real UI. No form may submit to the network.
   document.addEventListener('submit',e=>{e.preventDefault()},true);
   document.addEventListener('DOMContentLoaded',()=>{
+    setTimeout(()=>{const help=document.getElementById('previewLoadingHelp');if(help)help.hidden=false},15000);
     const en=new URLSearchParams(location.search).get('lang')==='en';
     if(en)localStorage.setItem('loopforge.lang','en');
     const bar=document.createElement('div');bar.id='recordedPreviewBar';

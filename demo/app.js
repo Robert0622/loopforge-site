@@ -887,6 +887,7 @@ async function boot(){
   renderAll();
   switchView(view);
   restoreRequirementComposer();
+  document.getElementById('previewLoading')?.remove();
 }
 const savedTheme=localStorage.getItem('loopforge.theme.v3')||'light';document.documentElement.dataset.theme=savedTheme;
 

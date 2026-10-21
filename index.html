@@ -1,17 +1,40 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LoopForge · 把团队的交付方法，变成 Agent 能执行的流程</title>
-<meta name="description" content="LoopForge 是 MIT 开源、可自主部署的 Agent 软件交付平台。用可视化 SOP 编排 CodeBuddy、Codex、Claude Code、脚本和人工审批，从需求到方案、实现、独立评审、测试和验收。浏览平台真实前端与录制数据，无需 API Key。">
-<meta name="referrer" content="no-referrer"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="site/platform.css">
-</head><body>
-<header><a class="brand" href="/">Loop<span>Forge</span></a><nav><a href="#workflow">工作原理</a><a href="#platform">平台界面</a><a href="#deploy">部署</a><a href="local.html">Local 版</a></nav><a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="button primary" href="demo/">预览平台 →</a></header>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LoopForge · 让 Agent 按团队的流程交付</title>
+<meta name="description" content="LoopForge 是 MIT 开源、可自主部署的 Agent 软件交付平台。编排 Agent、脚本和人工审批，让需求经过方案、实现、独立评审、测试与验收。">
+<meta name="referrer" content="no-referrer"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="site/platform.css?v=3">
+<link rel="prefetch" href="demo/recordings.js"><link rel="prefetch" href="demo/app.js">
+</head>
+<body>
+<header><a class="brand" href="/">Loop<span>Forge</span></a><nav><a href="#workflow">工作流程</a><a href="#platform">平台演示</a><a href="#deploy">部署</a></nav><a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="button primary" href="demo/">预览平台 →</a></header>
 <main>
-<section class="hero"><div><p class="eyebrow">MIT 开源 · 可自主部署 · 面向团队的 Agent 交付平台</p><h1>把团队的交付方法，<br>变成 Agent<br><em>能执行的流程。</em></h1><p class="intro">不是又一个聊天窗口。LoopForge 把编程 Agent、确定性脚本和人工决策放进同一条 SOP：谁来设计、谁来实现、谁来评审、什么时候跑测试、由谁验收，都由你的团队定义。</p><div class="actions"><a class="button primary" href="demo/">打开平台真实界面 →</a><a class="button" href="#deploy">部署到自己的环境</a></div><p class="note">预览使用开源项目真实前端 + 本地实例录制数据，无需账号或 API Key。不是在线模型服务。</p><div class="badges"><span>CodeBuddy</span><span>Codex</span><span>Claude Code</span><span>脚本</span><span>人工审批</span></div></div><a class="hero-image" href="demo/#/flow/demo-issue-fix-production"><div class="window-title"><i></i><i></i><i></i><span>LoopForge / SOP 流程设计器 · 真实界面</span></div><img src="site/platform/designer.png" alt="LoopForge 真实流程设计器，七个节点从需求定型到交付汇总" width="1440" height="1000"><div class="image-caption">点击进入可浏览的真实平台前端 ↗</div></a></section>
-<section id="workflow"><p class="eyebrow">从一条需求，到可检查的交付</p><h2>把流程固定下来，<br>把灵活的部分留给 AI。</h2><p class="section-intro">同一条 SOP、同样的阶段和检查。实现、评审和测试由不同角色完成；关键节点暂停，等你确认后再推进。</p><div class="steps"><span>需求定型</span><b>→</b><span>方案设计</span><b>→</b><span>开发实现</span><b>→</b><span>独立评审</span><b>→</b><span>测试验证</span><b>→</b><span class="human">人工验收</span><b>→</b><span>交付汇总</span></div><p class="note">验收不通过，可以打回到指定节点返工。流程可发布版本、复用子 SOP，并按项目配置角色、规则、Skills 和 MCP。</p><div class="cards"><article><span>01 / 编排</span><h3>Agent + 脚本 + 人</h3><p>在真实设计器里连接四类节点：Agent、脚本、人工审批和子 SOP。不需要 AI 的构建、Lint、测试，用确定性脚本完成。</p><a href="demo/#/flow/demo-issue-fix-production">看流程设计器 →</a></article><article><span>02 / 执行</span><h3>不再自己评审自己</h3><p>为实现、评审、测试定义独立角色，每个角色都有自己的执行器、模型、指令和工具。内置后端、前端、缺陷修复、产品方案 SOP。</p><a href="demo/#/sops">看 SOP 目录 →</a></article><article><span>03 / 验收</span><h3>关键关口由你签字</h3><p>检查报告和产物后放行，或附上上下文打回返工。节点状态、日志、工具轨迹和产物版本集中呈现。</p><a href="demo/">看运行与审批 →</a></article></div></section>
-<section id="platform"><div class="section-heading"><div><p class="eyebrow">不是重画的样机</p><h2>这就是你部署后会看到的平台。</h2></div><a class="button" href="demo/">进入录制预览 →</a></div><p class="section-intro">下方截图来自独立部署的 LoopForge 实例。预览直接打包开源仓库中的 Web 前端，并回放该实例的接口响应；不会假装模型正在运行。</p><div class="screens"><article><a href="demo/"><img loading="lazy" src="site/platform/approval.png" alt="真实运行详情、人工验收和节点拓扑"></a><h3>运行详情与人工验收</h3><p>每个节点的状态、输出和验证证据都在同一条运行记录里。预览可以体验一次审批结果的本地回放。</p></article><article><a href="demo/"><img loading="lazy" src="site/platform/artifact.png" alt="真实报告产物的 Markdown 渲染预览"></a><h3>真实脚本生成的产物</h3><p>录制示例实际执行了脚本，保存验收报告，并在审批后生成完成记录。产物可以查看源码和渲染预览。</p></article></div><div class="video"><h3>一条真实的脚本 + 审批交付流程</h3><video controls preload="none" poster="site/platform/approval.png"><source src="site/platform/demo.mp4" type="video/mp4"></video><p class="note">此示例无需模型 Key。涉及 Agent 的真实任务需要自部署，并配置你自己的执行器凭据。</p></div></section>
-<section id="deploy"><p class="eyebrow">你的流程 · 你的代码 · 你的运行环境</p><h2>给团队部署一套，<br>不是换掉现有的 Coding Agent。</h2><div class="deploy-grid"><div><p class="section-intro">需要 Docker（含 Compose）和 Python 3。安装完成后打开 localhost:8090，创建账号，再通过首页引导跑通第一条 SOP。</p><pre><code>git clone https://github.com/Tencent/LoopForge.git
+<section class="hero focused-hero">
+<p class="eyebrow">开源 · 自主部署 · Agent 软件交付平台</p>
+<h1>让 Agent 按团队的流程，<br><em>把需求推进到交付。</em></h1>
+<p class="intro">把编程 Agent、脚本和人工审批编排成可复用的 SOP。<br>从方案、实现到评审、测试和验收，每个环节都有分工和证据。</p>
+<div class="actions"><a class="button primary" href="demo/">预览平台 →</a><a class="button" href="#deploy">部署到自己的环境</a></div>
+<p class="note">真实平台前端 · 录制数据预览 · 无需登录或 API Key</p>
+<a class="hero-image" href="demo/#/flow/demo-issue-fix-production"><div class="window-title"><i></i><i></i><i></i><span>LoopForge · SOP 流程设计器</span></div><img src="site/platform/designer.png" alt="LoopForge 真实平台中的七节点交付流程设计器" width="1440" height="1000" fetchpriority="high"></a>
+</section>
+<section id="workflow">
+<p class="eyebrow">一条需求，一套可复用的交付方法</p><h2>流程由你定义，关键关口由你把控。</h2>
+<div class="steps"><span>需求定型</span><b>→</b><span>方案设计</span><b>→</b><span>开发实现</span><b>→</b><span>独立评审</span><b>→</b><span>测试验证</span><b>→</b><span class="human">人工验收</span><b>→</b><span>交付汇总</span></div>
+<div class="cards"><article><span>01 / 编排</span><h3>把方法沉淀为 SOP</h3><p>连接 Agent、脚本、人工审批和子流程。内置后端、前端、缺陷修复与产品方案模板，可按项目调整。</p></article><article><span>02 / 分工</span><h3>实现与评审各司其职</h3><p>为不同角色配置独立指令、执行器和工具。支持 CodeBuddy、Codex 和 Claude Code，不替代已有 Coding Agent。</p></article><article><span>03 / 验收</span><h3>看过证据，再放行</h3><p>运行状态、日志和产物集中留存。关键节点由人确认，不满意可打回指定环节返工。</p></article></div>
+</section>
+<section id="platform">
+<div class="section-heading"><div><p class="eyebrow">真实平台 · 真实脚本与审批录屏</p><h2>看看一次交付如何推进。</h2></div><a class="button" href="demo/">进入平台预览 →</a></div>
+<div class="video"><video controls preload="none" poster="site/platform/approval.png" aria-label="LoopForge 真实脚本与人工审批演示"><source src="site/platform/demo.mp4" type="video/mp4"></video></div>
+<p class="note">网页预览使用开源项目真实前端与独立实例录制数据，不执行模型或用户代码。真实 Agent 任务需自部署并配置执行器凭据。</p>
+</section>
+<section id="deploy">
+<p class="eyebrow">MIT 开源 · 运行在你自己的环境</p><h2>为团队部署一套 LoopForge。</h2>
+<div class="deploy-grid"><div><p class="section-intro">准备 Docker（含 Compose）和 Python 3，启动后打开 <code>localhost:8090</code>。首页引导可带你跑通无需模型 Key 的脚本与审批示例。</p><a class="button primary" href="https://github.com/Tencent/LoopForge#quick-start" target="_blank" rel="noopener noreferrer">查看完整部署指南 ↗</a></div><pre><code>git clone https://github.com/Tencent/LoopForge.git
 cd LoopForge
-bash scripts/install.sh</code></pre><a class="button primary" href="https://github.com/Tencent/LoopForge#quick-start" target="_blank" rel="noopener noreferrer">查看部署指南 ↗</a><p class="note">默认面向可信团队，仅监听本机。对公网开放前请阅读账号、权限及 Docker 沙箱的部署边界；预览页不是可执行的公网实例。</p></div><aside><h3>平台版与 Local 版</h3><p><strong>平台版：</strong>团队共享可视化 SOP、需求、角色、审批、运行记录和交付证据，支持 Docker 沙箱或自己的执行机器。</p><p><strong>Local 版：</strong>个人开发者在已有 IDE / CLI 中使用内置交付工作流，不需要服务端。</p><a href="local.html">了解 Local 版 →</a><p class="note">Local 不是平台的在线版；平台 SOP 导出到 Local 独立执行尚未实现。</p></aside></div></section>
-<section class="community"><div><p class="eyebrow">一起把 Agent 带进真实交付</p><h2>把跑通的方法，变成下一次的起点。</h2><p>欢迎提交 Issue、PR，分享团队使用 SOP 的实践，完善执行器适配与平台体验。</p><div class="actions"><a class="button primary" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">GitHub · Star / Issue / PR ↗</a><a class="button" href="demo/">先看看平台 →</a></div></div><img loading="lazy" src="site/platform/community.png" alt="LoopForge 交流群二维码" width="180" height="180"></section>
-</main><footer>LoopForge · MIT 开源。本站为社区介绍页，项目源码与正式部署说明以 <a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">Tencent/LoopForge</a> 为准。<br>平台预览：真实 Web 前端 + 脱敏录制数据；不调用模型、不执行用户代码、不接收 API Key。</footer>
+bash scripts/install.sh</code></pre></div>
+<p class="note">默认面向可信团队，仅监听本机。对公网开放前，请阅读项目中的账号、权限与 Docker 沙箱部署边界。</p>
+</section>
+</main>
+<footer><span>LoopForge · MIT 开源 · 社区介绍页</span><a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">GitHub · 源码 / Issue / PR ↗</a><span>项目能力与部署说明以开源仓库为准。</span></footer>
 </body></html>

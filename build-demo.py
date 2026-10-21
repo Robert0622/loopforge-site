@@ -18,11 +18,15 @@ for p in list(out.glob('*.js'))+list((out/'app').glob('*.js')):
     s=p.read_text()
     s=re.sub(r'([\'"`])/(images|mcp-icons|monaco|vscode-web)(/)',r'\1/demo/\2\3',s)
     s=re.sub(r'`/api/auth/photo/[^`]+`',"'/demo/favicon.png'",s)
+    if p.name=='app.js' and p.parent==out:
+        s=s.replace('  restoreRequirementComposer();','  restoreRequirementComposer();\n  document.getElementById(\'previewLoading\')?.remove();',1)
     p.write_text(s)
 s=(src/'index.html').read_text()
 s=re.sub(r'((?:src|href)=[\'"])/(?!(?:api)/)',r'\1/demo/',s)
 s=s.replace('<script src="/demo/boot.js">','<script src="/demo/recordings.js"></script><script src="/demo/replay.js"></script><link rel="stylesheet" href="/demo/replay.css"><script src="/demo/boot.js">')
 s=s.replace('<head>','<head>\n<meta name="referrer" content="no-referrer">\n<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; img-src \'self\' data: blob:; connect-src \'self\'; font-src \'self\' data:; object-src \'none\'; base-uri \'self\'; form-action \'none\'">')
+s=s.replace('<script src=','<script defer src=')
+s=s.replace('<body>','<body>\n  <div id="previewLoading" role="status" aria-live="polite"><div><span class="preview-spinner" aria-hidden="true"></span><h1>正在打开 LoopForge 平台</h1><p>加载真实界面与录制数据，无需登录或 API Key。</p><p id="previewLoadingHelp" hidden>加载时间较长，请检查网络后刷新，或<a href="/">返回首页</a>。</p></div></div>',1)
 (out/'index.html').write_text(s)
 records=[]
 for name in ['rec-zh.json','rec-extra.json','rec-final.json']:

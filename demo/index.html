@@ -28,11 +28,12 @@
   <link rel="stylesheet" href="/demo/bots.css">
   <link rel="stylesheet" href="/demo/collaboration.css?v=20261019tasks3">
   <link rel="stylesheet" href="/demo/preferences.css">
-  <script src="/demo/recordings.js"></script><script src="/demo/replay.js"></script><link rel="stylesheet" href="/demo/replay.css"><script src="/demo/boot.js"></script>
-  <script src="/demo/i18n-en.js"></script>
-  <script src="/demo/i18n.js"></script>
+  <script defer src="/demo/recordings.js"></script><script defer src="/demo/replay.js"></script><link rel="stylesheet" href="/demo/replay.css"><script defer src="/demo/boot.js"></script>
+  <script defer src="/demo/i18n-en.js"></script>
+  <script defer src="/demo/i18n.js"></script>
 </head>
 <body>
+  <div id="previewLoading" role="status" aria-live="polite"><div><span class="preview-spinner" aria-hidden="true"></span><h1>正在打开 LoopForge 平台</h1><p>加载真实界面与录制数据，无需登录或 API Key。</p><p id="previewLoadingHelp" hidden>加载时间较长，请检查网络后刷新，或<a href="/">返回首页</a>。</p></div></div>
   <div id="globalProgress" class="global-progress" aria-hidden="true"></div>
   <div class="app-shell">
 
@@ -1019,36 +1020,36 @@
     </div>
   </div>
   <div id="revisionModal" class="modal"><div class="modal-card revision-card"><button type="button" class="modal-close" id="revisionClose">×</button><div class="wizard-head"><div><p class="eyebrow">版本历史</p><h2 id="revisionTitle">版本历史</h2><p>对比上一版并回退。回退会生成新版本，不会改已经跑完的记录。</p></div></div><div id="revisionList" class="revision-list"></div><pre id="revisionDiff" class="revision-diff">选择一个历史版本查看差异。</pre><div class="wizard-actions"><button type="button" class="button ghost" id="revisionClose2">关闭</button><button type="button" class="button primary" id="revisionRestore" disabled>回退到此版本</button></div></div></div>
-  <script src="/demo/app.js"></script>
-  <script src="/demo/app/access.js"></script>
-  <script src="/demo/app/dashboards.js"></script>
-  <script src="/demo/app/sops.js"></script>
-  <script src="/demo/app/issue-model.js"></script>
-  <script src="/demo/app/projects.js"></script>
-  <script src="/demo/app/business-domains.js"></script>
-  <script src="/demo/app/composer.js"></script>
-  <script src="/demo/app/issues.js"></script>
-  <script src="/demo/app/sync-schedule.js"></script>
-  <script src="/demo/app/notification-editor.js"></script>
-  <script src="/demo/app/bots.js"></script>
-  <script src="/demo/app/flows.js?v=20261015rebuild2"></script>
-  <script src="/demo/app/agents.js"></script>
-  <script src="/demo/app/mcp.js"></script>
-  <script src="/demo/app/assets.js"></script>
-  <script src="/demo/app/runners.js"></script>
-  <script src="/demo/app/runs.js"></script>
-  <script src="/demo/app/workbench.js"></script>
-  <script src="/demo/app/approvals.js"></script>
-  <script src="/demo/app/observability.js"></script>
-  <script src="/demo/app/issue-drawer.js"></script>
-  <script src="/demo/app/revisions.js"></script>
-  <script src="/demo/app/tour.js"></script>
-  <script src="/demo/app/start.js"></script>
-  <script src="/demo/knowledge.js?v=20260930r2"></script>
+  <script defer src="/demo/app.js"></script>
+  <script defer src="/demo/app/access.js"></script>
+  <script defer src="/demo/app/dashboards.js"></script>
+  <script defer src="/demo/app/sops.js"></script>
+  <script defer src="/demo/app/issue-model.js"></script>
+  <script defer src="/demo/app/projects.js"></script>
+  <script defer src="/demo/app/business-domains.js"></script>
+  <script defer src="/demo/app/composer.js"></script>
+  <script defer src="/demo/app/issues.js"></script>
+  <script defer src="/demo/app/sync-schedule.js"></script>
+  <script defer src="/demo/app/notification-editor.js"></script>
+  <script defer src="/demo/app/bots.js"></script>
+  <script defer src="/demo/app/flows.js?v=20261015rebuild2"></script>
+  <script defer src="/demo/app/agents.js"></script>
+  <script defer src="/demo/app/mcp.js"></script>
+  <script defer src="/demo/app/assets.js"></script>
+  <script defer src="/demo/app/runners.js"></script>
+  <script defer src="/demo/app/runs.js"></script>
+  <script defer src="/demo/app/workbench.js"></script>
+  <script defer src="/demo/app/approvals.js"></script>
+  <script defer src="/demo/app/observability.js"></script>
+  <script defer src="/demo/app/issue-drawer.js"></script>
+  <script defer src="/demo/app/revisions.js"></script>
+  <script defer src="/demo/app/tour.js"></script>
+  <script defer src="/demo/app/start.js"></script>
+  <script defer src="/demo/knowledge.js?v=20260930r2"></script>
   </div>
   </div>
-  <script src="/demo/orchestrate.js?v=20260928r4"></script>
-  <script src="/demo/assistant.js?v=20261015loop1"></script>
-  <script src="/demo/collaboration.js?v=20261019tasks5"></script>
+  <script defer src="/demo/orchestrate.js?v=20260928r4"></script>
+  <script defer src="/demo/assistant.js?v=20261015loop1"></script>
+  <script defer src="/demo/collaboration.js?v=20261019tasks5"></script>
 </body>
 </html>
