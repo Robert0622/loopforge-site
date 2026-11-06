@@ -1,6 +1,6 @@
 window.LF_T={
 zh:{
- nav:['痛点','工作方式','演示视频','快速部署'],
+ nav:['核心价值','工作方式','演示视频','快速部署'],
  try:'观看演示',demo:'示例数据',replay:'重播',
  req:'修复订单导出的时区错误',
  story:{h:'从个人编码工具，<br>走向团队级云端研发。',em:'团队级云端研发',sub:'把环境、会话、门禁与复盘连成一体，让团队的研发经验沉淀为可复用的工程机制。',
@@ -60,7 +60,7 @@ zh:{
   plat:'平台版',note:'Local 版默认推荐使用 Classic；如需检查本地环境依赖，可运行',gh:'前往 GitHub',foot:'LoopForge 由腾讯开源，遵循 MIT 协议'}
 },
 en:{
- nav:['Why','How it works','Video','Deploy'],
+ nav:['Why LoopForge','How it works','Video','Deploy'],
  try:'Watch demo',demo:'demo data',replay:'Replay',
  req:'Fix timezone bug in order export',
  story:{h:'From solo coding tools<br>to team-scale cloud delivery.',em:'team-scale cloud delivery',sub:'Workspaces, shared sessions, hard gates and post-run reviews working together—turning individual know-how into repeatable engineering standards.',
