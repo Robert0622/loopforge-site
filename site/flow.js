@@ -53,7 +53,7 @@ const F=(w,body,max=1)=>`<div class="fit" data-max="${max}"><div class="fz" styl
 /* ---------- the real app chrome: icon rail, optional sidebar, top bar ---------- */
 const RAIL=['home','chart','list','check','flow','play','clock'];
 const shell=(on,main,side='',top=true)=>`<div class="app"><aside class="arl"><span class="alg">${LOGO()}</span>${RAIL.map(k=>`<i class="ari${k===on?' on':''}">${ic(k)}${k==='check'?'<b class="bdg">2</b>':''}</i>`).join('')}<span class="sp"></span><i class="ari">${ic('panel')}</i><i class="ari">${ic('gear')}</i><span class="aav">L</span></aside>${side}
- <section class="amn">${top?`<header class="atp"><span class="asr">${ic('search')}${Z('搜索需求、运行、SOP 或 Agent','Search requirements, runs, SOPs or agents')}<kbd>⌘K</kbd></span><span class="sp"></span><span class="apj">LOOP · LoopForge ${ic('down')}</span><span class="alng">中 / EN</span><span class="aad"><i>A</i>admin</span></header>`:''}<div class="abd">${main}</div></section></div>`;
+ <section class="amn">${top?`<header class="atp"><span class="asr">${ic('search')}<em>${Z('搜索需求、运行、SOP 或 Agent','Search runs, SOPs, agents…')}</em><kbd>⌘K</kbd></span><span class="sp"></span><span class="apj">LOOP · LoopForge ${ic('down')}</span><span class="alng">中 / EN</span><span class="aad"><i>A</i>admin</span></header>`:''}<div class="abd">${main}</div></section></div>`;
 const tg=(t,c='')=>`<span class="tg ${c}">${t}</span>`;
 /* ---------- hero: the SOP designer ---------- */
 function hero(t){const c=t.hero;
