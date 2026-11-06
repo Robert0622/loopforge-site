@@ -62,7 +62,7 @@ ${CH.map(([t,a,b,c,d],i)=>`<li><button type="button" data-i="${i}"><time>${mmss(
 <div class="cmd"><code>git clone ${GH}.git</code><button type="button" class="cp">${Z('复制','Copy')}</button></div></div>
 <div class="acts"><a class="pill f" href="${GH}#readme" target="_blank" rel="noopener">${Z('部署文档','Deploy guide')} →</a><a class="pill" href="${home}">${Z('返回首页','Back to home')}</a></div></section>
 </main>
-<footer><div class="wrap"><span>${Z('非官方社区介绍页 · 与 Tencent 无隶属关系','Unofficial community page · not affiliated with Tencent')}</span><span>LoopForge · <a href="${GH}/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></span></div></footer>`;
+<footer><div class="wrap"><span>${Z('LoopForge 由腾讯开源，遵循 MIT 协议','LoopForge is open-sourced by Tencent under the MIT License')}</span><span>LoopForge · <a href="${GH}/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></span></div></footer>`;
 
 const $=s=>app.querySelector(s);
 const v=$('video'),screen=$('.screen'),big=$('.big'),snd=$('.snd'),pp=$('.pp'),mu=$('.mu'),track=$('.track'),done=$('.track .done'),buf=$('.track .buf'),knob=$('.track .knob'),tip=$('.track .tip');

@@ -57,7 +57,7 @@ zh:{
   retry:'LOOP-12 · 开发实现 · 第 2 轮',fixed:'按失败原因修复：导出前统一转换为用户时区',pass:'exit 0 · 37 个测试全部通过',done:'门禁通过 → 进入独立评审'},
  install:{h:'把团队的交付方法，<br>沉淀为可复用的工程标准。',
   sub:'MIT 协议开源。平台版需 Docker（含 Compose）与 Python 3；Local 版支持直接装入常用 Coding CLI（需 Node.js 20+ 与 Python 3.8+）。',copy:'复制',copied:'已复制',
-  plat:'平台版',note:'Local 版默认推荐使用 Classic；如需检查本地环境依赖，可运行',gh:'前往 GitHub',foot:'非官方社区介绍页 · LoopForge 由腾讯开源，遵循 MIT 协议'}
+  plat:'平台版',note:'Local 版默认推荐使用 Classic；如需检查本地环境依赖，可运行',gh:'前往 GitHub',foot:'LoopForge 由腾讯开源，遵循 MIT 协议'}
 },
 en:{
  nav:['Why','How it works','Video','Deploy'],
@@ -117,5 +117,5 @@ en:{
   retry:'LOOP-12 · Implement · round 2',fixed:'Fixed from error log: convert to user timezone before export',pass:'exit 0 · all 37 tests passed',done:'Gate passed → independent review'},
  install:{h:'Turn your team\'s delivery know-how<br>into reusable engineering standards.',
   sub:'MIT licensed. The platform requires Docker (with Compose) and Python 3; LoopForge Local installs directly into your coding CLI (Node.js 20+ and Python 3.8+).',copy:'Copy',copied:'Copied',
-  plat:'Platform',note:'For Local, the default Classic edition is recommended. To check your local environment, run',gh:'View on GitHub',foot:'Unofficial community page · LoopForge is open-sourced by Tencent under the MIT License'}
+  plat:'Platform',note:'For Local, the default Classic edition is recommended. To check your local environment, run',gh:'View on GitHub',foot:'LoopForge is open-sourced by Tencent under the MIT License'}
 }};
