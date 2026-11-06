@@ -3,8 +3,9 @@
 const qs=new URLSearchParams(location.search);
 let L=qs.get('lang')||localStorage.getItem('lf-lang')||((navigator.language||'').startsWith('zh')?'zh':'en');if(L!=='zh'&&L!=='en')L='zh';
 const Z=(a,b)=>L==='zh'?a:b;
-const SRC='media/loopforge-promo.mp4',POSTER='media/loopforge-promo.jpg',GH='https://github.com/Tencent/LoopForge';
-const LOGO=`<svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M45.2 19.2A10 10 0 1 1 42 4.8" stroke="#FF5A1F" stroke-width="4.4" stroke-linecap="round"/><path d="M46.5 7.8L39.0 9.0L42.8 1.4z" fill="#FF5A1F" stroke="#FF5A1F" stroke-width="1.2" stroke-linejoin="round"/><path d="M3 30.5c6.5 0 11.2-1.6 15-3.5H58v7.8h-8.6c-3.6 0-5.9 2.6-5.9 5.8V44h7.2v6.5H20.8V44H28v-3.4c0-3.2-2.3-5.8-5.9-5.8H17C10.8 34.8 6 33.2 3 30.5z" fill="currentColor"/></svg>`;
+const SRC='media/loopforge-promo.mp4?v=11',POSTER='media/loopforge-promo.jpg?v=11',GH='https://github.com/Tencent/LoopForge';
+let lgN=0;
+const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
 const I={
  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>',
  pause:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></svg>',
@@ -15,15 +16,16 @@ const I={
 };
 // Start times match the title cards in the video.
 const CH=[
- [3,'一句话提需求','Prompt a task','输入需求，匹配对应的研发 SOP','Enter a requirement and match an SOP'],
- [16,'多 Agent 并行','Parallel agents','前后端与测试在独立云端工作区同时跑','Frontend, backend and test in own workspaces'],
- [25,'流水线生成 MR','Pipeline to MR','按步骤执行、过门禁，最后提交 MR','Run steps and gates, then open an MR'],
- [30,'云端后台运行','Runs in the cloud','合上电脑或关掉网页，任务在云端继续跑','Keep tasks running after closing your laptop'],
- [38,'多人同一会话','Shared session','产品、设计、研发同群协作，按需走 SOP','Product, design and dev in a single thread'],
- [45,'编排 SOP 与执行器','SOPs & executors','配置角色与门禁，切换 Claude、Codex 等','Set roles and gates; switch CLI per step'],
- [51,'工蜂 / TAPD 同步','Git & TAPD sync','拉取缺陷单自动修复，状态回写单据','Pull tickets, run fixes, and sync status back'],
- [61,'运行评测与复盘','Run review','给运行打分找卡点，改进建议写回 SOP','Score each run, spot bottlenecks, update SOP'],
- [69,'开源与私有部署','Open source','MIT 协议开源，支持团队自主部署','MIT licensed, ready to self-host'],
+ [2.8,'一句话提需求','Prompt a task','选好权限，输入需求，自动编排出 SOP','Type the task and get an SOP to run'],
+ [11.5,'失败自动重跑','Auto retry','验收没过就打回上游节点，重跑后通过','Failed checks go back upstream and rerun'],
+ [16.5,'多 Agent 并行','Parallel agents','前端、后端、测试各有隔离工作区','Frontend, backend, tests, each isolated'],
+ [22.2,'人工确认，交付 PR','Sign-off to PR','关键节点人来确认，跑完提交 PR','A person approves key steps, then a PR'],
+ [30.4,'合上电脑照样跑','Runs overnight','4 个任务在云端跑一夜，早上收到 PR','Four tasks run overnight; PRs by morning'],
+ [38,'团队共用会话','Shared session','产品、设计、研发在一个会话里提要求','Product, design and dev ask in one thread'],
+ [44.9,'SOP 与执行引擎','SOPs & engines','流程写成 SOP，执行引擎随时切换','Process as SOPs; swap the coding agent'],
+ [51.6,'自动修 Bug','Bugs fix themselves','定时拉取 GitHub Issues，修完提 PR','Pulls GitHub Issues and opens PRs'],
+ [60.4,'评测与复盘','Score and improve','给每次运行打分，改进建议一键写回 SOP','Runs get scored; fixes go into the SOP'],
+ [72.5,'开源部署','Open source','MIT 协议，clone 后跑一个安装脚本','MIT licensed; clone and run one install script'],
 ];
 const mmss=s=>{s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
 document.documentElement.lang=L==='zh'?'zh-CN':'en';
@@ -31,12 +33,12 @@ document.title=Z('LoopForge · 演示视频','LoopForge · Demo video');
 const home='../'+(L==='en'?'?lang=en':'');
 const app=document.getElementById('app');
 app.innerHTML=`
-<nav><div class="wrap"><a class="brand" href="${home}">${LOGO}<span>Loop<b>Forge</b></span></a><a class="back" href="${home}">← ${Z('返回首页','Home')}</a><span class="sp"></span>
+<nav><div class="wrap"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><a class="back" href="${home}">← ${Z('返回首页','Home')}</a><span class="sp"></span>
 <span class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">ZH</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></span>
 <a class="pill gh" href="${GH}" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${GH}#readme" target="_blank" rel="noopener">${Z('自己部署','Self-host')} →</a></div></nav>
 <main class="wrap">
-<header class="hd rv"><h1>${Z('一分半看懂 LoopForge','LoopForge in 80 seconds')}</h1>
-<p class="lede">${Z('从一句话提需求、多 Agent 云端并行开发，到提交 MR 与运行复盘的完整实录。','A full walkthrough: from a one-line requirement and parallel cloud agents to a merge request and post-run review.')}</p></header>
+<header class="hd rv"><h1>${Z('<em>80 秒</em>看懂 LoopForge','LoopForge in <em>80 seconds</em>')}</h1>
+<p class="lede">${Z('从一句话提需求，到多个 Agent 在云端并行开发、提交 PR，再到给运行打分复盘，完整演示一遍。','From a one-line request to agents working in parallel in the cloud, a pull request, and a scored review of the run.')}</p></header>
 <section class="stage rv d1">
 <figure class="fig">
 <div class="win"><div class="wbar" aria-hidden="true"><i></i><i></i><i></i><span>LoopForge · ${Z('实机演示','Walkthrough')}</span><span class="r">1:20</span></div>
@@ -131,7 +133,7 @@ document.addEventListener('keydown',e=>{
  else if(e.key==='ArrowRight'&&e.target!==track){seek(v.currentTime+5)}
  else if(e.key==='m'){v.muted=!v.muted}
  else if(e.key==='f'){$('.fs').click()}
- else if(/^[1-9]$/.test(e.key)){seek(CH[+e.key-1][0]);play()}
+ else if(/^[0-9]$/.test(e.key)){const c=CH[(+e.key+9)%10];if(c){seek(c[0]);play()}}
 });
 
 const fit=()=>{const h=$('.win').offsetHeight;$('.chap').style.setProperty('--chap-h',Math.max(320,h-34)+'px')};

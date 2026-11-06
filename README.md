@@ -4,7 +4,7 @@
 
 这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页是一页一屏的翻页介绍（滚轮、方向键或触摸滑动翻页，手机上改为顺序滚动，遵守 `prefers-reduced-motion`）：平台、为什么、经验变流程、门禁打回、共享上下文、投入与交付、人在环上、智能评测、部署。中英文案在 `site/content.js`，场景与翻页逻辑在 `site/flow.js`，样式在 `site/site.css`。每页右侧是 HTML/CSS 绘制的示意界面：SOP 节点、门禁命令、评测维度与权重与平台一致，需求、数字和对话为示例数据（看板与评测页标注“示例数据”）；产品演示视频见 `demo/`。旧的 Local 分段故事保留在 `local.html`，不再作为平台的主体介绍。
 
-**产品演示视频:** https://loopforge.cn/demo/ 。`demo/` 是一个独立的视频播放页（`demo/index.html` + `demo.css` + `demo.js`，视频与封面在 `demo/media/`）：80 秒产品演示，自定义播放控件，进度条上标出 9 个章节，右侧章节列表可点击跳转并随播放高亮；默认静音自动播放（遵守 `prefers-reduced-motion`），快捷键 空格/K 播放暂停、←/→ 快退快进 5 秒、M 静音、F 全屏、1–9 跳章节。中英文跟随首页的 `?lang=` / `lf-lang`。页面 CSP 为 `connect-src 'none'`，除静态文件外不发请求。视频按 H.264 1080p、`+faststart` 编码，需由支持 Range 请求的服务器提供才能拖动进度（GitHub Pages 支持；本地可用 `npx http-server`）。
+**产品演示视频:** https://loopforge.cn/demo/ 。`demo/` 是一个独立的视频播放页（`demo/index.html` + `demo.css` + `demo.js`，视频与封面在 `demo/media/`）：80 秒产品演示，自定义播放控件，进度条上标出 10 个章节，右侧章节列表可点击跳转并随播放高亮；默认静音自动播放（遵守 `prefers-reduced-motion`），快捷键 空格/K 播放暂停、←/→ 快退快进 5 秒、M 静音、F 全屏、1–9 跳章节。中英文跟随首页的 `?lang=` / `lf-lang`。页面 CSP 为 `connect-src 'none'`，除静态文件外不发请求。视频按 H.264 1080p、`+faststart` 编码，需由支持 Range 请求的服务器提供才能拖动进度（GitHub Pages 支持；本地可用 `npx http-server`）。
 
 原 `playground/` 是手工模拟，现在跳转到 `demo/` 演示视频。LoopForge 以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
 
@@ -44,4 +44,4 @@ Product logos are used only to label which agent each command targets; they are 
 
 ## License
 
-MIT, see [LICENSE](LICENSE). `dash/index.html` © Tencent, MIT. `site/fonts/`: Inter Tight and Geist Mono, SIL Open Font License 1.1 (`site/fonts/OFL-*.txt`).
+MIT, see [LICENSE](LICENSE). `dash/index.html` © Tencent, MIT. `site/fonts/`: Inter Tight, Geist Mono and Montserrat (600, used for the LoopForge wordmark), SIL Open Font License 1.1 (`site/fonts/OFL-*.txt`). The logo (`site/logo.svg`, `favicon.svg`) and the cyan / blue / violet palette follow the product video.
