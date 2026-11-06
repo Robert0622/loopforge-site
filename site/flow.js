@@ -200,7 +200,7 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
   ${STEPS.map(([k,fn,icn],i)=>`<article class="stp u" data-u="${k}"><header class="sth"><span class="stn rv" data-at=".02">${String(i+1).padStart(2,'0')}</span><div class="stt"><span class="kick">${ic(icn)}${t.story.marks[i]}</span>${head({h:t[k].h,em:t[k].em},'h3')}</div><p class="sub rv" data-at=".14">${t[k].sub}</p></header>
    <div class="stage">${fn(t)}<button class="rp" type="button">${ic('loop')}${t.replay}</button></div></article>`).join('')}</section>
  <section class="video wrap" id="video"><div class="sec-h u" data-u="head"><span class="kick">${ic('play')}${Z('实机演示','Walkthrough')}</span>${head(t.video)}</div>
-  <div class="vframe"><video preload="none" playsinline poster="demo/media/loopforge-promo.jpg?v=12" src="demo/media/loopforge-promo.mp4?v=12"></video>
+  <div class="vframe"><video preload="none" playsinline poster="demo/media/loopforge-promo${Z('','-en')}.jpg?v=12" src="demo/media/loopforge-promo${Z('','-en')}.mp4?v=12"></video>
   <button class="play" type="button"><i>${PLAY}</i><span>${t.video.play}</span></button></div>
   <div class="vfoot"><a class="btn-t" href="${TRY()}">${t.video.cta}${arrow}</a></div></section>
  <section class="deploy wrap u" id="deploy" data-u="install">${install(t)}</section>
