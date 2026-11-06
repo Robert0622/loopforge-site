@@ -9,7 +9,7 @@ const Z=(a,b)=>L==='zh'?a:b;
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 /* ---------- marks ---------- */
 let lgN=0;
-const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
+const LOGO=(glint)=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path class="lgp" pathLength="100" d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/>${glint?`<path class="lgg" pathLength="100" d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>`:''}</svg>`};
 // Product marks: Claude, Codex (OpenAI), Cursor, CodeBuddy from LobeHub Icons (@lobehub/icons-static-svg, MIT);
 // Pi from pi.dev's own favicon; GitHub from Simple Icons (CC0). Trademarks of their owners, used only to name the agent each command targets.
 const MARK={
@@ -179,7 +179,7 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Open-source, self-improving cloud platform for AI development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud platform for AI development: 24/7 cloud workspaces, a shared conversation with one Main Bot, SOPs with hard gates, scheduled and issue automation, and a review after every run that improves the process.');
  const GH='https://github.com/Tencent/LoopForge',XU='https://x.com/loopforgege',ids=['why','story','video','deploy'];
  const c=t.hero,w=t.why,arrow=`<span class="ar">${ic('arrow')}</span>`;
- document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a><span class="sp"></span>
+ document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO(1)}<span>LoopForge</span></a><span class="sp"></span>
  <div class="links">${t.nav.map((n,i)=>`<a href="#${ids[i]}" data-nav="${ids[i]}">${n}</a>`).join('')}</div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="ghs" href="${GH}" target="_blank" rel="noopener">${mark('gh')}<span>GitHub</span></a><a class="btn-k sm" href="${TRY()}">${t.try}${arrow}</a></div></header>
@@ -201,7 +201,7 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  <section class="fin u" data-u="fin"><span class="fl rv pop" data-at=".02">${LOGO()}</span>${head(t.fin)}
   <div class="cta rv" data-at=".2"><a class="btn-k" href="${TRY()}">${t.try}${arrow}</a><a class="btn-t" href="${GH}" target="_blank" rel="noopener">${mark('gh')}${t.install.gh}${arrow}</a></div></section>
  </main>
- <footer class="ft"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a><span>${t.install.foot} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · <a href="${XU}" target="_blank" rel="noopener">x.com/loopforgege</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span></footer>`;
+ <footer class="ft"><a class="brand" href="#top">${LOGO(1)}<span>LoopForge</span></a><span>${t.install.foot} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · <a href="${XU}" target="_blank" rel="noopener">x.com/loopforgege</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span></footer>`;
  const app=document.getElementById('app');
  U=[...app.querySelectorAll('.u')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const n=el.dataset.u;
   const m={el,n,dur:Math.round(LEN[n]*3400),p:0,done:false,playing:false,at:q('[data-at]'),off:q('[data-off]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),press:q('[data-press]'),st:q('[data-st]'),path:q('[data-path]')};
