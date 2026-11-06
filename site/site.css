@@ -378,5 +378,12 @@ code.typing:after{content:"";display:inline-block;width:7px;height:15px;backgrou
 .play i{position:relative}.play i:before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);animation:ring 2.4s var(--e-out) infinite}@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
 .vframe{transition:box-shadow .5s var(--e-out),transform .5s var(--e-out)}.vframe:not(.on):hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--rule),0 30px 60px -30px rgba(20,20,30,.45)}
 .ft a:not(.brand){transition:text-decoration-color .25s,color .25s}.ft a:not(.brand):hover{text-decoration-color:var(--ink)}
+.ag.wx{all:unset;position:relative;display:flex;align-items:center;line-height:0;cursor:pointer;color:var(--ink);transition:opacity .25s,transform .45s var(--e-spr),color .25s}.ag.wx:hover,.ag.wx.open{color:#07C160}.ag.wx:after{content:none}
+.ag.wx:hover{transform:none}.ag.wx .mk{transition:transform .45s var(--e-spr)}.ag.wx:hover .mk,.ag.wx.open .mk{transform:translateY(-3px) scale(1.18)}
+.ag.wx:focus-visible{outline:2px solid var(--acc);outline-offset:4px;border-radius:4px}
+.qr{position:absolute;left:50%;bottom:calc(100% + 14px);z-index:30;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 12px 10px;border-radius:10px;background:var(--raised);box-shadow:var(--lift2),inset 0 0 0 1px var(--rule);opacity:0;visibility:hidden;transform:translate(-50%,8px) scale(.96);transform-origin:50% 100%;transition:opacity .25s var(--e-out),transform .4s var(--e-spr),visibility 0s .25s;line-height:1}
+.qr:after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;margin-left:-5px;background:var(--raised);transform:rotate(45deg);box-shadow:1px 1px 0 var(--rule)}
+.qr img{display:block;width:132px;height:132px;border-radius:4px}.qr b{font:500 12px var(--sans);color:var(--mute);white-space:nowrap}
+.ag.wx:hover .qr,.ag.wx:focus-visible .qr,.ag.wx.open .qr{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1);transition:opacity .25s var(--e-out),transform .4s var(--e-spr),visibility 0s}
 body.still .ag,body.still .sep,body.still .play i:before{animation:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
