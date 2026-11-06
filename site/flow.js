@@ -157,6 +157,11 @@ const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"
 const stLine=id=>id==='platform'?INS[id][2]:`${INS[id][2]} ${REQ()}`;
 const edNote=id=>INS[id][3]==='Platform'?Z('平台版','Platform edition'):INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
+const STAR='<svg viewBox="0 0 800 800" fill="currentColor" aria-hidden="true"><path d="M305.105 180.279C347.327 104.538 368.437 66.6667 400 66.6667C431.563 66.6667 452.673 104.537 494.893 180.279L505.817 199.874C517.817 221.398 523.813 232.16 533.17 239.26C542.523 246.361 554.17 248.997 577.47 254.268L598.683 259.068C680.67 277.619 721.667 286.894 731.42 318.258C741.173 349.62 713.227 382.303 657.33 447.663L642.87 464.573C626.987 483.147 619.043 492.433 615.47 503.923C611.9 515.413 613.1 527.803 615.5 552.587L617.687 575.147C626.137 662.353 630.363 705.957 604.83 725.34C579.293 744.723 540.91 727.05 464.143 691.707L444.283 682.56C422.47 672.517 411.563 667.493 400 667.493C388.437 667.493 377.53 672.517 355.717 682.56L335.857 691.707C259.089 727.05 220.706 744.723 195.172 725.34C169.637 705.957 173.863 662.353 182.313 575.147L184.499 552.587C186.901 527.803 188.102 515.413 184.529 503.923C180.956 492.433 173.014 483.147 157.131 464.573L142.67 447.663C86.7749 382.303 58.8272 349.62 68.5806 318.258C78.3339 286.894 119.329 277.619 201.318 259.068L222.53 254.268C245.828 248.997 257.478 246.361 266.831 239.26C276.185 232.16 282.184 221.398 294.182 199.874L305.105 180.279Z"/></svg>',SPK='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5L12 0z"/></svg>';
+/* GitHub star count, cached for an hour; the demo page reads the same cache */
+function stars(){const show=n=>document.querySelectorAll('.ghs .gct').forEach(e=>{e.textContent=n>=1e4?(n/1e3).toFixed(1)+'k':n.toLocaleString('en-US');e.hidden=false});
+ try{const c=JSON.parse(localStorage.getItem('lf-stars')||'null');if(c){show(c.n);if(Date.now()-c.t<36e5)return}}catch(e){}
+ fetch('https://api.github.com/repos/Tencent/LoopForge').then(r=>r.ok?r.json():null).then(j=>{if(j&&typeof j.stargazers_count==='number'){localStorage.setItem('lf-stars',JSON.stringify({n:j.stargazers_count,t:Date.now()}));show(j.stargazers_count)}}).catch(()=>{})}
 const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
  return `<div class="sec-h"><span class="kick">${ic('term')}${Z('快速部署','Deploy')}</span>${head({h:t.dep.h,em:t.dep.em,sub:n.sub})}</div>
@@ -183,7 +188,7 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  document.getElementById('app').innerHTML=`<header class="nav"><i class="nprog"></i><div class="nbar"><a class="brand" href="#top">${LOGO(1)}<span>LoopForge</span></a><span class="sp"></span>
  <div class="links">${t.nav.map((n,i)=>`<a href="#${ids[i]}" data-nav="${ids[i]}">${n}</a>`).join('')}</div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
- <a class="ghs" href="${GH}" target="_blank" rel="noopener">${mark('gh')}<span>GitHub</span></a><a class="btn-k sm" href="${TRY()}">${t.try}${arrow}</a></div></header>
+ <a class="ghs" href="${GH}" target="_blank" rel="noopener" aria-label="GitHub"><span class="gsw"><span class="g1">${mark('gh')}</span><span class="g2">${STAR}</span><i class="sk s1">${SPK}</i><i class="sk s2">${SPK}</i></span><span class="gtx">GitHub</span><span class="gct" hidden></span></a><a class="btn-k sm" href="${TRY()}">${t.try}${arrow}</a></div></header>
  <main>
  <section class="hero u" id="top" data-u="hero"><div class="hx"><div class="hxl"><span class="kick rv" data-at=".02"><i class="led"></i>${Z('MIT 开源 · 可自主部署','MIT licensed · self-hosted')}</span>${head({h:c.h,em:c.em},'h1')}</div>
   <div class="hxr"><p class="sub rv" data-at=".16">${c.sub}</p><div class="cta rv" data-at=".22"><a class="btn-k" href="${TRY()}">${t.try}${arrow}</a><a class="btn-t" href="#deploy">${c.deploy}${arrow}</a></div>
@@ -277,7 +282,7 @@ function onScroll(){const y=innerHeight*.45;let on=null;
  document.querySelector('.nav').classList.toggle('sc',scrollY>8);
  const pg=document.querySelector('.nprog'),mx=document.documentElement.scrollHeight-innerHeight;if(pg)pg.style.transform=`scaleX(${mx>0?(scrollY/mx).toFixed(4):0})`}
 function boot(){const keep=scrollY,prev=U.map(m=>m.done);build();if(prev.length===U.length)U.forEach((m,i)=>{m.done=prev[i];if(m.done)m.p=1});
- U.forEach(m=>run(m,m.p));fit();watch();onScroll();scrollTo(0,keep)}
+ U.forEach(m=>run(m,m.p));fit();watch();onScroll();stars();scrollTo(0,keep)}
 window.LF={get units(){return U},play,reset,fit};
 addEventListener('scroll',onScroll,{passive:true});
 addEventListener('resize',()=>{fit();onScroll();const m=U.find(x=>x.n==='install');if(m)placeInd(m)});
