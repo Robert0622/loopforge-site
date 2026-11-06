@@ -2,7 +2,7 @@
 
 **在线访问 / Live:** https://loopforge.cn/
 
-这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页是一页一屏的翻页介绍（滚轮、方向键或触摸滑动翻页，手机上改为顺序滚动，遵守 `prefers-reduced-motion`）：平台、为什么、经验变流程、门禁打回、共享上下文、投入与交付、人在环上、智能评测、部署。中英文案在 `site/content.js`，场景与翻页逻辑在 `site/flow.js`，样式在 `site/site.css`。每页右侧是 HTML/CSS 绘制的示意界面：SOP 节点、门禁命令、评测维度与权重与平台一致，需求、数字和对话为示例数据（看板与评测页标注“示例数据”）；产品演示视频见 `demo/`。旧的 Local 分段故事保留在 `local.html`，不再作为平台的主体介绍。
+这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页是一条纵向滚动的长页：首屏标题与 SOP 设计器动画 → 五个团队痛点 → 沿时间线的六步演进（云端 7×24 工作区、共享会话与 Main Bot、带门禁可接管的 SOP、门禁自愈、定时与 Issue 自动化、工程级 RSI 复盘）→ 内嵌产品视频 → 部署 → 结尾。每段示意界面由 HTML/CSS 绘制，滚动进入视口时播放一次，可点“重播”；遵守 `prefers-reduced-motion`，`?still=1` 直接显示最终状态（用于截图）。内容依据 LoopForge 仓库与官方公众号文章《当 Coding Agent 走进研发团队》，功能名称与平台一致，需求、数字和对话为示例数据。中英文案在 `site/content.js`，页面与动画在 `site/flow.js`，样式在 `site/site.css`。旧的 Local 分段故事保留在 `local.html`。
 
 **产品演示视频:** https://loopforge.cn/demo/ 。`demo/` 是一个独立的视频播放页（`demo/index.html` + `demo.css` + `demo.js`，视频与封面在 `demo/media/`）：80 秒产品演示，自定义播放控件，进度条上标出 10 个章节，右侧章节列表可点击跳转并随播放高亮；默认静音自动播放（遵守 `prefers-reduced-motion`），快捷键 空格/K 播放暂停、←/→ 快退快进 5 秒、M 静音、F 全屏、1–9 跳章节。中英文跟随首页的 `?lang=` / `lf-lang`。页面 CSP 为 `connect-src 'none'`，除静态文件外不发请求。视频按 H.264 1080p、`+faststart` 编码，需由支持 Range 请求的服务器提供才能拖动进度（GitHub Pages 支持；本地可用 `npx http-server`）。
 

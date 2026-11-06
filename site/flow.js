@@ -23,18 +23,16 @@ const mark=(id,cls='')=>`<svg class="mk ${cls}" viewBox="${MARK[id][0]}" fill="c
 const AGENTS=[['claude','Claude Code'],['codex','Codex'],['cursor','Cursor'],['codebuddy','CodeBuddy'],['pi','Pi']];
 const EXECS=[['codebuddy','CodeBuddy'],['codex','Codex'],['claude','Claude Code']];
 const TRY=()=>'demo/'+(L==='en'?'?lang=en':'');
-const strip=(at,list=AGENTS,lab=Z('支持 5 个 Agent','Works with 5 agents'))=>`<div class="astrip"><div class="ac rv" data-at="${at}">${lab}</div>${list.map((a,i)=>`<span class="ai rv pop" data-at="${(at+.03+i*.035).toFixed(3)}">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
+const strip=(list,lab)=>`<div class="astrip">${lab?`<span class="ac">${lab}</span>`:''}${list.map(a=>`<span class="ai">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
 const lines=(h,em)=>h.split('<br>').map((x,i)=>`<span class="hl"><span class="rv up" data-at="${(.03+i*.06).toFixed(2)}">${em?em(x):x}</span></span>`).join(L==='en'?' ':'');
-const txt=(s,side,extra='')=>`<div class="txt ${side}"><h2 class="h">${lines(s.h)}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
-const tb=(t,extra='')=>`<div class="tb"><i></i><i></i><i></i><span>${t}</span>${extra}</div>`;
-/* ---------- scenes ---------- */
-const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#14161C" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
-const EXN={codebuddy:'CodeBuddy',codex:'Codex',claude:'Claude Code',gh:'GitHub'};
 const emph=(h,em)=>x=>em&&x.includes(em)?x.replace(em,`<em>${em}</em>`):x;
-const txt2=(s,side,extra='',top=196)=>`<div class="txt ${side}" style="top:${top}px"><h2 class="h">${lines(s.h,emph(s.h,s.em))}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
-const W=(side,n,s,body,extra='',top=150)=>`<div class="persp"><div class="win ${side}" data-k="win" style="top:${top}px">${tb(s.win,extra)}${body}</div></div>`;
+const head=(s,tag='h2',cls='')=>`<${tag} class="h ${cls}">${lines(s.h,emph(s.h,s.em))}</${tag}>${s.sub?`<p class="sub rv" data-at=".12">${s.sub}</p>`:''}`;
+const tb=(t,extra='')=>`<div class="tb"><i></i><i></i><i></i><span>${t}</span>${extra}</div>`;
+const W=(s,body,extra='',max=1)=>`<div class="fit" data-max="${max}"><div class="fz"><div class="win" data-k="win">${tb(s.win,extra)}${body}</div></div></div>`;
 const DEMO=()=>`<span class="sp"></span><span class="chip dmo">${T[L].demo}</span>`;
 const f2=x=>x.toFixed(3);
+const EXN={codebuddy:'CodeBuddy',codex:'Codex',claude:'Claude Code',gh:'GitHub'};
+/* ---------- product windows ---------- */
 /* hero: the built-in bug-fix SOP on the designer canvas (node names/outputs follow the public catalog) */
 const PN=[[0,0,'agent'],[1,0,'agent'],[2,0,'agent'],[3,0,'agent'],[3,1,'agent'],[2,1,'human'],[1,1,'agent']];
 const NX=c=>28+c*170,NY=r=>34+r*176,NW=146,NH=84;
@@ -45,24 +43,18 @@ function hero(t){const c=t.hero;
  const ah=(x2,y2,dx,dy)=>{const px=-dy,py=dx;return `M${x2} ${y2}L${x2-dx*7+px*4} ${y2-dy*7+py*4}L${x2-dx*7-px*4} ${y2-dy*7-py*4}z`};
  const edges=E.map((e,i)=>{const a=f2(.14+i*.05),dx=Math.sign(e[2]-e[0]),dy=Math.sign(e[3]-e[1]);return `<path class="eg dr" pathLength="1" data-at="${a}" d="M${e[0]} ${e[1]}L${e[2]} ${e[3]}"/><path class="ahd rvo" data-at="${f2(+a+.04)}" d="${ah(e[2],e[3],dx,dy)}"/>`}).join('');
  const rx=cx(2)+30;const rej=`<path class="eg rej rvo" data-at=".5" d="M${rx} ${NY(1)}L${rx} ${NY(0)+NH}"/><path class="ahd rj rvo" data-at=".5" d="${ah(rx,NY(0)+NH,0,-1)}"/>`;
- return `
- <div class="txt l" style="top:186px"><h1 class="h">${lines(c.h,emph(c.h,c.em))}</h1><p class="sub rv" data-at=".12">${c.sub}</p>
- <div class="rv cta" data-at=".18"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="#" data-go="${SCN.length-1}">${c.deploy}</a></div>
- ${strip(.24,EXECS,c.exec)}</div>
- ${W('r','01',c,`<div class="cvs"><div class="cvi"><svg class="egs" width="718" height="330" viewBox="0 0 718 330">${edges}${rej}</svg>
+ return W(c,`<div class="cvs"><div class="cvi"><svg class="egs" width="718" height="330" viewBox="0 0 718 330">${edges}${rej}</svg>
  <span class="rlab rvo" data-at=".52" style="left:${rx+8}px;top:${(NY(0)+NH+NY(1))/2-9}px">${c.rej}</span>
  ${c.nodes.map(nd).join('')}
- <div class="lgd rv" data-at=".5" style="left:${NX(0)}px;top:${NY(1)+8}px"><div><i class="l1"></i>${c.lg[0]}</div><div><i class="l2"></i>${c.lg[1]}</div></div></div></div>`,`<span class="sp"></span><span class="chip">${c.pub}</span>`,196)}`}
-function why(t){const c=t.why;return `${txt2(c,'l')}
- <div class="pains">${c.pains.map((x,i)=>`<div class="pain rv slide" data-at="${(.14+i*.1).toFixed(2)}"><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div>`}
+ <div class="lgd rv" data-at=".5" style="left:${NX(0)}px;top:${NY(1)+8}px"><div><i class="l1"></i>${c.lg[0]}</div><div><i class="l2"></i>${c.lg[1]}</div></div></div></div>`,`<span class="sp"></span><span class="chip">${c.pub}</span>`,1.56)}
 /* one requirement moving through the SOP, one role per step */
 function sop(t){const c=t.sop;
- return `${txt2(c,'r')}${W('l','02',c,`<div class="pipe"><div class="ptl rv" data-at=".04">${t.req}</div><div class="ph">${c.head.map(h=>`<span>${h}</span>`).join('')}<span></span></div>
+ return W(c,`<div class="pipe"><div class="ptl rv" data-at=".04">${t.req}</div><div class="ph">${c.head.map(h=>`<span>${h}</span>`).join('')}<span></span></div>
  ${c.rows.map((r,i)=>{const a=.1+i*.09;return `<div class="pr rv" data-at="${f2(a)}"><b><i>${i+1}</i>${r[0]}</b><span>${r[1]}</span><span class="ex">${mark(r[2])}${EXN[r[2]]}</span><code class="rv pop" data-at="${f2(a+.05)}">${r[3]}</code><span class="spin" data-tick="${f2(a+.08)}"></span></div>`}).join('')}
- <div class="pf rv" data-at=".72">${c.foot}</div></div>`)}`}
+ <div class="pf rv" data-at=".72">${c.foot}</div></div>`,`<span class="sp"></span>${c.ctl.map(x=>`<span class="tbb">${x}</span>`).join('')}`)}
 /* a gate run: the agent claims done, the command decides */
 function gate(t){const c=t.gate;const ln=(a,h,cls='')=>`<div class="rv ${cls}" data-at="${a}">${h}</div>`;
- return `${txt2(c,'l')}${W('r','03',c,`<div class="term sm gtm">
+ return W(c,`<div class="term sm gtm">
  ${ln('.04',`<span class="dm">${c.win}</span>`)}
  ${ln('.08',`<span class="ok">●</span> ${c.claim}`)}
  ${ln('.15',`<span class="ps">$</span> <span class="cmd">go test ./...</span> <span class="dm">· ${c.run}</span>`)}
@@ -73,34 +65,7 @@ function gate(t){const c=t.gate;const ln=(a,h,cls='')=>`<div class="rv ${cls}" d
  ${ln('.58',`<span class="ok">●</span> ${c.fixed}`)}
  ${ln('.64',`<span class="ps">$</span> <span class="cmd">go test ./...</span>`)}
  ${ln('.72',`<span class="ok">✓</span> ${c.pass}`)}
- ${ln('.8',`✓ ${c.done}`,'vd yes')}</div>`,'',150)}`}
-/* everything about one requirement in one place */
-function ctx(t){const c=t.ctx;
- return `${txt2(c,'r')}${W('l','04',c,`<div class="th"><div class="tht"><b>${t.req}</b></div><div class="ttab">${c.tabs.map((x,i)=>`<span class="${i===5?'on':''}">${x}</span>`).join('')}</div>
- <div class="rql">${c.items.map((it,i)=>{const a=.1+i*.09;return `<div class="rqi ${it[0]} rv" data-at="${f2(a)}"><span class="avt">${it[0]==='p'?it[1][0]:'AI'}</span><div><b>${it[1]}</b><p>${it[2]}</p></div>${it[3]?`<code class="rv pop" data-at="${f2(a+.05)}">${it[3]}</code>`:''}</div>`}).join('')}</div>
- <div class="shr rv" data-at=".72">${c.share}</div></div>`,'',140)}`}
-/* usage dashboard: spend, delivery, where it stalls */
-function obs(t){const c=t.obs;const mx=Math.max(...c.stages.map(s=>s[1]));
- return `${txt2(c,'l')}${W('r','05',c,`<div class="db"><div class="kp">${c.kpi.map((k,i)=>`<div class="rv" data-at="${f2(.08+i*.04)}"><span>${k[0]}</span><b data-cnt="${k[1]}" data-a=".12" data-b=".42">${k[1]}</b></div>`).join('')}</div>
- <div class="sg rv" data-at=".26"><div class="sgh">${c.stg}</div>${c.stages.map((s,i)=>`<div class="sr${s[1]===mx?' hot':''}"><span>${s[0]}</span><i><em class="bar" style="--w:${Math.round(s[1]/mx*100)}%" data-tick="${f2(.3+i*.04)}" data-cls="on"></em></i><b>${s[1]}<small> ${c.unit}</small></b></div>`).join('')}<div class="stuck rv pop" data-at=".62">↑ ${c.stuck}</div></div>
- <div class="rl">${c.rows.map((r,i)=>`<div class="rr rv" data-at="${f2(.66+i*.05)}"><code>${r[0]}</code><span>${r[1]}</span><em class="s${i}">${r[2]}</em><b>${r[3]} tokens</b></div>`).join('')}</div></div>`,DEMO(),160)}`}
-/* human approval gate inside a run */
-function loop(t){const c=t.loop;
- return `${txt2(c,'r')}${W('l','06',c,`<div class="gt">
-  <div class="gh"><div><div class="gid">${Z('缺陷修复 SOP','Bug fix SOP')} · v1 · LOOP-12</div><h3>${t.req}</h3></div><span class="gs" data-k="gs">${c.wait}</span></div>
-  <div class="topo">${c.short.map((x,i)=>`<span class="tp${i<5?' dn':''}${i===5?' wt':''}"${i===5?' data-k="t5"':''}${i===6?' data-k="t6"':''}><i></i>${x}</span>`).join('<b></b>')}</div>
-  <div class="apv rv" data-at=".08" data-k="apv"><div class="ah"><span class="gs">${c.wait}</span><b>${c.need}</b><span>${c.step}</span></div>
-   <p>${c.basis}</p>
-   ${c.arts.map((a,i)=>`<div class="ar rv" data-at="${(.14+i*.05).toFixed(2)}"><code>${a[0]}</code><span>${a[1]}</span><i>✓</i></div>`).join('')}
-   <div class="ctx rv" data-at=".3">${c.ctx}</div>
-   <div class="abt rv" data-at=".34"><span class="btn" data-k="okb" data-press=".56">${c.ok}</span><span class="gbtn">${c.back}</span><span class="stamp" data-at=".6">${c.stamp}</span></div></div>
-  <div class="tail rv" data-at=".86"><span class="ok">✓</span> ${c.tail}</div></div>
-  <div class="mcur" data-k="mc">${CUR}<i></i></div>`)}`}
-/* run evaluation: weighted score + suggestions that can be written back */
-function evals(t){const c=t.eval;const tot=c.dims.reduce((a,d)=>a+d[2],0);
- return `${txt2(c,'l')}${W('r','07',c,`<div class="ev"><div class="evs rv" data-at=".06"><div class="ring"><b data-cnt="${tot}" data-a=".1" data-b=".42">${tot}</b><small>/100</small></div><div><span>${c.score}</span><em class="rv pop" data-at=".44">✓ ${c.base}</em></div></div>
- <div class="evd">${c.dims.map((d,i)=>`<div class="dr2 rv" data-at="${f2(.12+i*.04)}"><span>${d[0]}</span><i><em class="bar" style="--w:${Math.round(d[2]/d[1]*100)}%" data-tick="${f2(.18+i*.04)}" data-cls="on"></em></i><b>${d[2]}<small>/${d[1]}</small></b></div>`).join('')}</div>
- <div class="evg"><div class="sgh rv" data-at=".5">${c.sug}</div>${[c.s1,c.s2].map((s,i)=>`<div class="sgi rv" data-at="${f2(.56+i*.08)}"><p>${s}</p><span class="gbtn">${c.apply}</span><span class="btn">${c.write}</span></div>`).join('')}</div></div>`,DEMO(),160)}`}
+ ${ln('.8',`✓ ${c.done}`,'vd yes')}</div>`)}
 const INS={platform:['git clone https://github.com/Tencent/LoopForge.git && cd LoopForge','bash scripts/install.sh','open http://localhost:8090','Platform'],claude:['npx -y loopforge-cli@latest install claude','npx -y loopforge-cli@latest status claude','/start-devflow','Classic'],codex:['npx -y loopforge-cli@latest install codex','npx -y loopforge-cli@latest status codex','$devflow-codex','Classic'],
  cursor:['npx -y loopforge-cli@latest install cursor','npx -y loopforge-cli@latest status cursor','/start-devflow','Classic'],codebuddy:['npx -y loopforge-cli@latest install codebuddy','npx -y loopforge-cli@latest status codebuddy','/start-devflow','Classic'],
  pi:['npx -y loopforge-cli@latest skills install pi','pi install npm:pi-subagents','/skill:devflow','Portable']};
@@ -110,40 +75,83 @@ const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账�
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
 const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
- return `<div class="inst"><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
+ return `${head({h:t.dep.h,em:t.dep.em,sub:n.sub})}
  <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.035).toFixed(3)}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
  <div class="ibox rv" data-at=".3"><div class="row"><span>$</span><code data-k="ic">${INS.platform[0]}</code><button data-copy>${n.copy}</button></div>
  <div class="row"><span>$</span><code data-k="is">${INS.platform[1]}</code></div><div class="st"><span class="ps">›</span> <code data-k="ist">${stLine('platform')}</code></div><div class="ed" data-k="ied">${edNote('platform')}</div></div>
- <p class="inote rv" data-at=".4">${n.note} <code>npx -y loopforge-cli@latest doctor</code></p>
- <div class="ilinks rv" data-at=".44"><a class="pill f" href="${TRY()}">${T[L].try} →</a><a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">${n.gh} →</a></div></div>
- <div class="foot"><span>${n.foot} · <a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span><span>loopforge.cn</span></div>`}
-const SCN=[{b:hero,len:1.9,nav:0,n:'hero',sd:'r'},{b:why,len:1.3,nav:1,n:'why'},{b:sop,len:1.8,nav:2,sd:'l'},{b:gate,len:2.2,nav:2,sd:'r'},{b:ctx,len:1.8,nav:3,sd:'l'},{b:obs,len:1.8,nav:4,sd:'r'},{b:loop,len:2.2,nav:4,n:'loop',sd:'l'},{b:evals,len:1.8,nav:4,sd:'r'},{b:install,len:2.0,nav:5,n:'install'}];
-let SC=[],MOB=false;
+ <p class="inote rv" data-at=".4">${n.note} <code>npx -y loopforge-cli@latest doctor</code></p>`}
+/* cloud workspaces keep running after the laptop closes; idle ones snapshot and sleep */
+function cloud(t){const c=t.cloud;
+ const st=(i)=>i===0?`<span class="wst run"><i></i>${c.run}</span>`:i===1?`<span class="wst run s-a"><i></i>${c.run}</span><span class="wst slp s-b"><i></i>${c.sleep}</span>`:`<span class="wst wt"><i></i>${c.wait}</span>`;
+ return W(c,`<div class="cwk"><div class="lidr rv" data-at=".04"><span class="dev off"><i></i>${c.lid}</span><span class="arr">→</span><span class="dev on"><i></i>${c.up}</span></div>
+ ${c.rows.map((r,i)=>`<div class="wsr rv" data-at="${f2(.12+i*.07)}"${i===1?' data-sw=".52"':''}><code>${r[0]}</code><div><b>${r[1]}</b><small>${r[2]} · ${mark(r[3])}${EXN[r[3]]}</small></div>${st(i)}<em class="pg"><em class="bar" style="--w:${[72,100,100][i]}%" data-tick="${f2(.2+i*.07)}" data-cls="on"></em></em></div>`).join('')}
+ <div class="wake rv" data-at=".74"><span class="ok">✓</span> ${c.wake}</div></div>`)}
+/* one shared conversation, one Main Bot */
+function chat(t){const c=t.chat;
+ return W(c,`<div class="cht">${c.msgs.map((m,i)=>{const a=f2(.06+i*.13);return `<div class="cm2 ${m[0]} rv" data-at="${a}"><span class="avt">${m[0]==='b'?LOGO():m[1]}</span><div><b>${m[2]}</b><p>${m[3]}</p>${m[5]?`<span class="apn rv pop" data-at="${f2(+a+.05)}">✓ ${m[5]}</span>`:''}${i===4?`<div class="mflow">${c.flow.map((x,j)=>`<span class="rv pop" data-at="${f2(.7+j*.035)}"${j<2?` data-tick="${f2(.82+j*.04)}" data-cls="dn"`:''}${j===2?` data-tick=".9" data-cls="go"`:''}><i></i>${x}</span>`).join('')}</div>`:''}</div>${m[4]&&i!==4?`<code class="rv pop" data-at="${f2(+a+.03)}">${m[4]}</code>`:''}</div>`}).join('')}</div>`,`<span class="sp"></span><span class="chip mode">${c.mode}</span>`)}
+/* scheduled issue sync: fix in parallel, resolve conflicts, park what needs a person */
+function auto(t){const c=t.auto;const res=[`<span class="spin" data-tick=".42"></span><code class="rv pop" data-at=".44">${c.rows[0][2]}</code>`,`<span class="cfl rv" data-at=".48">${c.conflict}</span><code class="rv pop" data-at=".58">${c.rows[1][2]}</code>`,`<span class="wst wt rv" data-at=".52"><i></i>${c.wait}</span>`,`<span class="spin" data-tick=".62"></span><span class="pln rv" data-at=".64">${c.plan}</span>`];
+ return W(c,`<div class="aut"><div class="aph rv" data-at=".04"><span class="chip">${mark('gh')} ${c.pulled}</span></div>
+ ${c.rows.map((r,i)=>`<div class="ais rv" data-at="${f2(.1+i*.06)}"><code>${r[0]}</code><b>${r[1]}</b><span class="sopc">${i===3?Z('定时巡检','Health check'):c.fix}</span><span class="ares">${res[i]}</span></div>`).join('')}
+ <div class="vd yes rv" data-at=".78">✓ ${c.done}</div></div>`)}
+/* engineering RSI: score the run, prescribe, write back, the next run passes */
+function rsi(t){const c=t.rsi;
+ return W(c,`<div class="rsi"><div class="rr2"><div class="rrun rv" data-at=".04"><div class="ring bad"><b data-cnt="55" data-a=".06" data-b=".24">55</b><small>/100</small></div><span>${c.r1}</span></div>
+ <span class="rarr rv" data-at=".66">→</span>
+ <div class="rrun rv" data-at=".7"><div class="ring"><b data-cnt="96" data-a=".72" data-b=".9">96</b><small>/100</small></div><span>${c.r2}</span></div></div>
+ <div class="sgh rv" data-at=".28">${c.rx}</div>
+ ${c.items.map((x,i)=>`<div class="rxi rv" data-at="${f2(.32+i*.06)}" data-sw="${f2(.56+i*.03)}"><span class="rxt">${x[0]}</span><p>${x[1]}</p><span class="btn s-a" data-press="${f2(.53+i*.03)}">${c.apply}</span><span class="rxd s-b">✓ ${c.applied}</span></div>`).join('')}</div>`,DEMO())}
+const STEPS=[['cloud',cloud],['chat',chat],['sop',sop],['gate',gate],['auto',auto],['rsi',rsi]];
+const LEN={hero:1.9,why:1,head:.6,cloud:1.8,chat:2.2,sop:1.8,gate:2.2,auto:2,rsi:2,install:2,fin:.7};
+const PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12.6-7.5a1 1 0 000-1.72L8.5 3.64A1 1 0 007 4.5z"/></svg>';
 /* ---------- typing with human cadence ---------- */
 function cadence(s){const a=[...s];let h=7,t=0;const out=[];for(let i=0;i<a.length;i++){h=(h*9301+49297)%233280;const j=.55+h/233280*.9;const prev=a[i-1]||'';
  let w=/[\u4e00-\u9fff]/.test(a[i])?1.35:1;if(prev===' ')w*=1.5;if(/[，。,.:：、]/.test(prev))w*=3.2;if(prev==='"')w*=1.8;if(i&&i%9===0)w*=1.6;t+=w*j;out.push(t)}
  return out.map(x=>x/t)}
-function setTyped(e,k){if(!e._c)e._c=cadence(e.dataset.type);const s=[...e.dataset.type];let n=0;while(n<s.length&&e._c[n]<=k+1e-6)n++;if(e._n===n)return;e._n=n;
- e.innerHTML=s.slice(0,n).join('').replace(/(&quot;|")(.*)$/,'<q>"$2</q>');const c=e.nextElementSibling;if(c&&c.classList.contains('tc'))c.classList.toggle('on',k>0&&k<1)}
 /* ---------- count-up: animates every number in a string ---------- */
 function setCount(e,k){const o=e.dataset.cnt;if(k>=1){if(e.textContent!==o)e.textContent=o;return}
  e.textContent=o.replace(/\d+(?:\.\d+)?/g,m=>{const d=(m.split('.')[1]||'').length;return (parseFloat(m)*k).toFixed(d)})}
 /* ---------- build ---------- */
+let U=[];
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
- const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · A shared cloud workspace for AI-assisted development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud workspace for development teams: turn your team\'s practice into executable SOPs, share the full context of every requirement, and see what each run costs and delivers.');
- const cv=document.getElementById('cv');
- cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO()}<span>LoopForge</span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
+ const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Open-source, self-improving cloud platform for AI development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud platform for AI development: 24/7 cloud workspaces, a shared conversation with one Main Bot, SOPs with hard gates, scheduled and issue automation, and a review after every run that improves the process.');
+ const GH='https://github.com/Tencent/LoopForge',ids=['why','story','video','deploy'];
+ const c=t.hero,w=t.why;
+ document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a>
+ <div class="links">${t.nav.map((n,i)=>`<a href="#${ids[i]}" data-nav="${ids[i]}">${n}</a>`).join('')}</div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
- <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${TRY()}">${t.try} →</a></nav>`+
- SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}" aria-label="${i+1}"></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button>`;
- SC=[...cv.querySelectorAll('section.sc')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const m={el,at:q('[data-at]'),off:q('[data-off]'),ty:q('[data-type]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};
+ <a class="pill ghl" href="${GH}" target="_blank" rel="noopener" aria-label="GitHub">${mark('gh')}<span>GitHub</span></a><a class="pill f" href="${TRY()}">${t.try}</a></div></header>
+ <main>
+ <section class="hero u" id="top" data-u="hero"><div class="hx">${head(c,'h1')}
+  <div class="cta rv" data-at=".18"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="#deploy">${c.deploy}</a></div>
+  <div class="rv" data-at=".24">${strip(EXECS,c.exec)}</div></div>
+  <div class="hwin">${hero(t)}</div></section>
+ <section class="why wrap u" id="why" data-u="why"><div class="shead">${head(w)}</div>
+  <div class="pains">${w.pains.map((x,i)=>`<div class="pain rv" data-at="${(.18+i*.08).toFixed(2)}"><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div></section>
+ <section class="story" id="story"><div class="shead u" data-u="head">${head(t.story)}</div>
+  <div class="tline"><div class="rail2"><i class="fill"></i></div>
+  ${STEPS.map(([k,fn],i)=>`<div class="step" data-tone="${i}"><div class="mark"><span class="tm">${t.story.marks[i]}</span><b class="dot"></b></div>
+   <div class="scard u" data-u="${k}"><div class="ct"><span class="no">${String(i+1).padStart(2,'0')}</span>${head(t[k],'h3')}</div><div class="cw">${fn(t)}</div>
+   <button class="rp" type="button">↻ ${t.replay}</button></div></div>`).join('')}</div></section>
+ <section class="video wrap" id="video"><div class="shead u" data-u="head">${head(t.video)}</div>
+  <div class="vframe"><video preload="none" playsinline poster="demo/media/loopforge-promo.jpg?v=11" src="demo/media/loopforge-promo.mp4?v=11"></video>
+  <button class="play" type="button"><i>${PLAY}</i><span>${t.video.play}</span></button></div>
+  <a class="pill vl" href="${TRY()}">${t.video.cta} →</a></section>
+ <section class="deploy wrap u" id="deploy" data-u="install">${install(t)}</section>
+ <section class="fin u" data-u="fin"><span class="fl rv pop" data-at=".02">${LOGO()}</span>${head(t.fin)}
+  <div class="cta rv" data-at=".2"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="${GH}" target="_blank" rel="noopener">${mark('gh')}${t.install.gh}</a></div></section>
+ </main>
+ <footer class="ft"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a><span>${t.install.foot} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span></footer>`;
+ const app=document.getElementById('app');
+ U=[...app.querySelectorAll('.u')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const n=el.dataset.u;
+  const m={el,n,dur:Math.round(LEN[n]*3400),p:0,done:false,playing:false,at:q('[data-at]'),off:q('[data-off]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};
   el.querySelectorAll('[data-k]').forEach(e=>{if(!m[e.dataset.k])m[e.dataset.k]=e});return m});
- cv.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',()=>go(+a.dataset.goto)));cv.querySelector('.replay').addEventListener('click',()=>replay());
- cv.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(MOB){SC[+a.dataset.go].el.scrollIntoView({behavior:'smooth'});return}go(+a.dataset.go)}));
- cv.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=+a.dataset.nav;const i=SCN.findIndex(s=>s.nav>=k);go(i<0?SCN.length-1:i)}));
- cv.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
- const ins=SC[SC.length-1];ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.manual=true;pick(ins,b.dataset.id,!RM.matches)}));
+ U.forEach(m=>{const b=m.el.querySelector(':scope>.rp');if(b)b.addEventListener('click',()=>{reset(m);play(m)})});
+ app.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.l===L)return;L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
+ const ins=U.find(m=>m.n==='install');ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.manual=true;pick(ins,b.dataset.id,!RM.matches)}));
  ins.el.querySelector('[data-copy]').addEventListener('click',e=>{navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent);e.target.textContent=t.install.copied;setTimeout(()=>e.target.textContent=t.install.copy,1400)});
+ const vf=app.querySelector('.vframe'),v=vf.querySelector('video');
+ vf.querySelector('.play').addEventListener('click',()=>{vf.classList.add('on');v.controls=true;v.play()});
 }
 /* ---------- install tabs: sliding indicator + command retype ---------- */
 function placeInd(m){const b=m.el.querySelector('.tabs button.act');if(!b)return;m.ind.style.width=b.offsetWidth+'px';m.ind.style.transform=`translateX(${b.offsetLeft}px)`}
@@ -153,73 +161,45 @@ function pick(m,id,animate){m.el.querySelectorAll('.tabs button').forEach(x=>x.c
  const set=[[m.ic,v[0]],[m.is,v[1]],[m.ist,stLine(id)]];
  if(animate){set.forEach(([e,s],i)=>retype(e,s,i*140));m.ied.classList.remove('on');void m.ied.offsetWidth;m.ied.textContent=edNote(id);m.ied.classList.add('on')}
  else{set.forEach(([e,s])=>{clearInterval(e._iv);clearTimeout(e._to);e.textContent=s;e.classList.remove('typing')});m.ied.textContent=edNote(id);m.ied.classList.add('on')}}
-/* ---------- cursor in the approval step ---------- */
-function rel(el,root){let x=0,y=0,e=el;while(e&&e!==root){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent}return{x:x+el.offsetWidth*.55,y:y+el.offsetHeight*.55}}
-function cursor(m,keys,p){const c=m.mc;if(!m._pts)m._pts=keys.map(k=>typeof k[1]==='string'?rel(m[k[1]],m.win):{x:k[1][0],y:k[1][1]});
- const P0=keys[0][0]-.02,P1=keys[keys.length-1][0]+.04;c.style.opacity=p<P0||p>P1?0:1;if(p<P0||p>P1)return;
- let x=m._pts[0].x,y=m._pts[0].y;for(let i=1;i<keys.length;i++){if(p>=keys[i][0]){x=m._pts[i].x;y=m._pts[i].y;continue}const t=EIO(R(p,keys[i-1][0]+(keys[i-1][2]?.012:0),keys[i][0]));x=lerp(m._pts[i-1].x,m._pts[i].x,t);y=lerp(m._pts[i-1].y,m._pts[i].y,t);break}
- c.style.transform=`translate(${x}px,${y}px)`;const ck=keys.some(k=>k[2]&&p>=k[0]&&p<k[0]+.02);c.classList.toggle('click',ck)}
-const tilt=w=>e=>{w.style.transform=`rotateX(${14*(1-e)}deg) translateY(${48*(1-e)}px)`};
+const tilt=w=>e=>{w.style.transform=e>=1?'':`rotateX(${14*(1-e)}deg) translateY(${48*(1-e)}px)`};
 const UPD={
  hero:(m,p)=>{tilt(m.win)(EO(R(p,-.1,.3)))},
- loop:(m,p)=>{tilt(m.win)(EO(R(p,0,.2)));cursor(m,[[.38,[470,330]],[.56,'okb',1],[.72,[420,470]]],p);
-  const ok=p>=.58;m.t5.classList.toggle('wt',!ok);m.t5.classList.toggle('dn',ok);m.t6.classList.toggle('run',p>=.64&&p<.82);m.t6.classList.toggle('dn',p>=.82);
-  m.apv.classList.toggle('past',p>=.62);m.gs.classList.toggle('fin',p>=.84);m.gs.textContent=p>=.84?T[L].loop.done:T[L].loop.wait},
- install:(m,p)=>{if(m.manual)return;const st=p<.3?0:p<.6?1:p<.82?2:3;if(st===m.st)return;const live=anim===SC.indexOf(m)&&m.st!==undefined&&st===m.st+1;m.st=st;
+ install:(m,p)=>{if(m.manual)return;const st=p<.3?0:p<.6?1:p<.82?2:3;if(st===m.st)return;const live=m.playing&&m.st!==undefined&&st===m.st+1;m.st=st;
   if(st===0){['ic','is','ist'].forEach(k=>{clearInterval(m[k]._iv);clearTimeout(m[k]._to);m[k].textContent=''});m.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('act',x.dataset.id==='platform'));placeInd(m);m.ied.classList.remove('on');return}
   pick(m,st===1?'platform':st===2?'claude':'pi',live)}};
-function run(i,p){const m=SC[i];
+function run(m,p){
  m.at.forEach(e=>e.classList.toggle('on',p>=+e.dataset.at));m.off.forEach(e=>{if(p>=+e.dataset.off)e.classList.remove('on')});
- m.ty.forEach(e=>setTyped(e,R(p,+e.dataset.a,+e.dataset.b)));
  m.tick.forEach(e=>{const on=p>=+e.dataset.tick;e.classList.toggle(e.dataset.cls||'ok',on)});
  m.cnt.forEach(e=>setCount(e,EO(R(p,+e.dataset.a,+e.dataset.b))));
  m.sw.forEach(e=>e.classList.toggle('swon',p>=+e.dataset.sw));m.sel.forEach(e=>e.classList.toggle('sel',p>=+e.dataset.sel));m.press.forEach(e=>e.classList.toggle('press',p>=+e.dataset.press));
- const sc=SCN[i];if(MOB){if(sc.n==='loop')UPD.loop(m,1);if(m.win)m.win.style.transform='';if(sc.n==='install'&&!m.cur)pick(m,'platform',false);return}
- if(UPD[sc.n])UPD[sc.n](m,p);else if(m.win)tilt(m.win)(EO(R(p,0,.2)))}
-/* ---------- pager: one gesture = one scene; each scene plays on its own clock ---------- */
-const RM=matchMedia('(prefers-reduced-motion: reduce)');
-const DUR=SCN.map(s=>Math.round(s.len*3400)),TRMS=950;
-let cur=0,P=[],done=[],anim=null,busy=false,raf=0;
-function layout(){SC.forEach((m,i)=>{const sc=SCN[i];if(sc.n==='install')return;const el=m.el,tx=el.querySelector(':scope>.txt'),ps=el.querySelector(':scope>.persp'),w=ps&&ps.querySelector('.win'),pn=el.querySelector(':scope>.pains');
- const th=tx.offsetHeight,T0=72,H=900-T0-36,G=sc.n==='hero'?44:36;
- if(w){const P=28,wh=w.offsetHeight,k=Math.max(.8,Math.min(1.34,(H-P-th-G)/wh)),y=T0+P/2+Math.max(P/2,(H-P-th-G-wh*k)/2),wy=y+th+G;
-  tx.style.top=y+'px';w.style.left=(720-w.offsetWidth/2)+'px';w.style.top=wy+'px';ps.style.transformOrigin=`720px ${wy}px`;ps.style.transform=`scale(${k.toFixed(3)})`}
- else if(pn){const y=T0+(H-th-64-pn.offsetHeight)/2;tx.style.top=y+'px';pn.style.top=(y+th+64)+'px'}})}
-function fit(){const s=Math.min(innerWidth/1440,innerHeight/900);document.getElementById('cv').style.transform=`translate(${(innerWidth-1440*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`}
-function paint(){SC.forEach((m,k)=>{m.el.style.visibility=k===cur?'visible':'hidden';m.el.style.clipPath='none';m.el.style.zIndex=1});run(cur,P[cur]);ui()}
-function ui(){document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',+a.dataset.nav===SCN[cur].nav));
- document.querySelectorAll('.rail b').forEach((d,k)=>d.classList.toggle('on',k===cur));
- const rp=document.querySelector('.replay');if(rp)rp.classList.toggle('on',!!done[cur]&&anim===null);
- document.body.dataset.scene=cur;document.body.dataset.playing=anim!==null?'1':'0';document.body.classList.toggle('still',anim===null)}
-function play(i,from=0){cancelAnimationFrame(raf);if(RM.matches){P[i]=1;done[i]=true;anim=null;paint();return}
- const t0=performance.now()-from*DUR[i];anim=i;document.body.classList.remove('still');ui();
- (function tick(now){if(cur!==i){anim=null;return}P[i]=cl((now-t0)/DUR[i]);run(i,P[i]);if(P[i]<1)raf=requestAnimationFrame(tick);else{done[i]=true;anim=null;ui()}})(performance.now())}
-function finishNow(i){document.body.classList.add('still');P[i]=1;done[i]=true;run(i,1)}
-function go(j){j=Math.max(0,Math.min(SCN.length-1,j));if(j===cur||busy)return;
- cancelAnimationFrame(raf);if(anim!==null){const a=anim;anim=null;finishNow(a)}
- const from=cur,fwd=j>from;cur=j;lastNav=performance.now();if(!done[j]){P[j]=0;const m=SC[j];m.st=undefined;m.manual=false}else document.body.classList.add('still');
- const n=SC[j].el,o=SC[from].el;SC.forEach((m,k)=>{m.el.style.visibility=(k===j||k===from)?'visible':'hidden';m.el.style.zIndex=k===j?2:1});run(j,P[j]);ui();
- const kind=(fwd?from:j)%3;const clip=t=>kind===0?`circle(${t*120}% at 50% 55%)`:kind===1?(fwd?`inset(0 0 0 ${100-t*100}%)`:`inset(0 ${100-t*100}% 0 0)`):(fwd?`inset(${100-t*100}% 0 0 0)`:`inset(0 0 ${100-t*100}% 0)`);
- const fin=()=>{busy=false;o.style.visibility='hidden';o.style.transform='';n.style.clipPath='none';if(!done[j])play(j);else ui()};
- if(RM.matches){fin();return}
- busy=true;const t0=performance.now();(function tr(now){const t=EIO(cl((now-t0)/TRMS));n.style.clipPath=clip(t);o.style.transform=`translateY(${(fwd?-1:1)*t*-0}px) scale(${1-.02*t})`;if(t<1)requestAnimationFrame(tr);else fin()})(t0)}
-function replay(){if(busy)return;const m=SC[cur];done[cur]=false;P[cur]=0;m.st=undefined;m.manual=false;m.el.querySelectorAll('.on,.ok,.s1,.s2,.sel,.press,.swon,.sweep,.fixd').forEach(e=>e.classList.remove('on','ok','s1','s2','sel','press','swon','sweep','fixd'));document.body.classList.remove('still');run(cur,0);play(cur)}
-let wheelAcc=0,lastWheel=0,gestureUsed=false,lastNav=0;
-function onWheel(e){if(MOB)return;e.preventDefault();const now=performance.now();
- if(now-lastWheel>350){gestureUsed=false;wheelAcc=0}lastWheel=now;if(gestureUsed||busy||now-lastNav<1100)return;
- wheelAcc+=e.deltaY;if(Math.abs(wheelAcc)>=40){gestureUsed=true;go(cur+(wheelAcc>0?1:-1));wheelAcc=0}}
-function onKey(e){if(MOB||e.target.closest&&e.target.closest('input,textarea'))return;const k=e.key;
- if(['ArrowDown','PageDown',' ','ArrowRight'].includes(k)){e.preventDefault();go(cur+1)}
- else if(['ArrowUp','PageUp','ArrowLeft'].includes(k)){e.preventDefault();go(cur-1)}
- else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(SCN.length-1)}}
-let ty0=null;
-function boot(){MOB=innerWidth<760;document.body.classList.toggle('mob',MOB);document.documentElement.classList.toggle('pager',!MOB);build();
- if(MOB){cancelAnimationFrame(raf);anim=null;document.body.classList.add('still');const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const cvi=m.el.querySelector('.cvi');if(cvi){const w=cvi.parentElement.clientWidth,k=Math.min(1,w/718);cvi.style.transform=`scale(${k})`;cvi.parentElement.style.height=Math.round(340*k)+'px'}});placeInd(SC[SC.length-1]);return}
- fit();layout();if(!P.length){P=SCN.map(()=>0);done=SCN.map(()=>false)}if(done[cur])document.body.classList.add('still');paint();if(!done[cur])play(cur,P[cur]);placeInd(SC[SC.length-1])}
-window.LF={SCN,go,replay,get cur(){return cur},get playing(){return anim!==null},get busy(){return busy},DUR,TRMS,seek(i,p){cancelAnimationFrame(raf);anim=null;if(i!==cur){SC[cur].el.style.visibility='hidden';cur=i}SC[i].el.style.visibility='visible';SC[i].el.style.clipPath='none';P[i]=p;done[i]=p>=1;run(i,p);ui()}};
-addEventListener('wheel',onWheel,{passive:false});addEventListener('keydown',onKey);
-addEventListener('touchstart',e=>{ty0=e.touches[0].clientY},{passive:true});
-addEventListener('touchend',e=>{if(MOB||ty0===null)return;const d=ty0-e.changedTouches[0].clientY;ty0=null;if(Math.abs(d)>50)go(cur+(d>0?1:-1))},{passive:true});
-let mw=innerWidth<760;addEventListener('resize',()=>{const n=innerWidth<760;if(n!==mw){mw=n;boot()}else if(!MOB){fit();placeInd(SC[SC.length-1])}});
-document.fonts&&document.fonts.ready.then(()=>{placeInd(SC[SC.length-1]);if(!MOB)layout()});boot();
+ if(UPD[m.n])UPD[m.n](m,p);else if(m.win)tilt(m.win)(EO(R(p,0,.2)))}
+/* ---------- each block plays on its own clock once it scrolls into view ---------- */
+const RM=matchMedia('(prefers-reduced-motion: reduce)'),STILL=qs.has('still');
+function play(m){cancelAnimationFrame(m.raf);if(RM.matches||STILL){m.p=1;finish(m);return}
+ m.playing=true;m.el.classList.remove('played');const t0=performance.now()-m.p*m.dur;
+ const tick=now=>{m.p=cl((now-t0)/m.dur);run(m,m.p);if(m.p<1)m.raf=requestAnimationFrame(tick);else finish(m)};m.raf=requestAnimationFrame(tick)}
+function finish(m){m.playing=false;m.done=true;run(m,1);m.el.classList.add('played')}
+function reset(m){cancelAnimationFrame(m.raf);m.p=0;m.done=false;m.st=undefined;m.manual=false;
+ m.el.classList.add('rewind');run(m,0);void m.el.offsetWidth;m.el.classList.remove('rewind')}
+let io;
+function watch(){if(io)io.disconnect();io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const m=U.find(x=>x.el===e.target);io.unobserve(e.target);if(m&&!m.done&&!m.playing)play(m)}),{rootMargin:'0px 0px -22% 0px'});
+ U.forEach(m=>{if(m.done){run(m,1);m.el.classList.add('played')}else io.observe(m.el)})}
+/* ---------- windows scale to their column ---------- */
+function fit(){document.querySelectorAll('.fit').forEach(f=>{const z=f.firstElementChild,w=f.clientWidth,k=Math.min(+f.dataset.max||1,w/718);
+ z.style.transform=`scale(${k.toFixed(4)})`;z.style.marginLeft=Math.max(0,(w-718*k)/2)+'px';f.style.height=Math.ceil(z.offsetHeight*k)+'px'})}
+/* ---------- nav state + timeline progress ---------- */
+function onScroll(){const y=innerHeight*.45;let on=null;
+ document.querySelectorAll('main>section[id]').forEach(s=>{if(s.getBoundingClientRect().top<y)on=s.id});
+ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',a.dataset.nav===on));
+ document.querySelector('.nav').classList.toggle('sc',scrollY>8);
+ const tl=document.querySelector('.tline');if(!tl)return;const r=tl.getBoundingClientRect(),f=tl.querySelector('.fill');
+ f.style.height=Math.max(0,Math.min(r.height,innerHeight*.55-r.top))+'px';
+ tl.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',s.querySelector('.dot').getBoundingClientRect().top<innerHeight*.55))}
+function boot(){const keep=scrollY,prev=U.map(m=>m.done);build();if(prev.length===U.length)U.forEach((m,i)=>{m.done=prev[i];if(m.done)m.p=1});
+ U.forEach(m=>run(m,m.p));fit();watch();onScroll();scrollTo(0,keep)}
+window.LF={get units(){return U},play,reset,fit};
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',()=>{fit();onScroll();const m=U.find(x=>x.n==='install');if(m)placeInd(m)});
+document.fonts&&document.fonts.ready.then(()=>{fit();const m=U.find(x=>x.n==='install');if(m)placeInd(m)});
+boot();
 })();
