@@ -8,7 +8,8 @@ const EIO=bez(.65,0,.35,1),EO=bez(.22,1,.36,1),cl=v=>v<0?0:v>1?1:v,R=(p,a,b)=>cl
 const Z=(a,b)=>L==='zh'?a:b;
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 /* ---------- marks ---------- */
-const LOGO=`<svg viewBox="0 0 64 64" fill="none"><path d="M45.2 19.2A10 10 0 1 1 42 4.8" stroke="#FF5A1F" stroke-width="4.4" stroke-linecap="round"/><path d="M46.5 7.8L39.0 9.0L42.8 1.4z" fill="#FF5A1F" stroke="#FF5A1F" stroke-width="1.2" stroke-linejoin="round"/><path d="M3 30.5c6.5 0 11.2-1.6 15-3.5H58v7.8h-8.6c-3.6 0-5.9 2.6-5.9 5.8V44h7.2v6.5H20.8V44H28v-3.4c0-3.2-2.3-5.8-5.9-5.8H17C10.8 34.8 6 33.2 3 30.5z" fill="currentColor"/></svg>`;
+let lgN=0;
+const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
 // Product marks: Claude, Codex (OpenAI), Cursor, CodeBuddy from LobeHub Icons (@lobehub/icons-static-svg, MIT);
 // Pi from pi.dev's own favicon; GitHub from Simple Icons (CC0). Trademarks of their owners, used only to name the agent each command targets.
 const MARK={
@@ -28,7 +29,7 @@ const txt=(s,side,extra='')=>`<div class="txt ${side}"><div class="kick rv" data
 const tb=(t,extra='')=>`<div class="tb"><i></i><i></i><i></i><span>${t}</span>${extra}</div>`;
 const fig=(n,s)=>`<span class="fig">FIG.${n} — ${s}</span>`;
 /* ---------- scenes ---------- */
-const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#16161A" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#14161C" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
 const EXN={codebuddy:'CodeBuddy',codex:'Codex',claude:'Claude Code',gh:'GitHub'};
 const emph=(h,em)=>x=>em&&x.includes(em)?x.replace(em,`<em>${em}</em>`):x;
 const txt2=(s,side,extra='',top=196)=>`<div class="txt ${side}" style="top:${top}px"><div class="kick rv" data-at="0">${s.k}</div><h2 class="h"${s.fs?` style="font-size:${s.fs}px"`:''}>${lines(s.h,emph(s.h,s.em))}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
@@ -108,7 +109,7 @@ const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"
 const stLine=id=>id==='platform'?INS[id][2]:`${INS[id][2]} ${REQ()}`;
 const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账号自动成为管理员，新手引导里的“一键体验”不需要 API Key','Platform · the first account becomes admin; the onboarding demo needs no API key'):INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
-const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO}</span>`:mark(id);
+const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
  return `<div class="inst"><div class="kick rv" data-at="0" style="justify-content:center">${n.k}</div><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
  <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.035).toFixed(3)}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
@@ -132,7 +133,7 @@ function setCount(e,k){const o=e.dataset.cnt;if(k>=1){if(e.textContent!==o)e.tex
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
  const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · A shared cloud workspace for AI-assisted development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud workspace for development teams: turn your team\'s practice into executable SOPs, share the full context of every requirement, and see what each run costs and delivers.');
  const cv=document.getElementById('cv');
- cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO}<span>Loop<b>Forge</b></span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
+ cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO()}<span>LoopForge</span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${TRY()}">${t.try} →</a></nav>`+
  SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}"><span>${String(i).padStart(2,'0')}</span></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button><div class="hint">${Z('滚一下 / ↓ 下一段','scroll / ↓ next')}</div>`;
