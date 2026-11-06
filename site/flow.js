@@ -23,49 +23,131 @@ const mark=(id,cls='')=>`<svg class="mk ${cls}" viewBox="${MARK[id][0]}" fill="c
 const AGENTS=[['claude','Claude Code'],['codex','Codex'],['cursor','Cursor'],['codebuddy','CodeBuddy'],['pi','Pi']];
 const EXECS=[['codebuddy','CodeBuddy'],['codex','Codex'],['claude','Claude Code']];
 const TRY=()=>'demo/'+(L==='en'?'?lang=en':'');
-const strip=(list,lab)=>`<div class="astrip">${lab?`<span class="ac">${lab}</span>`:''}${list.map(a=>`<span class="ai">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
-const lines=(h,em)=>h.split('<br>').map((x,i)=>`<span class="hl"><span class="rv up" data-at="${(.03+i*.06).toFixed(2)}">${em?em(x):x}</span></span>`).join(L==='en'?' ':'');
+/* ---------- line icons (24px grid, 1.7 stroke) ---------- */
+const IC={home:'M3 10.5 12 3.5l9 7M5.5 9v11h13V9M10 20v-5.5h4V20',chart:'M4 20h16M7 16v-5M12 16V6M17 16v-8',list:'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
+ check:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM8.5 12.2l2.4 2.4 4.6-5',flow:'M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9',
+ play:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM10 8.5v7l5.5-3.5z',clock:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM12 7v5l3 2',panel:'M4 4h16v16H4zM9 4v16',
+ gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM4 12h2M18 12h2M12 4v2M12 18v2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4',
+ search:'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4',cloud:'M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.6 1.5A3.8 3.8 0 0 1 17.5 18z',
+ users:'M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20a6.5 6.5 0 0 1 13 0M16 4.3a3.5 3.5 0 0 1 0 6.4M18.5 14.5a6.5 6.5 0 0 1 3 5.5',
+ shield:'M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6zM9 12l2 2 4-4',bug:'M8 9h8v5a4 4 0 0 1-8 0zM12 9v9M9.5 6a2.5 2.5 0 0 1 5 0M4 13h4M16 13h4M5 8l3 2M19 8l-3 2M5 19l3-2M19 19l-3-2',
+ spark:'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z',
+ loop:'M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4',pause:'M9 5v14M15 5v14',
+ hand:'M7 11V6.5a1.5 1.5 0 0 1 3 0V11M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10.5V6a1.5 1.5 0 0 1 3 0v5M16 9.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-4.9-2.5L4 15.5a1.6 1.6 0 0 1 2.4-2L7 14',
+ arrow:'M5 12h14M13 6l6 6-6 6',plus:'M12 5v14M5 12h14',bot:'M12 4v3M6 8h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2zM9.5 13h.01M14.5 13h.01',
+ pr:'M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 9v6M18 15V8a2 2 0 0 0-2-2h-3M15 3l-3 3 3 3',
+ x:'M6 6l12 12M18 6 6 18',ok:'M5 12.5l4.5 4.5L19 7',moon:'M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z',term:'M4 5h16v14H4zM7.5 9.5 10 12l-2.5 2.5M12.5 15h4',
+ copy:'M9 9h11v11H9zM5 15V4h11',up:'M12 19V5M6 11l6-6 6 6',script:'M8 6l-5 6 5 6M16 6l5 6-5 6',down:'M6 9l6 6 6-6',cal:'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+ file:'M14 3H6v18h12V7zM14 3v4h4',gauge:'M4 18a8 8 0 1 1 16 0M12 18l4-6'};
+const ic=(k,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${IC[k]}"/></svg>`;
+/* ---------- text helpers ---------- */
+const lines=(h,em)=>h.split('<br>').map((x,i)=>`<span class="hl"><span class="rv up" data-at="${(.03+i*.07).toFixed(2)}">${em?em(x):x}</span></span>`).join(L==='en'?' ':'');
 const emph=(h,em)=>x=>em&&x.includes(em)?x.replace(em,`<em>${em}</em>`):x;
-const head=(s,tag='h2',cls='')=>`<${tag} class="h ${cls}">${lines(s.h,emph(s.h,s.em))}</${tag}>${s.sub?`<p class="sub rv" data-at=".12">${s.sub}</p>`:''}`;
-const tb=(t,extra='')=>`<div class="tb"><i></i><i></i><i></i><span>${t}</span>${extra}</div>`;
-const W=(s,body,extra='',max=1)=>`<div class="fit" data-max="${max}"><div class="fz"><div class="win" data-k="win">${tb(s.win,extra)}${body}</div></div></div>`;
-const DEMO=()=>`<span class="sp"></span><span class="chip dmo">${T[L].demo}</span>`;
+const head=(s,tag='h2',cls='')=>`<${tag} class="h ${cls}">${lines(s.h,emph(s.h,s.em))}</${tag}>${s.sub?`<p class="sub rv" data-at=".14">${s.sub}</p>`:''}`;
 const f2=x=>x.toFixed(3);
 const EXN={codebuddy:'CodeBuddy',codex:'Codex',claude:'Claude Code',gh:'GitHub'};
-/* ---------- product windows ---------- */
-/* hero: the built-in bug-fix SOP on the designer canvas (node names/outputs follow the public catalog) */
-const PN=[[0,0,'agent'],[1,0,'agent'],[2,0,'agent'],[3,0,'agent'],[3,1,'agent'],[2,1,'human'],[1,1,'agent']];
-const NX=c=>28+c*170,NY=r=>34+r*176,NW=146,NH=84;
+const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#18181b" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+const cur=()=>`<div class="mcur" data-k="mc">${CUR}<i></i></div>`;
+/* a scaled product window */
+const F=(w,body,max=1)=>`<div class="fit" data-max="${max}"><div class="fz" style="width:${w}px"><div class="win" data-k="win">${body}</div></div></div>`;
+/* ---------- the real app chrome: icon rail, optional sidebar, top bar ---------- */
+const RAIL=['home','chart','list','check','flow','play','clock'];
+const shell=(on,main,side='',top=true)=>`<div class="app"><aside class="arl"><span class="alg">${LOGO()}</span>${RAIL.map(k=>`<i class="ari${k===on?' on':''}">${ic(k)}${k==='check'?'<b class="bdg">2</b>':''}</i>`).join('')}<span class="sp"></span><i class="ari">${ic('panel')}</i><i class="ari">${ic('gear')}</i><span class="aav">L</span></aside>${side}
+ <section class="amn">${top?`<header class="atp"><span class="asr">${ic('search')}${Z('搜索需求、运行、SOP 或 Agent','Search requirements, runs, SOPs or agents')}<kbd>⌘K</kbd></span><span class="sp"></span><span class="apj">LOOP · LoopForge ${ic('down')}</span><span class="alng">中 / EN</span><span class="aad"><i>A</i>admin</span></header>`:''}<div class="abd">${main}</div></section></div>`;
+const tg=(t,c='')=>`<span class="tg ${c}">${t}</span>`;
+/* ---------- hero: the SOP designer ---------- */
 function hero(t){const c=t.hero;
- const nd=(n,i)=>{const[col,row,ty]=PN[i];return `<div class="nd ${ty} rv pop" data-at="${f2(.08+i*.05)}" style="left:${NX(col)}px;top:${NY(row)}px"><div class="nt"><span class="ty">${c.ty[ty]}</span>${ty==='agent'?'<span class="ex">codebuddy</span>':''}<i class="st" data-tick="${f2(.62+i*.045)}" data-cls="dn"></i></div><b>${n[0]}</b><small>${n[1]}</small></div>`};
- const my=r=>NY(r)+NH/2,cx=c=>NX(c)+NW/2;
- const E=[[NX(0)+NW,my(0),NX(1),my(0)],[NX(1)+NW,my(0),NX(2),my(0)],[NX(2)+NW,my(0),NX(3),my(0)],[cx(3),NY(0)+NH,cx(3),NY(1)],[NX(3),my(1),NX(2)+NW,my(1)],[NX(2),my(1),NX(1)+NW,my(1)]];
- const ah=(x2,y2,dx,dy)=>{const px=-dy,py=dx;return `M${x2} ${y2}L${x2-dx*7+px*4} ${y2-dy*7+py*4}L${x2-dx*7-px*4} ${y2-dy*7-py*4}z`};
- const edges=E.map((e,i)=>{const a=f2(.14+i*.05),dx=Math.sign(e[2]-e[0]),dy=Math.sign(e[3]-e[1]);return `<path class="eg dr" pathLength="1" data-at="${a}" d="M${e[0]} ${e[1]}L${e[2]} ${e[3]}"/><path class="ahd rvo" data-at="${f2(+a+.04)}" d="${ah(e[2],e[3],dx,dy)}"/>`}).join('');
- const rx=cx(2)+30;const rej=`<path class="eg rej rvo" data-at=".5" d="M${rx} ${NY(1)}L${rx} ${NY(0)+NH}"/><path class="ahd rj rvo" data-at=".5" d="${ah(rx,NY(0)+NH,0,-1)}"/>`;
- return W(c,`<div class="cvs"><div class="cvi"><svg class="egs" width="718" height="330" viewBox="0 0 718 330">${edges}${rej}</svg>
- <span class="rlab rvo" data-at=".52" style="left:${rx+8}px;top:${(NY(0)+NH+NY(1))/2-9}px">${c.rej}</span>
- ${c.nodes.map(nd).join('')}
- <div class="lgd rv" data-at=".5" style="left:${NX(0)}px;top:${NY(1)+8}px"><div><i class="l1"></i>${c.lg[0]}</div><div><i class="l2"></i>${c.lg[1]}</div></div></div></div>`,`<span class="sp"></span><span class="chip">${c.pub}</span>`,1.56)}
-/* one requirement moving through the SOP, one role per step */
+ const N=[['bot','需求定型','Clarify','requirement.md',60,70],['bot','方案设计','Design','design.md',300,70],['bot','开发实现','Implement','patch.diff',540,70],
+  ['bot','独立评审','Review','review.md',540,250],['script','运行测试','Run tests','go test ./...',300,250],['shield','人工验收','Sign-off',Z('打回 → 开发实现','reject → Implement'),60,250]];
+ const E=[[0,1],[1,2],[2,3],[3,4],[4,5]],W2=196,H2=92;
+ const pt=(i,s)=>{const n=N[i],x=n[4],y=n[5];return s==='r'?[x+W2,y+H2/2]:s==='l'?[x,y+H2/2]:s==='b'?[x+W2/2,y+H2]:[x+W2/2,y]};
+ const path=(a,b)=>{const A=N[a],B=N[b];if(A[5]===B[5]){const s=A[4]<B[4]?pt(a,'r'):pt(a,'l'),e=A[4]<B[4]?pt(b,'l'):pt(b,'r'),m=(s[0]+e[0])/2;return `M${s[0]} ${s[1]}C${m} ${s[1]} ${m} ${e[1]} ${e[0]} ${e[1]}`}
+  const s=pt(a,'b'),e=pt(b,'t');return `M${s[0]} ${s[1]}C${s[0]} ${s[1]+50} ${e[0]} ${e[1]-50} ${e[0]} ${e[1]}`};
+ const ex=['codebuddy','codex','claude','codebuddy','',''];
+ const nodes=N.map((n,i)=>`<div class="dnd rv pop${i===5?' hum':''}" data-at="${f2(.1+i*.05)}" data-st="${f2(.56+i*.06)},${f2(.6+i*.06)}" style="left:${n[4]}px;top:${n[5]}px"><div class="dnh"><span class="dni">${ic(n[0])}</span><div><b>${Z(n[1],n[2])}</b><small>${i===5?Z('人工门禁','Human gate'):i===4?Z('脚本','Script'):'Agent'}</small></div><i class="dck">${ic('ok')}</i></div><div class="dnf">${ex[i]?`<span>${mark(ex[i])}${EXN[ex[i]]}</span>`:''}<code>${n[3]}</code></div></div>`).join('');
+ const edges=E.map(([a,b],i)=>`<path class="deg dr" pathLength="1" data-at="${f2(.2+i*.05)}" d="${path(a,b)}"/>`).join('')+`<path class="deg rej rvo" data-at=".46" d="M${60+W2/2} ${250}C${60+W2/2} 200 ${540+W2/2-40} 210 ${540+W2/2-40} ${70+H2}"/>`;
+ const pal=[['bot','AI Agent'],['script',Z('脚本','Script')],['shield',Z('人工门禁','Human gate')],['flow','SOP']];
+ const main=`<div class="dsg"><div class="dtb"><span class="dsel"><i class="dot ok"></i>${Z('缺陷修复 SOP','Bug fix SOP')} ${ic('down')}</span><span class="dmeta">published · v1 · ${Z('6 步','6 steps')}</span><span class="sp"></span><span class="ubt">${ic('plus')}${Z('新建 SOP','New SOP')}</span><span class="ubt">${Z('版本历史','History')}</span><span class="ubt dk">${Z('保存','Save')}</span><span class="ubt ac rv" data-at=".5" data-k="pub">${Z('发布版本','Publish')}</span></div>
+ <div class="dbody"><aside class="dpal"><div class="dph">${Z('流程步骤','Steps')}<small>${Z('拖到画布上','drag onto canvas')}</small></div><div class="dpg">${pal.map(p=>`<span>${ic(p[0])}${p[1]}</span>`).join('')}</div>
+  <div class="dpl">${N.map((n,i)=>`<div class="${i===2?'on':''}"><b>${i+1}</b>${Z(n[1],n[2])}</div>`).join('')}</div></aside>
+ <div class="dcv"><svg class="degs" width="800" height="380" viewBox="0 0 800 380">${edges}</svg><span class="rjl rvo" data-at=".48">${Z('失败打回','on reject')}</span>${nodes}</div>
+ <aside class="dins rv" data-at=".42"><div class="dih"><b>${Z('开发实现','Implement')}</b><small>Agent · ${Z('角色：开发','role: developer')}</small></div>
+  <label>${Z('执行器','Executor')}</label><div class="fld">${mark('claude')}Claude Code ${ic('down')}</div>
+  <label>${Z('模型','Model')}</label><div class="fld">claude-opus-4.5 ${ic('down')}</div>
+  <label>${Z('产物','Output')}</label><div class="fld mono">patch.diff</div>
+  <label>${Z('门禁','Gate')}</label><div class="fld mono">go test ./... · exit 0</div>
+  <label>${Z('失败时','On failure')}</label><div class="fld">${Z('打回 · 重试上限 3','send back · retry ≤ 3')}</div></aside></div></div>`;
+ return F(1240,shell('flow',main,'',true),1)}
+const TAGS=()=>[[Z('Agent 节点 · 自选执行器','Agent step · pick the executor'),'l',22],[Z('脚本门禁 · 看退出码','Script gate · exit codes'),'l',62],[Z('人工门禁 · 由人拍板','Human gate · you sign off'),'r',70],[Z('失败打回 · 带原因重做','Reject edge · redo with reason'),'r',38]];
+/* 01 cloud workspaces */
+function cloud(t){const c=t.cloud;const S=[['sbx-7f3a','LOOP-12',Z('修复订单导出的时区错误','Fix timezone bug in order export'),'run',[.18,1.1]],['sbx-2c91','LOOP-15',Z('订单列表按状态筛选','Filter orders by status'),'board',[.24,.62]],['sbx-e4b0','#219',Z('依赖安全检查 · 升级 lodash','Dependency check · bump lodash'),'list',[.3,.48]],['sbx-91d2','LOOP-17',Z('退款回调重试','Retry refund callbacks'),'run',[.36,1.1]]];
+ const thumb=k=>`<div class="th2 ${k}"><i class="r"></i><div>${k==='board'?'<p><i></i><i></i><i></i><i></i></p><p><i></i><i></i><i></i><i></i></p>':k==='list'?'<p></p><p></p><p></p><p></p><p></p>':'<p></p><p class="w"></p><p class="n"><i></i><i></i><i></i><i></i></p><p></p>'}</div></div>`;
+ const st=i=>i===1?`<span class="cst s-a"><i></i>${Z('运行中','Running')}</span><span class="cst ok s-b"><i></i>${Z('已完成 · PR #140','Done · PR #140')}</span>`:i===2?`<span class="cst s-a"><i></i>${Z('运行中','Running')}</span><span class="cst zz s-b"><i></i>${Z('已休眠 · 快照已保存','Asleep · snapshot saved')}</span>`:`<span class="cst"><i></i>${Z('运行中','Running')}</span>`;
+ return F(1040,`<div class="cwp"><div class="cwh"><span class="cwi">${ic('cloud')}</span><b>LoopForge ${Z('云端工作区','cloud workspaces')}</b>${tg('7×24 '+Z('在线','online'),'ok')}<span class="sp"></span>
+  <span class="lid rv" data-at=".04">${ic('term')}${Z('本机 · 已合盖','Laptop · lid closed')}</span><span class="clk rv" data-at=".08">${ic('moon')}<b data-k="clk">23:40</b><small>${Z('无人值守中','unattended')}</small></span></div>
+ <div class="cwg">${S.map((s,i)=>`<div class="cwc rv" data-at="${f2(.1+i*.05)}"${i===1?' data-sw=".62"':i===2?' data-sw=".48"':''}>${thumb(s[3])}<div class="cwm"><small>${s[0]} · ${Z('隔离沙箱','isolated sandbox')}</small><b><code>${s[1]}</code>${s[2]}</b>${st(i)}<em class="pg"><em class="bar" style="--w:${[64,100,46,38][i]}%" data-tick="${f2(s[4][0])}" data-cls="on"></em></em></div></div>`).join('')}</div>
+ <div class="cwf rv" data-at=".8">${ic('ok')}${Z('次日 09:12 · LOOP-15 的工作区从快照恢复，未提交的修改和分支都在','Next day 09:12 · the LOOP-15 workspace is restored from its snapshot, uncommitted changes and branch intact')}</div></div>`)}
+/* 02 one shared conversation */
+function chat(t){const c=t.chat;
+ const side=`<aside class="asd"><div class="sdh">${LOGO()}<b>LoopForge</b><i>${ic('panel')}</i></div><div class="sdn">${ic('plus')}${Z('新对话','New chat')}<span class="sp"></span>${ic('search')}</div>
+  <div class="sdg">${ic('users')}${Z('团队会话','Team chats')}<span class="sp"></span>4</div>
+  ${[Z('订单导出时区问题','Order export timezone'),Z('登录页加 GitHub 登录','GitHub sign-in on login'),Z('整理本周发布清单','This week\'s release list'),Z('检查移动端布局','Check the mobile layout')].map((x,i)=>`<div class="sdi${i?'':' on'}"><span>${x}</span><b>${['3','1','2','1'][i]}</b></div>`).join('')}
+  <div class="sdg">${ic('home')}${Z('个人对话','Personal')}<span class="sp"></span>6</div>
+  ${[Z('设计需求分析到测试的协作流程','Collab flow from analysis to test'),Z('给项目列表加搜索和筛选','Search and filters for projects')].map(x=>`<div class="sdi"><span>${x}</span><b>1</b></div>`).join('')}</aside>`;
+ const me=(a,who,cls,txt,at)=>`<div class="msg me rv" data-at="${at}"><div class="mwho"><span class="mav ${cls}">${a}</span>${who}</div><p>${txt}</p></div>`;
+ const think=(a,b)=>`<div class="think rv" data-at="${a}" data-off="${b}"><span class="mbl">${LOGO()}Main Bot</span><i></i><i></i><i></i></div>`;
+ const bot=(txt,extra,at)=>`<div class="msg bot rv" data-at="${at}"><div class="mbl">${LOGO()}Main Bot<small>09:1${at[2]||'3'}</small></div><p>${txt}</p>${extra}</div>`;
+ const main=`<div class="cvh"><b>${Z('订单导出时区问题','Order export timezone')}</b>${tg(Z('团队会话','team chat'))}<span class="sp"></span><span class="avs"><i class="a1">王</i><i class="a2">陈</i><i class="a3">李</i></span><small>${Z('3 人在线','3 online')}</small></div>
+ <div class="cvb">${me('王',Z('王敏 · 产品','Min · Product'),'a1',Z('海外客户反馈导出时间差 8 小时。另外导出按钮改叫“导出 CSV”。','Overseas customers see export times 8 hours off. Also rename the export button to "Export CSV".'),'.04')}
+ ${think('.12','.22')}${bot(Z('按钮文案是小改动，我直接改了。','The button label is a small change, so I made it.'),`<div class="tool rv" data-at=".26">${ic('pr')}<div><b>${Z('已提交 PR #131','Opened PR #131')}</b><small>web/export/button.tsx · +1 −1</small></div><span class="tg ok rv pop" data-at=".3">${ic('shield')}${Z('智能代批 · 低风险自动放行','Assisted · low risk, auto-approved')}</span></div>`,'.22')}
+ ${me('李',Z('李响 · 研发','Leo · Engineering'),'a3',Z('时区这个走缺陷修复 SOP 吧，要过评审和测试。','Send the timezone bug through the bug fix SOP. It needs review and tests.'),'.42')}
+ ${think('.5','.6')}${bot(Z('已派发「缺陷修复 SOP」，进度会同步在这个会话里。','Started the Bug fix SOP. Progress will show up in this chat.'),`<div class="runc rv" data-at=".64"><div class="rch">${ic('play')}<b>Run #1042</b><small>${Z('缺陷修复 SOP · LOOP-12','Bug fix SOP · LOOP-12')}</small><span class="sp"></span><span class="ubt sm">${Z('打开运行','Open run')}</span></div><div class="rcf">${[Z('澄清','Clarify'),Z('设计','Design'),Z('实现','Implement'),Z('评审','Review'),Z('测试','Test'),Z('验收','Sign-off')].map((x,j)=>`<span data-st="${f2(.68+j*.07)},${f2(.74+j*.07)}"><i></i>${x}</span>`).join('')}</div></div>`,'.6')}</div>
+ <div class="cmp"><div class="cmi">${Z('告诉我接下来想做点什么','Tell me what to do next')}</div><div class="cmt"><i>${ic('plus')}</i><span>${mark('codebuddy')}DeepSeek-V4.1-Flash ${ic('down')}</span><span class="perm">${ic('shield')}${Z('智能代批','Assisted')} ${ic('down')}</span><span class="sp"></span><b>${ic('up')}</b></div></div>`;
+ return F(1040,shell('home',main,side,false))}
+/* 03 run detail: staged topology, pause / take over / resume */
 function sop(t){const c=t.sop;
- return W(c,`<div class="pipe"><div class="ptl rv" data-at=".04">${t.req}</div><div class="ph">${c.head.map(h=>`<span>${h}</span>`).join('')}<span></span></div>
- ${c.rows.map((r,i)=>{const a=.1+i*.09;return `<div class="pr rv" data-at="${f2(a)}"><b><i>${i+1}</i>${r[0]}</b><span>${r[1]}</span><span class="ex">${mark(r[2])}${EXN[r[2]]}</span><code class="rv pop" data-at="${f2(a+.05)}">${r[3]}</code><span class="spin" data-tick="${f2(a+.08)}"></span></div>`}).join('')}
- <div class="pf rv" data-at=".72">${c.foot}</div></div>`,`<span class="sp"></span>${c.ctl.map(x=>`<span class="tbb">${x}</span>`).join('')}`)}
-/* a gate run: the agent claims done, the command decides */
-function gate(t){const c=t.gate;const ln=(a,h,cls='')=>`<div class="rv ${cls}" data-at="${a}">${h}</div>`;
- return W(c,`<div class="term sm gtm">
- ${ln('.04',`<span class="dm">${c.win}</span>`)}
- ${ln('.08',`<span class="ok">●</span> ${c.claim}`)}
- ${ln('.15',`<span class="ps">$</span> <span class="cmd">go test ./...</span> <span class="dm">· ${c.run}</span>`)}
- ${c.fails.map((f,i)=>ln(f2(.24+i*.05),esc(f),'bad')).join('')}
- ${ln('.36',`<b>${c.exit}</b>`,'bad')}
- ${ln('.42',`↩ ${c.verdict}`,'vd no')}
- ${ln('.54',`<span class="dm">${c.retry}</span>`,'gap')}
- ${ln('.58',`<span class="ok">●</span> ${c.fixed}`)}
- ${ln('.64',`<span class="ps">$</span> <span class="cmd">go test ./...</span>`)}
- ${ln('.72',`<span class="ok">✓</span> ${c.pass}`)}
- ${ln('.8',`✓ ${c.done}`,'vd yes')}</div>`)}
+ const ST=[[[Z('需求分析','Analysis'),'bot',.06,.16]],[[Z('前端方案','Frontend plan'),'bot',.18,.3],[Z('接口设计','API design'),'bot',.18,.34]],[[Z('方案评审','Plan review'),'shield',.36,.42]],[[Z('页面实现','UI build'),'bot',.44,.78],[Z('接口实现','API build'),'bot',.44,.84]],[[Z('自动化验收','Acceptance'),'bot',.86,.94]]];
+ const nd=(n)=>`<div class="tnd" data-st="${f2(n[2])},${f2(n[3])}"><span class="dni">${ic(n[1])}</span><div><b>${n[0]}</b><small><span class="s0">${Z('待执行','Pending')}</span><span class="s1">${Z('运行中','Running')} · attempt 1</span><span class="s2">${Z('已完成','Done')} · attempt 1</span></small></div><i class="dck">${ic('ok')}</i></div>`;
+ const main=`<div class="rnd"><div class="rnb"><span class="ubt sm">← ${Z('返回运行列表','Back to runs')}</span>${tg(Z('独立运行','standalone'))}<span class="crumb">${Z('缺陷修复 SOP','Bug fix SOP')}</span></div>
+ <div class="rnh"><div><h4>${Z('修复订单导出的时区错误','Fix timezone bug in order export')}</h4><p>LOOP-12 · ${Z('海外客户导出时间差 8 小时，按用户时区展示','export times are 8 hours off; show the user\'s timezone')}</p></div><span class="sp"></span>
+  <span class="ubt" data-k="pz">${ic('pause')}${Z('暂停','Pause')}</span><span class="ubt" data-k="tk">${ic('hand')}${Z('接管','Take over')}</span><span class="ubt rd">${Z('取消运行','Cancel run')}</span><span class="rst"><span class="s-run">${Z('运行中','Running')}</span><span class="s-pz">${Z('已暂停','Paused')}</span><span class="s-ok">${Z('已完成','Done')}</span></span></div>
+ <div class="rnm"><span><b>Run</b> 971775330529</span><span>SOP v1</span><span>${ic('clock')}${Z('启动于 09:15','started 09:15')}</span><span>Sandbox <code>sbx-7f3a</code></span><span>${mark('claude')}Claude Code</span></div>
+ <div class="rpx"><div class="rpi">${ic('play')}<b class="r-a">${Z('按 SOP 推进中 · 随时可以暂停或接管','Running the SOP · pause or take over any time')}</b><b class="r-b">${Z('全部节点通过 · PR #131 已提交','All steps passed · PR #131 opened')}</b></div><div class="rpz"><div class="rpzt">${ic('hand')}<b>${Z('李响在线编辑器里改了 export/tz.go','Leo edited export/tz.go in the online editor')}</b><span class="sp"></span><span class="ubt ac" data-k="rs">${Z('恢复续跑','Resume')}</span></div><p>${Z('改动说明会带给后续节点，测试与交付照常继续。','The note goes to the next steps; testing and delivery carry on.')}</p></div></div>
+ <div class="tpo"><div class="tpoh"><b>${Z('节点执行拓扑','Step topology')}</b><small>${Z('点击节点查看输出、产物和执行事件','click a step for output, artifacts and events')}</small><span class="sp"></span><span class="lg"><i class="g"></i>${Z('完成','done')}<i class="b"></i>${Z('运行中','running')}<i></i>${Z('待执行','pending')}</span></div>
+ <div class="tpg">${ST.map((s,i)=>`<div class="tst${s.length>1?' par':''}"><small>${Z('阶段','Stage')} ${i+1}${s.length>1?` · ${Z('并行','parallel')} ${s.length}`:''}</small>${s.map(nd).join('')}</div>`).join(`<span class="tar">${ic('arrow')}</span>`)}</div></div></div>${cur()}`;
+ return F(1040,shell('play',main))}
+/* 04 gate fails, the step reruns with the failure, then passes */
+function gate(t){const c=t.gate;
+ const nd=(id,ti,ro,x,y,extra='')=>`<div class="gnd" data-k="${id}" style="left:${x}px;top:${y}px"><div class="dnh"><span class="dni">${ic(id==='g4'?'shield':'bot')}</span><div><b>${ti}</b><small>${ro}</small></div><i class="dck">${ic('ok')}</i></div><div class="gnc">${extra}</div><div class="gnp"><span><i class="g"></i>${Z('成功','success')}</span><span><i class="r"></i>${Z('失败打回','on reject')}</span></div></div>`;
+ const chips=(m,a)=>`<span>${m}</span><span class="att">attempt <b>${a}</b></span>`;
+ return F(1040,`<div class="gcv"><div class="gtb">${ic('flow')}<b>${Z('全链路交付 SOP','Full delivery SOP')}</b>${tg('Run #1042')}<span class="sp"></span><span class="lg"><i class="g"></i>${Z('成功','success')}<i class="r"></i>${Z('失败打回','reject')}</span></div>
+ <div class="gst"><svg class="gegs" width="1040" height="340" viewBox="0 0 1040 340"><path class="ge on" d="M272 90C302 90 300 112 330 112"/><path class="ge on" d="M272 250C304 250 300 132 330 132"/><path class="ge" data-k="e2" d="M562 112C600 112 622 112 660 112"/><path class="ge" data-k="e3" d="M892 112C930 112 950 112 1000 112"/><path class="ge rej" data-k="er" d="M446 180C446 280 360 290 272 278"/></svg>
+  ${nd('g1',Z('页面实现','UI build'),Z('前端开发','Frontend dev'),40,24,chips('gpt-5.6','1'))}${nd('g0',Z('接口实现','API build'),Z('后端开发','Backend dev'),40,184,`<span>claude-opus</span><span class="att">attempt <b data-k="a0">1</b></span>`)}
+  ${nd('g3',Z('自动化验收','Acceptance tests'),Z('测试工程师','Test engineer'),330,50,`<span>kimi-k3.1</span><span class="att">attempt <b data-k="a3">1</b></span>`)}${nd('g4',Z('交付确认','Delivery sign-off'),Z('人工门禁','Human gate'),660,50,`<span class="wt">${Z('等待人工确认','waiting for sign-off')}</span>`)}
+  <span class="gbad" data-k="bad">${ic('x')}${Z('用例失败 2/14','2/14 tests failed')}</span><span class="gok" data-k="okb">${ic('ok')}${Z('14/14 通过','14/14 passed')}</span><span class="grl" data-k="rl">${Z('失败打回 · 带报错重做','sent back with the failure')}</span></div>
+ <div class="glog"><div class="glh">${ic('term')}<b>${Z('执行日志','Execution log')}</b><small>${Z('自动化验收','Acceptance tests')}</small></div>
+  ${[['.2','<span class="ps">$</span> npm run test:e2e'],['.3','<span class="bd">✕ export.spec.ts › '+Z('按用户时区导出','exports in user timezone')+' · expected 08:00, got 00:00</span>'],['.33','<span class="bd">✕ csv.spec.ts › '+Z('时间戳格式','timestamp format')+' · got UTC</span>'],['.38','<span class="bd"><b>exit 1</b> · 2/14 '+Z('失败 → 带报错打回「接口实现」','failed → back to API build with the failure')+'</span>'],['.56','<span class="dm">attempt 2 · '+Z('按报错修复：导出前转换为用户时区','fix from the failure: convert to the user timezone before export')+'</span>'],['.8','<span class="gd">✓ 14/14 passed · exit 0</span>']].map(l=>`<div class="rv" data-at="${l[0]}">${l[1]}</div>`).join('')}</div></div>`)}
+/* 05 scheduled issue sync on the requirement board */
+function auto(t){const c=t.auto;
+ const COLS=[[Z('待处理','To do'),'list'],[Z('执行中','In progress'),'play'],[Z('待我确认','Needs me'),'check'],[Z('已完成','Done'),'ok']];
+ const K=[['#212',Z('导出文件名含非法字符','Illegal characters in export filename'),Z('高','High'),'0:0,.22:1,.6:3','PR #140'],['#215',Z('订单列表分页偏移','Order list pagination offset'),Z('中','Med'),'0:0,.26:1,.76:3','PR #141'],['#218',Z('退款金额精度丢失','Refund amount loses precision'),Z('紧急','Urgent'),'0:0,.3:1,.52:2',''],['#219',Z('依赖安全检查','Dependency security check'),Z('中','Med'),'0:0,.34:1,.68:3',Z('升级方案','plan')]];
+ const card=(k,i)=>`<div class="kc rv" data-at="${f2(.06+i*.04)}" data-path="${k[3]}"><small>${k[0]} · GitHub</small><b>${k[1]}</b><div class="kcr"><span class="pri${i===2?' hot':''}">${i===2?'✦':'▮'} ${k[2]}</span><span class="kst"><span class="c0">${Z('等待执行','Queued')}</span><span class="c1"><i class="spin"></i>${Z('修复中','Fixing')}</span><span class="c2">${Z('已释放资源','resources freed')}</span><span class="c3">${ic('ok')}${k[4]}</span></span></div>${i===1?`<span class="kcf" data-k="cf">${Z('合流冲突 → 自动解决','merge conflict → resolved')}</span>`:''}</div>`;
+ const main=`<div class="rql2"><div class="rqh"><div><h4>${Z('需求列表','Requirements')}</h4><p>${Z('查看每条需求的执行结果，失败的点进看卡在哪','See how each requirement ran; open failures to see where they stuck')}</p></div><span class="sp"></span><span class="ubt">${ic('down')}${Z('导入 Issues','Import issues')}</span><span class="ubt ac">${ic('plus')}${Z('新建需求','New requirement')}</span></div>
+ <div class="sch rv" data-at=".02">${ic('clock')}<b>${Z('定时任务 · 每天 09:00 同步 GitHub Issue','Scheduled · sync GitHub issues daily at 09:00')}</b><span class="sp"></span><span class="tg">${mark('gh')}${Z('拉取到 4 个新 Issue','4 new issues pulled')}</span></div>
+ <div class="kb">${COLS.map((cl,i)=>`<div class="kcol"><div class="kch">${ic(cl[1])}${cl[0]}<span class="sp"></span><b data-k="n${i}">0</b></div></div>`).join('')}<div class="kcs">${K.map(card).join('')}</div></div>
+ <div class="kdn rv" data-at=".86">${ic('pr')}${Z('集成分支合流检查通过 · 汇总 PR #142','Integration branch merge check passed · rollup PR #142')}</div></div>`;
+ return F(1040,shell('list',main))}
+/* 06 evaluation: score, prescriptions, apply, next run */
+function rsi(t){const c=t.rsi;
+ const D=[[Z('控制流健康','Control flow'),[60,92]],[Z('耗时与等待','Time & waiting'),[45,88]],[Z('工具浪费','Tool waste'),[62,95]],[Z('Token 效率','Token efficiency'),[58,90]],[Z('错误恢复','Error recovery'),[40,100]],[Z('交付完整','Completeness'),[70,100]]];
+ const main=`<div class="evp"><div class="evb rv" data-at=".02"><div><span class="tg ac">${ic('spark')}${Z('AI 智能评测','AI evaluation')}</span><h4>${Z('SOP 执行效果与准入质量评估','SOP run quality assessment')}</h4><p>${Z('回溯全链路轨迹，评估目标达成度、产物契约与门禁防线，自动生成可落地的改进处方。','Replays the full trace, checks goals, deliverables and gates, then writes prescriptions you can apply.')}</p></div><span class="sp"></span>
+  <div class="evm"><small>${Z('评测大模型','Model')}</small><div class="fld">${ic('spark')}GLM-5.3-Flash ${ic('down')}</div></div><span class="ubt grd" data-k="go" data-press=".12">${ic('spark')}${Z('启动评测','Run evaluation')}</span></div>
+ <div class="evr"><div class="evs2 rv" data-at=".18"><svg class="rg" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52"/><circle class="rgv" data-k="rgv" cx="60" cy="60" r="52" pathLength="100"/></svg><div class="rgt"><b data-k="sc">0</b><small>/100</small></div>
+  <div class="evl"><span class="s-a">${Z('第 1 次运行 · 返工 2 次','Run 1 · reworked twice')}</span><span class="s-b">${Z('第 2 次运行 · 一次通过','Run 2 · passed first time')}</span><small>${Z('基线 70 分','baseline 70')}</small></div></div>
+  <div class="evd2">${D.map((d,i)=>`<div class="rv" data-at="${f2(.22+i*.025)}"><span>${d[0]}</span><i><em data-k="d${i}"></em></i></div>`).join('')}</div>
+  <div class="evx"><div class="evxh">${ic('file')}<b>${Z('改进处方','Prescriptions')}</b><small>${Z('写回后生成新版本，不改本次运行的快照','writes a new version; this run\'s snapshot is untouched')}</small></div>
+  ${c.items.map((x,i)=>`<div class="rxi rv" data-at="${f2(.36+i*.05)}" data-sw="${f2(.58+i*.04)}"><span class="rxt">${x[0]}</span><p>${x[1]}</p><span class="ubt ac sm s-a" data-k="ap${i}" data-press="${f2(.55+i*.04)}">${c.apply}</span><span class="rxd s-b">${ic('ok')}${c.applied}</span></div>`).join('')}</div></div></div>${cur()}`;
+ return F(1040,shell('play',main))}
 const INS={platform:['git clone https://github.com/Tencent/LoopForge.git && cd LoopForge','bash scripts/install.sh','open http://localhost:8090','Platform'],claude:['npx -y loopforge-cli@latest install claude','npx -y loopforge-cli@latest status claude','/start-devflow','Classic'],codex:['npx -y loopforge-cli@latest install codex','npx -y loopforge-cli@latest status codex','$devflow-codex','Classic'],
  cursor:['npx -y loopforge-cli@latest install cursor','npx -y loopforge-cli@latest status cursor','/start-devflow','Classic'],codebuddy:['npx -y loopforge-cli@latest install codebuddy','npx -y loopforge-cli@latest status codebuddy','/start-devflow','Classic'],
  pi:['npx -y loopforge-cli@latest skills install pi','pi install npm:pi-subagents','/skill:devflow','Portable']};
@@ -75,40 +157,19 @@ const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账�
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
 const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
- return `${head({h:t.dep.h,em:t.dep.em,sub:n.sub})}
- <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.035).toFixed(3)}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
- <div class="ibox rv" data-at=".3"><div class="row"><span>$</span><code data-k="ic">${INS.platform[0]}</code><button data-copy>${n.copy}</button></div>
+ return `<div class="sec-h"><span class="kick">${ic('term')}${Z('部署','Deploy')}</span>${head({h:t.dep.h,em:t.dep.em,sub:n.sub})}</div>
+ <div class="dep2"><div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="${i?'':'act'}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
+ <div class="ibox rv" data-at=".22"><div class="ibh"><i></i><i></i><i></i><span>bash</span><span class="sp"></span><button data-copy>${ic('copy')}${n.copy}</button></div><div class="row"><span>$</span><code data-k="ic">${INS.platform[0]}</code></div>
  <div class="row"><span>$</span><code data-k="is">${INS.platform[1]}</code></div><div class="st"><span class="ps">›</span> <code data-k="ist">${stLine('platform')}</code></div><div class="ed" data-k="ied">${edNote('platform')}</div></div>
- <p class="inote rv" data-at=".4">${n.note} <code>npx -y loopforge-cli@latest doctor</code></p>`}
-/* cloud workspaces keep running after the laptop closes; idle ones snapshot and sleep */
-function cloud(t){const c=t.cloud;
- const st=(i)=>i===0?`<span class="wst run"><i></i>${c.run}</span>`:i===1?`<span class="wst run s-a"><i></i>${c.run}</span><span class="wst slp s-b"><i></i>${c.sleep}</span>`:`<span class="wst wt"><i></i>${c.wait}</span>`;
- return W(c,`<div class="cwk"><div class="lidr rv" data-at=".04"><span class="dev off"><i></i>${c.lid}</span><span class="arr">→</span><span class="dev on"><i></i>${c.up}</span></div>
- ${c.rows.map((r,i)=>`<div class="wsr rv" data-at="${f2(.12+i*.07)}"${i===1?' data-sw=".52"':''}><code>${r[0]}</code><div><b>${r[1]}</b><small>${r[2]} · ${mark(r[3])}${EXN[r[3]]}</small></div>${st(i)}<em class="pg"><em class="bar" style="--w:${[72,100,100][i]}%" data-tick="${f2(.2+i*.07)}" data-cls="on"></em></em></div>`).join('')}
- <div class="wake rv" data-at=".74"><span class="ok">✓</span> ${c.wake}</div></div>`)}
-/* one shared conversation, one Main Bot */
-function chat(t){const c=t.chat;
- return W(c,`<div class="cht">${c.msgs.map((m,i)=>{const a=f2(.06+i*.13);return `<div class="cm2 ${m[0]} rv" data-at="${a}"><span class="avt">${m[0]==='b'?LOGO():m[1]}</span><div><b>${m[2]}</b><p>${m[3]}</p>${m[5]?`<span class="apn rv pop" data-at="${f2(+a+.05)}">✓ ${m[5]}</span>`:''}${i===4?`<div class="mflow">${c.flow.map((x,j)=>`<span class="rv pop" data-at="${f2(.7+j*.035)}"${j<2?` data-tick="${f2(.82+j*.04)}" data-cls="dn"`:''}${j===2?` data-tick=".9" data-cls="go"`:''}><i></i>${x}</span>`).join('')}</div>`:''}</div>${m[4]&&i!==4?`<code class="rv pop" data-at="${f2(+a+.03)}">${m[4]}</code>`:''}</div>`}).join('')}</div>`,`<span class="sp"></span><span class="chip mode">${c.mode}</span>`)}
-/* scheduled issue sync: fix in parallel, resolve conflicts, park what needs a person */
-function auto(t){const c=t.auto;const res=[`<span class="spin" data-tick=".42"></span><code class="rv pop" data-at=".44">${c.rows[0][2]}</code>`,`<span class="cfl rv" data-at=".48">${c.conflict}</span><code class="rv pop" data-at=".58">${c.rows[1][2]}</code>`,`<span class="wst wt rv" data-at=".52"><i></i>${c.wait}</span>`,`<span class="spin" data-tick=".62"></span><span class="pln rv" data-at=".64">${c.plan}</span>`];
- return W(c,`<div class="aut"><div class="aph rv" data-at=".04"><span class="chip">${mark('gh')} ${c.pulled}</span></div>
- ${c.rows.map((r,i)=>`<div class="ais rv" data-at="${f2(.1+i*.06)}"><code>${r[0]}</code><b>${r[1]}</b><span class="sopc">${i===3?Z('定时巡检','Health check'):c.fix}</span><span class="ares">${res[i]}</span></div>`).join('')}
- <div class="vd yes rv" data-at=".78">✓ ${c.done}</div></div>`)}
-/* engineering RSI: score the run, prescribe, write back, the next run passes */
-function rsi(t){const c=t.rsi;
- return W(c,`<div class="rsi"><div class="rr2"><div class="rrun rv" data-at=".04"><div class="ring bad"><b data-cnt="55" data-a=".06" data-b=".24">55</b><small>/100</small></div><span>${c.r1}</span></div>
- <span class="rarr rv" data-at=".66">→</span>
- <div class="rrun rv" data-at=".7"><div class="ring"><b data-cnt="96" data-a=".72" data-b=".9">96</b><small>/100</small></div><span>${c.r2}</span></div></div>
- <div class="sgh rv" data-at=".28">${c.rx}</div>
- ${c.items.map((x,i)=>`<div class="rxi rv" data-at="${f2(.32+i*.06)}" data-sw="${f2(.56+i*.03)}"><span class="rxt">${x[0]}</span><p>${x[1]}</p><span class="btn s-a" data-press="${f2(.53+i*.03)}">${c.apply}</span><span class="rxd s-b">✓ ${c.applied}</span></div>`).join('')}</div>`,DEMO())}
-const STEPS=[['cloud',cloud],['chat',chat],['sop',sop],['gate',gate],['auto',auto],['rsi',rsi]];
-const LEN={hero:1.9,why:1,head:.6,cloud:1.8,chat:2.2,sop:1.8,gate:2.2,auto:2,rsi:2,install:2,fin:.7};
+ <p class="inote rv" data-at=".3">${n.note} <code>npx -y loopforge-cli@latest doctor</code></p></div>`}
+const STEPS=[['cloud',cloud,'cloud'],['chat',chat,'users'],['sop',sop,'flow'],['gate',gate,'shield'],['auto',auto,'clock'],['rsi',rsi,'loop']];
+const PIC=['cloud','users','bug','clock','loop'];
+const LEN={hero:2.4,why:1,head:.6,cloud:2,chat:2.6,sop:2.6,gate:2.6,auto:2.6,rsi:2.6,install:2,fin:.7};
 const PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 001.5.86l12.6-7.5a1 1 0 000-1.72L8.5 3.64A1 1 0 007 4.5z"/></svg>';
 /* ---------- typing with human cadence ---------- */
 function cadence(s){const a=[...s];let h=7,t=0;const out=[];for(let i=0;i<a.length;i++){h=(h*9301+49297)%233280;const j=.55+h/233280*.9;const prev=a[i-1]||'';
  let w=/[\u4e00-\u9fff]/.test(a[i])?1.35:1;if(prev===' ')w*=1.5;if(/[，。,.:：、]/.test(prev))w*=3.2;if(prev==='"')w*=1.8;if(i&&i%9===0)w*=1.6;t+=w*j;out.push(t)}
  return out.map(x=>x/t)}
-/* ---------- count-up: animates every number in a string ---------- */
 function setCount(e,k){const o=e.dataset.cnt;if(k>=1){if(e.textContent!==o)e.textContent=o;return}
  e.textContent=o.replace(/\d+(?:\.\d+)?/g,m=>{const d=(m.split('.')[1]||'').length;return (parseFloat(m)*k).toFixed(d)})}
 /* ---------- build ---------- */
@@ -116,40 +177,38 @@ let U=[];
 function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en';
  const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Open-source, self-improving cloud platform for AI development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud platform for AI development: 24/7 cloud workspaces, a shared conversation with one Main Bot, SOPs with hard gates, scheduled and issue automation, and a review after every run that improves the process.');
  const GH='https://github.com/Tencent/LoopForge',ids=['why','story','video','deploy'];
- const c=t.hero,w=t.why;
- document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a>
+ const c=t.hero,w=t.why,arrow=`<span class="ar">${ic('arrow')}</span>`;
+ document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a><span class="sp"></span>
  <div class="links">${t.nav.map((n,i)=>`<a href="#${ids[i]}" data-nav="${ids[i]}">${n}</a>`).join('')}</div>
- <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
- <a class="pill ghl" href="${GH}" target="_blank" rel="noopener" aria-label="GitHub">${mark('gh')}<span>GitHub</span></a><a class="pill f" href="${TRY()}">${t.try}</a></div></header>
+ <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
+ <a class="ghs" href="${GH}" target="_blank" rel="noopener">${mark('gh')}<span>GitHub</span></a><a class="btn-k sm" href="${TRY()}">${t.try}${arrow}</a></div></header>
  <main>
- <section class="hero u" id="top" data-u="hero"><div class="hx">${head(c,'h1')}
-  <div class="cta rv" data-at=".18"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="#deploy">${c.deploy}</a></div>
-  <div class="rv" data-at=".24">${strip(EXECS,c.exec)}</div></div>
-  <div class="hwin">${hero(t)}</div></section>
- <section class="why wrap u" id="why" data-u="why"><div class="shead">${head(w)}</div>
-  <div class="pains">${w.pains.map((x,i)=>`<div class="pain rv" data-at="${(.18+i*.08).toFixed(2)}"><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div></section>
- <section class="story" id="story"><div class="shead u" data-u="head">${head(t.story)}</div>
-  <div class="tline"><div class="rail2"><i class="fill"></i></div>
-  ${STEPS.map(([k,fn],i)=>`<div class="step" data-tone="${i}"><div class="mark"><span class="tm">${t.story.marks[i]}</span><b class="dot"></b></div>
-   <div class="scard u" data-u="${k}"><div class="ct"><span class="no">${String(i+1).padStart(2,'0')}</span>${head(t[k],'h3')}</div><div class="cw">${fn(t)}</div>
-   <button class="rp" type="button">↻ ${t.replay}</button></div></div>`).join('')}</div></section>
- <section class="video wrap" id="video"><div class="shead u" data-u="head">${head(t.video)}</div>
+ <section class="hero u" id="top" data-u="hero"><div class="hx"><div class="hxl"><span class="kick rv" data-at=".02"><i class="led"></i>${Z('MIT 开源 · 可自主部署','MIT licensed · self-hosted')}</span>${head({h:c.h,em:c.em},'h1')}</div>
+  <div class="hxr"><p class="sub rv" data-at=".16">${c.sub}</p><div class="cta rv" data-at=".22"><a class="btn-k" href="${TRY()}">${t.try}${arrow}</a><a class="btn-t" href="#deploy">${c.deploy}${arrow}</a></div>
+  <div class="ags rv" data-at=".28"><small>${c.exec}</small>${EXECS.map(a=>`<span title="${a[1]}">${mark(a[0])}</span>`).join('')}<span class="sep"></span>${mark('gh')}</div></div></div>
+  <div class="hwin">${TAGS().map((g,i)=>`<span class="atag ${g[1]} rv" data-at="${f2(.5+i*.06)}" style="top:${g[2]}%"><b>${g[0]}</b><i></i></span>`).join('')}${hero(t)}</div></section>
+ <section class="why wrap u" id="why" data-u="why"><div class="sec-h"><span class="kick">${ic('gauge')}${Z('为什么','Why')}</span>${head(w)}</div>
+  <div class="pains">${w.pains.map((x,i)=>`<div class="pain rv" data-at="${(.18+i*.05).toFixed(2)}"><span class="pn">${x[0]}</span><span class="pi">${ic(PIC[i])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div></section>
+ <section class="story wrap" id="story"><div class="sec-h u" data-u="head"><span class="kick">${ic('spark')}${Z('怎么工作','How it works')}</span>${head(t.story)}</div>
+  ${STEPS.map(([k,fn,icn],i)=>`<article class="stp u" data-u="${k}"><header class="sth"><span class="stn rv" data-at=".02">${String(i+1).padStart(2,'0')}</span><div class="stt"><span class="kick">${ic(icn)}${t.story.marks[i]}</span>${head({h:t[k].h,em:t[k].em},'h3')}</div><p class="sub rv" data-at=".14">${t[k].sub}</p></header>
+   <div class="stage">${fn(t)}<button class="rp" type="button">${ic('loop')}${t.replay}</button></div></article>`).join('')}</section>
+ <section class="video wrap" id="video"><div class="sec-h u" data-u="head"><span class="kick">${ic('play')}${Z('演示视频','Video')}</span>${head(t.video)}</div>
   <div class="vframe"><video preload="none" playsinline poster="demo/media/loopforge-promo.jpg?v=11" src="demo/media/loopforge-promo.mp4?v=11"></video>
   <button class="play" type="button"><i>${PLAY}</i><span>${t.video.play}</span></button></div>
-  <a class="pill vl" href="${TRY()}">${t.video.cta} →</a></section>
+  <div class="vfoot"><a class="btn-t" href="${TRY()}">${t.video.cta}${arrow}</a></div></section>
  <section class="deploy wrap u" id="deploy" data-u="install">${install(t)}</section>
  <section class="fin u" data-u="fin"><span class="fl rv pop" data-at=".02">${LOGO()}</span>${head(t.fin)}
-  <div class="cta rv" data-at=".2"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="${GH}" target="_blank" rel="noopener">${mark('gh')}${t.install.gh}</a></div></section>
+  <div class="cta rv" data-at=".2"><a class="btn-k" href="${TRY()}">${t.try}${arrow}</a><a class="btn-t" href="${GH}" target="_blank" rel="noopener">${mark('gh')}${t.install.gh}${arrow}</a></div></section>
  </main>
  <footer class="ft"><a class="brand" href="#top">${LOGO()}<span>LoopForge</span></a><span>${t.install.foot} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · ${Z('产品 Logo 归各自所有者','product logos belong to their owners')}</span></footer>`;
  const app=document.getElementById('app');
  U=[...app.querySelectorAll('.u')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const n=el.dataset.u;
-  const m={el,n,dur:Math.round(LEN[n]*3400),p:0,done:false,playing:false,at:q('[data-at]'),off:q('[data-off]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};
+  const m={el,n,dur:Math.round(LEN[n]*3400),p:0,done:false,playing:false,at:q('[data-at]'),off:q('[data-off]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),press:q('[data-press]'),st:q('[data-st]'),path:q('[data-path]')};
   el.querySelectorAll('[data-k]').forEach(e=>{if(!m[e.dataset.k])m[e.dataset.k]=e});return m});
- U.forEach(m=>{const b=m.el.querySelector(':scope>.rp');if(b)b.addEventListener('click',()=>{reset(m);play(m)})});
+ U.forEach(m=>{const b=m.el.querySelector('.rp');if(b)b.addEventListener('click',()=>{reset(m);play(m)})});
  app.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.l===L)return;L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
  const ins=U.find(m=>m.n==='install');ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.manual=true;pick(ins,b.dataset.id,!RM.matches)}));
- ins.el.querySelector('[data-copy]').addEventListener('click',e=>{navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent);e.target.textContent=t.install.copied;setTimeout(()=>e.target.textContent=t.install.copy,1400)});
+ ins.el.querySelector('[data-copy]').addEventListener('click',e=>{const b=e.currentTarget;navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent+'\n'+ins.is.textContent);b.lastChild.textContent=t.install.copied;setTimeout(()=>b.lastChild.textContent=t.install.copy,1400)});
  const vf=app.querySelector('.vframe'),v=vf.querySelector('video');
  vf.querySelector('.play').addEventListener('click',()=>{vf.classList.add('on');v.controls=true;v.play()});
 }
@@ -161,40 +220,57 @@ function pick(m,id,animate){m.el.querySelectorAll('.tabs button').forEach(x=>x.c
  const set=[[m.ic,v[0]],[m.is,v[1]],[m.ist,stLine(id)]];
  if(animate){set.forEach(([e,s],i)=>retype(e,s,i*140));m.ied.classList.remove('on');void m.ied.offsetWidth;m.ied.textContent=edNote(id);m.ied.classList.add('on')}
  else{set.forEach(([e,s])=>{clearInterval(e._iv);clearTimeout(e._to);e.textContent=s;e.classList.remove('typing')});m.ied.textContent=edNote(id);m.ied.classList.add('on')}}
-const tilt=w=>e=>{w.style.transform=e>=1?'':`rotateX(${14*(1-e)}deg) translateY(${48*(1-e)}px)`};
+/* ---------- simulated pointer: keys are [progress, data-k target or [x,y], click] ---------- */
+function rel(el,root){let x=0,y=0,e=el;while(e&&e!==root){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent}return{x:x+el.offsetWidth*.5,y:y+el.offsetHeight*.55}}
+function pointer(m,keys,p){const c=m.mc;if(!c)return;if(!m._pts)m._pts=keys.map(k=>typeof k[1]==='string'?rel(m[k[1]],m.win):{x:k[1][0],y:k[1][1]});
+ const P0=keys[0][0]-.03,P1=keys[keys.length-1][0]+.05;const vis=p>=P0&&p<=P1;c.style.opacity=vis?1:0;if(!vis)return;
+ let x=m._pts[0].x,y=m._pts[0].y;for(let i=1;i<keys.length;i++){if(p>=keys[i][0]){x=m._pts[i].x;y=m._pts[i].y;continue}const t=EIO(R(p,keys[i-1][0]+(keys[i-1][2]?.015:0),keys[i][0]));x=lerp(m._pts[i-1].x,m._pts[i].x,t);y=lerp(m._pts[i-1].y,m._pts[i].y,t);break}
+ c.style.transform=`translate(${x}px,${y}px)`;c.classList.toggle('click',keys.some(k=>k[2]&&p>=k[0]&&p<k[0]+.025))}
+const tilt=w=>e=>{w.style.transform=e>=1?'':`perspective(2400px) rotateX(${10*(1-e)}deg) translateY(${36*(1-e)}px)`};
+const KBW=220,KBH=104;
 const UPD={
- hero:(m,p)=>{tilt(m.win)(EO(R(p,-.1,.3)))},
- install:(m,p)=>{if(m.manual)return;const st=p<.3?0:p<.6?1:p<.82?2:3;if(st===m.st)return;const live=m.playing&&m.st!==undefined&&st===m.st+1;m.st=st;
+ hero:(m,p)=>{tilt(m.win)(EO(R(p,-.05,.3)))},
+ cloud:(m,p)=>{const mins=Math.round(lerp(0,155,EIO(R(p,.05,.95))));const h=(23*60+40+mins)%1440;m.clk.textContent=String(Math.floor(h/60)).padStart(2,'0')+':'+String(h%60).padStart(2,'0')},
+ sop:(m,p)=>{pointer(m,[[.46,[700,140]],[.5,'pz',1],[.6,[560,330]],[.66,'rs',1],[.74,[820,420]]],p);
+  const pz=p>=.5&&p<.66;m.el.classList.toggle('pz',pz);m.el.classList.toggle('rdone',p>=.95);if(pz)m.st.forEach(e=>{if(e.classList.contains('go'))e.classList.add('hold')});else m.st.forEach(e=>e.classList.remove('hold'))},
+ gate:(m,p)=>{const f=p>=.32&&p<.56,r=p>=.4&&p<.56,re=p>=.56&&p<.72,pass=p>=.78;
+  m.g1.className='gnd dn';m.g0.className='gnd '+(re?'go':p>=.72?'dn':r?'rj':'dn');m.g3.className='gnd '+(p<.18?'':p<.32?'go':f?'bad':p<.72?'':p<.78?'go':'dn');m.g4.className='gnd '+(pass?'wt':'');
+  m.bad.classList.toggle('on',f);m.okb.classList.toggle('on',pass);m.rl.classList.toggle('on',r);m.er.classList.toggle('on',r);m.e2.classList.toggle('on',p>=.18);m.e3.classList.toggle('on',pass);m.a0.textContent=p>=.56?'2':'1';m.a3.textContent=p>=.72?'2':'1'},
+ auto:(m,p)=>{const cnt=[0,0,0,0];m.path.forEach(e=>{const pts=e.dataset.path.split(',').map(s=>s.split(':').map(Number));let col=0;pts.forEach(([a,c])=>{if(p>=a)col=c});
+   const row=cnt[col]++;e.style.transform=`translate(${col*(KBW+12)}px,${row*(KBH+10)}px)`;e.className=e.className.replace(/\bc[0-3]\b/g,'').trim()+' c'+col});
+  cnt.forEach((n,i)=>m['n'+i].textContent=n);if(m.cf)m.cf.classList.toggle('on',p>=.6&&p<.76)},
+ rsi:(m,p)=>{pointer(m,[[.06,[640,300]],[.12,'go',1],[.4,[760,330]],[.55,'ap0',1],[.59,'ap1',1],[.63,'ap2',1],[.7,[600,420]]],p);
+  const v=p<.16?0:p<.74?Math.round(55*EO(R(p,.16,.32))):Math.round(lerp(55,96,EO(R(p,.74,.92))));m.sc.textContent=v;m.rgv.style.strokeDashoffset=100-v;m.el.classList.toggle('r2',p>=.74);m.el.querySelector('.evs2').classList.toggle('swon',p>=.74);
+  for(let i=0;i<6;i++){const d=[[60,92],[45,88],[62,95],[58,90],[40,100],[70,100]][i];m['d'+i].style.width=(p<.2?0:p<.74?d[0]*EO(R(p,.2,.36)):lerp(d[0],d[1],EO(R(p,.74,.92))))+'%'}},
+ install:(m,p)=>{if(m.manual)return;const st=p<.3?0:p<.6?1:p<.82?2:3;if(st===m.st2)return;const live=m.playing&&m.st2!==undefined&&st===m.st2+1;m.st2=st;
   if(st===0){['ic','is','ist'].forEach(k=>{clearInterval(m[k]._iv);clearTimeout(m[k]._to);m[k].textContent=''});m.el.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('act',x.dataset.id==='platform'));placeInd(m);m.ied.classList.remove('on');return}
   pick(m,st===1?'platform':st===2?'claude':'pi',live)}};
 function run(m,p){
  m.at.forEach(e=>e.classList.toggle('on',p>=+e.dataset.at));m.off.forEach(e=>{if(p>=+e.dataset.off)e.classList.remove('on')});
- m.tick.forEach(e=>{const on=p>=+e.dataset.tick;e.classList.toggle(e.dataset.cls||'ok',on)});
+ m.tick.forEach(e=>e.classList.toggle(e.dataset.cls||'ok',p>=+e.dataset.tick));
  m.cnt.forEach(e=>setCount(e,EO(R(p,+e.dataset.a,+e.dataset.b))));
- m.sw.forEach(e=>e.classList.toggle('swon',p>=+e.dataset.sw));m.sel.forEach(e=>e.classList.toggle('sel',p>=+e.dataset.sel));m.press.forEach(e=>e.classList.toggle('press',p>=+e.dataset.press));
- if(UPD[m.n])UPD[m.n](m,p);else if(m.win)tilt(m.win)(EO(R(p,0,.2)))}
+ m.sw.forEach(e=>e.classList.toggle('swon',p>=+e.dataset.sw));m.press.forEach(e=>e.classList.toggle('press',p>=+e.dataset.press&&p<+e.dataset.press+.03));
+ m.st.forEach(e=>{const[a,b]=e.dataset.st.split(',').map(Number);e.classList.toggle('go',p>=a&&p<b);e.classList.toggle('dn',p>=b)});
+ if(UPD[m.n])UPD[m.n](m,p);if(m.win&&m.n!=='hero')tilt(m.win)(EO(R(p,0,.16)))}
 /* ---------- each block plays on its own clock once it scrolls into view ---------- */
-const RM=matchMedia('(prefers-reduced-motion: reduce)'),STILL=qs.has('still');
+const RM=matchMedia('(prefers-reduced-motion: reduce)'),STILL=qs.has('still');if(STILL)document.body.classList.add('still');
 function play(m){cancelAnimationFrame(m.raf);if(RM.matches||STILL){m.p=1;finish(m);return}
  m.playing=true;m.el.classList.remove('played');const t0=performance.now()-m.p*m.dur;
  const tick=now=>{m.p=cl((now-t0)/m.dur);run(m,m.p);if(m.p<1)m.raf=requestAnimationFrame(tick);else finish(m)};m.raf=requestAnimationFrame(tick)}
 function finish(m){m.playing=false;m.done=true;run(m,1);m.el.classList.add('played')}
-function reset(m){cancelAnimationFrame(m.raf);m.p=0;m.done=false;m.st=undefined;m.manual=false;
+function reset(m){cancelAnimationFrame(m.raf);m.p=0;m.done=false;m.st2=undefined;m.manual=false;m._pts=null;
  m.el.classList.add('rewind');run(m,0);void m.el.offsetWidth;m.el.classList.remove('rewind')}
 let io;
-function watch(){if(io)io.disconnect();io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const m=U.find(x=>x.el===e.target);io.unobserve(e.target);if(m&&!m.done&&!m.playing)play(m)}),{rootMargin:'0px 0px -22% 0px'});
+function watch(){if(io)io.disconnect();io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const m=U.find(x=>x.el===e.target);io.unobserve(e.target);if(m&&!m.done&&!m.playing)play(m)}),{rootMargin:'0px 0px -25% 0px'});
  U.forEach(m=>{if(m.done){run(m,1);m.el.classList.add('played')}else io.observe(m.el)})}
 /* ---------- windows scale to their column ---------- */
-function fit(){document.querySelectorAll('.fit').forEach(f=>{const z=f.firstElementChild,w=f.clientWidth,k=Math.min(+f.dataset.max||1,w/718);
- z.style.transform=`scale(${k.toFixed(4)})`;z.style.marginLeft=Math.max(0,(w-718*k)/2)+'px';f.style.height=Math.ceil(z.offsetHeight*k)+'px'})}
-/* ---------- nav state + timeline progress ---------- */
+function fit(){document.querySelectorAll('.fit').forEach(f=>{const z=f.firstElementChild,b=z.offsetWidth,w=f.clientWidth,k=Math.min(+f.dataset.max||1,w/b);
+ z.style.transform=`scale(${k.toFixed(4)})`;z.style.marginLeft=Math.max(0,(w-b*k)/2)+'px';f.style.height=Math.ceil(z.offsetHeight*k)+'px'});U.forEach(m=>m._pts=null)}
+/* ---------- nav state ---------- */
 function onScroll(){const y=innerHeight*.45;let on=null;
  document.querySelectorAll('main>section[id]').forEach(s=>{if(s.getBoundingClientRect().top<y)on=s.id});
  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',a.dataset.nav===on));
- document.querySelector('.nav').classList.toggle('sc',scrollY>8);
- const tl=document.querySelector('.tline');if(!tl)return;const r=tl.getBoundingClientRect(),f=tl.querySelector('.fill');
- f.style.height=Math.max(0,Math.min(r.height,innerHeight*.55-r.top))+'px';
- tl.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',s.querySelector('.dot').getBoundingClientRect().top<innerHeight*.55))}
+ document.querySelector('.nav').classList.toggle('sc',scrollY>8)}
 function boot(){const keep=scrollY,prev=U.map(m=>m.done);build();if(prev.length===U.length)U.forEach((m,i)=>{m.done=prev[i];if(m.done)m.p=1});
  U.forEach(m=>run(m,m.p));fit();watch();onScroll();scrollTo(0,keep)}
 window.LF={get units(){return U},play,reset,fit};
