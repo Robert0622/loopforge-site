@@ -58,7 +58,7 @@ ${CH.map(([t,a,b,c,d],i)=>`<li><button type="button" data-i="${i}"><time>${mmss(
 </ol></aside>
 </section>
 <section class="cta"><div><h2>${Z('自己部署试试','Run it yourself')}</h2>
-<p>${Z('MIT 协议开源，需要 Docker 和 Python 3。装好后第一个注册账号即为管理员，自带免 API Key 的示例流程。','MIT licensed; requires Docker and Python 3. The first registered account becomes admin, with a built-in sample flow that needs no API key.')}</p>
+<p>${Z('MIT 协议开源，需要 Docker 和 Python 3。','MIT licensed; requires Docker and Python 3.')}</p>
 <div class="cmd"><code>git clone ${GH}.git</code><button type="button" class="cp">${Z('复制','Copy')}</button></div></div>
 <div class="acts"><a class="pill f" href="${GH}#readme" target="_blank" rel="noopener">${Z('部署文档','Deploy guide')} →</a><a class="pill" href="${home}">${Z('返回首页','Back to home')}</a></div></section>
 </main>

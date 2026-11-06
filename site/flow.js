@@ -154,7 +154,7 @@ const INS={platform:['git clone https://github.com/Tencent/LoopForge.git && cd L
  pi:['npx -y loopforge-cli@latest skills install pi','pi install npm:pi-subagents','/skill:devflow','Portable']};
 const REQ=()=>Z('"为订单列表增加状态筛选，并补充接口测试"','"Add a status filter to the order list and cover the API with tests"');
 const stLine=id=>id==='platform'?INS[id][2]:`${INS[id][2]} ${REQ()}`;
-const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账号自动成为管理员，新手引导里的“一键体验”不需要 API Key','Platform · the first account becomes admin; the onboarding demo needs no API key'):INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
+const edNote=id=>INS[id][3]==='Platform'?Z('平台版','Platform edition'):INS[id][3]==='Portable'?Z('Portable 版（Pi 只有这一版）· 第二行装的是 pi-subagents 扩展，多 Agent 流程要用到','Portable edition (the only one for Pi) · line 2 adds the pi-subagents extension used for multi-agent runs'):Z('Classic 版（默认）','Classic edition (default)');
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
 const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
