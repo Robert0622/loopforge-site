@@ -23,17 +23,16 @@ const mark=(id,cls='')=>`<svg class="mk ${cls}" viewBox="${MARK[id][0]}" fill="c
 const AGENTS=[['claude','Claude Code'],['codex','Codex'],['cursor','Cursor'],['codebuddy','CodeBuddy'],['pi','Pi']];
 const EXECS=[['codebuddy','CodeBuddy'],['codex','Codex'],['claude','Claude Code']];
 const TRY=()=>'demo/'+(L==='en'?'?lang=en':'');
-const strip=(at,list=AGENTS,lab=Z('支持 5 个 Agent ——','Works with 5 agents —'))=>`<div class="astrip"><div class="ac rv" data-at="${at}">${lab}</div>${list.map((a,i)=>`<span class="ai rv pop" data-at="${(at+.03+i*.035).toFixed(3)}">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
+const strip=(at,list=AGENTS,lab=Z('支持 5 个 Agent','Works with 5 agents'))=>`<div class="astrip"><div class="ac rv" data-at="${at}">${lab}</div>${list.map((a,i)=>`<span class="ai rv pop" data-at="${(at+.03+i*.035).toFixed(3)}">${mark(a[0])}${a[1]}</span>`).join('')}</div>`;
 const lines=(h,em)=>h.split('<br>').map((x,i)=>`<span class="hl"><span class="rv up" data-at="${(.03+i*.06).toFixed(2)}">${em?em(x):x}</span></span>`).join('');
-const txt=(s,side,extra='')=>`<div class="txt ${side}"><div class="kick rv" data-at="0">${s.k}</div><h2 class="h">${lines(s.h)}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
+const txt=(s,side,extra='')=>`<div class="txt ${side}"><h2 class="h">${lines(s.h)}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
 const tb=(t,extra='')=>`<div class="tb"><i></i><i></i><i></i><span>${t}</span>${extra}</div>`;
-const fig=(n,s)=>`<span class="fig">FIG.${n} — ${s}</span>`;
 /* ---------- scenes ---------- */
 const CUR='<svg viewBox="0 0 16 20"><path d="M1 1l13.5 7.2-5.8 1.4L6 15.4z" fill="#14161C" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>';
 const EXN={codebuddy:'CodeBuddy',codex:'Codex',claude:'Claude Code',gh:'GitHub'};
 const emph=(h,em)=>x=>em&&x.includes(em)?x.replace(em,`<em>${em}</em>`):x;
-const txt2=(s,side,extra='',top=196)=>`<div class="txt ${side}" style="top:${top}px"><div class="kick rv" data-at="0">${s.k}</div><h2 class="h"${s.fs?` style="font-size:${s.fs}px"`:''}>${lines(s.h,emph(s.h,s.em))}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
-const W=(side,n,s,body,extra='',top=150)=>`<div class="persp"><div class="win ${side}" data-k="win" style="top:${top}px">${fig(n,s.fig)}${tb(s.win,extra)}${body}</div></div>`;
+const txt2=(s,side,extra='',top=196)=>`<div class="txt ${side}" style="top:${top}px"><h2 class="h"${s.fs?` style="font-size:${s.fs}px"`:''}>${lines(s.h,emph(s.h,s.em))}</h2><p class="sub rv" data-at=".12">${s.sub}</p>${extra}</div>`;
+const W=(side,n,s,body,extra='',top=150)=>`<div class="persp"><div class="win ${side}" data-k="win" style="top:${top}px">${tb(s.win,extra)}${body}</div></div>`;
 const DEMO=()=>`<span class="sp"></span><span class="chip dmo">${T[L].demo}</span>`;
 const f2=x=>x.toFixed(3);
 /* hero: the built-in bug-fix SOP on the designer canvas (node names/outputs follow the public catalog) */
@@ -47,7 +46,7 @@ function hero(t){const c=t.hero;
  const edges=E.map((e,i)=>{const a=f2(.14+i*.05),dx=Math.sign(e[2]-e[0]),dy=Math.sign(e[3]-e[1]);return `<path class="eg dr" pathLength="1" data-at="${a}" d="M${e[0]} ${e[1]}L${e[2]} ${e[3]}"/><path class="ahd rvo" data-at="${f2(+a+.04)}" d="${ah(e[2],e[3],dx,dy)}"/>`}).join('');
  const rx=cx(2)+30;const rej=`<path class="eg rej rvo" data-at=".5" d="M${rx} ${NY(1)}L${rx} ${NY(0)+NH}"/><path class="ahd rj rvo" data-at=".5" d="${ah(rx,NY(0)+NH,0,-1)}"/>`;
  return `
- <div class="txt l" style="top:186px"><div class="kick rv" data-at="0">${c.k}</div><h1 class="h" style="font-size:${Z(56,46)}px">${lines(c.h,emph(c.h,c.em))}</h1><p class="sub rv" data-at=".12">${c.sub}</p>
+ <div class="txt l" style="top:186px"><h1 class="h" style="font-size:${Z(56,46)}px">${lines(c.h,emph(c.h,c.em))}</h1><p class="sub rv" data-at=".12">${c.sub}</p>
  <div class="rv cta" data-at=".18"><a class="pill f" href="${TRY()}">${t.try} →</a><a class="pill" href="#" data-go="${SCN.length-1}">${c.deploy}</a></div>
  ${strip(.24,EXECS,c.exec)}</div>
  ${W('r','01',c,`<div class="cvs"><div class="cvi"><svg class="egs" width="718" height="330" viewBox="0 0 718 330">${edges}${rej}</svg>
@@ -55,7 +54,7 @@ function hero(t){const c=t.hero;
  ${c.nodes.map(nd).join('')}
  <div class="lgd rv" data-at=".5" style="left:${NX(0)}px;top:${NY(1)+8}px"><div><i class="l1"></i>${c.lg[0]}</div><div><i class="l2"></i>${c.lg[1]}</div></div></div></div>`,`<span class="sp"></span><span class="chip">${c.pub}</span>`,196)}`}
 function why(t){const c=t.why;return `${txt2(c,'l',`<p class="close rv" data-at=".5">${c.close}</p>`)}
- <div class="pains">${c.pains.map((x,i)=>`<div class="pain rv slide" data-at="${(.14+i*.1).toFixed(2)}"><span>${String(i+1).padStart(2,'0')} / ${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div>`}
+ <div class="pains">${c.pains.map((x,i)=>`<div class="pain rv slide" data-at="${(.14+i*.1).toFixed(2)}"><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div>`}
 /* one requirement moving through the SOP, one role per step */
 function sop(t){const c=t.sop;
  return `${txt2(c,'r')}${W('l','02',c,`<div class="pipe"><div class="ptl rv" data-at=".04">${t.req}</div><div class="ph">${c.head.map(h=>`<span>${h}</span>`).join('')}<span></span></div>
@@ -111,7 +110,7 @@ const edNote=id=>INS[id][3]==='Platform'?Z('平台版 · 第一个注册的账�
 const TABS=()=>[['platform',T[L].install.plat],...AGENTS];
 const tmark=id=>id==='platform'?`<span class="mk lgm">${LOGO()}</span>`:mark(id);
 function install(t){const n=t.install;
- return `<div class="inst"><div class="kick rv" data-at="0" style="justify-content:center">${n.k}</div><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
+ return `<div class="inst"><h2 class="h">${lines(n.h)}</h2><p class="sub rv" data-at=".1">${n.sub}</p>
  <div class="tabs rv" data-at=".14"><span class="ind" data-k="ind"></span>${TABS().map((a,i)=>`<button data-id="${a[0]}" class="rv pop${i?'':' act'}" data-at="${(.16+i*.035).toFixed(3)}">${tmark(a[0])}${a[1]}</button>`).join('')}</div>
  <div class="ibox rv" data-at=".3"><div class="row"><span>$</span><code data-k="ic">${INS.platform[0]}</code><button data-copy>${n.copy}</button></div>
  <div class="row"><span>$</span><code data-k="is">${INS.platform[1]}</code></div><div class="st"><span class="ps">›</span> <code data-k="ist">${stLine('platform')}</code></div><div class="ed" data-k="ied">${edNote('platform')}</div></div>
@@ -136,7 +135,7 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  cv.innerHTML=`<nav><a class="brand" href="#" data-go="0">${LOGO()}<span>LoopForge</span></a><div class="links">${t.nav.map((n,i)=>`<a href="#" data-nav="${i}">${n}</a>`).join('')}</div><div class="sp"></div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="pill" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${TRY()}">${t.try} →</a></nav>`+
- SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}"><span>${String(i).padStart(2,'0')}</span></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button><div class="hint">${Z('滚一下 / ↓ 下一段','scroll / ↓ next')}</div>`;
+ SCN.map((s,i)=>`<section class="sc" data-i="${i}">${s.b(t)}</section>`).join('')+`<div class="rail">${SCN.map((s,i)=>`<b data-goto="${i}" aria-label="${i+1}"></b>`).join('')}</div><button class="replay" type="button">↻ ${Z('重播这一段','Replay')}</button><div class="hint">${Z('滚一下 / ↓ 下一段','scroll / ↓ next')}</div>`;
  SC=[...cv.querySelectorAll('section.sc')].map(el=>{const q=s=>[...el.querySelectorAll(s)];const m={el,at:q('[data-at]'),off:q('[data-off]'),ty:q('[data-type]'),tick:q('[data-tick]'),cnt:q('[data-cnt]'),sw:q('[data-sw]'),sel:q('[data-sel]'),press:q('[data-press]')};
   el.querySelectorAll('[data-k]').forEach(e=>{if(!m[e.dataset.k])m[e.dataset.k]=e});return m});
  cv.querySelectorAll('[data-goto]').forEach(a=>a.addEventListener('click',()=>go(+a.dataset.goto)));cv.querySelector('.replay').addEventListener('click',()=>replay());
@@ -181,6 +180,7 @@ function run(i,p){const m=SC[i];
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
 const DUR=SCN.map(s=>Math.round(s.len*3400)),TRMS=950;
 let cur=0,P=[],done=[],anim=null,busy=false,raf=0;
+function center(){SC.forEach((m,i)=>{if(SCN[i].n==='install')return;let a=1e9,b=-1e9;m.el.querySelectorAll(':scope>.txt,:scope>.pains,:scope>.persp>.win').forEach(e=>{a=Math.min(a,e.offsetTop);b=Math.max(b,e.offsetTop+e.offsetHeight)});if(b>a)m.el.style.setProperty('--dy',Math.round(486-(a+b)/2)+'px')})}
 function fit(){const s=Math.min(innerWidth/1440,innerHeight/900);document.getElementById('cv').style.transform=`translate(${(innerWidth-1440*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`}
 function paint(){SC.forEach((m,k)=>{m.el.style.visibility=k===cur?'visible':'hidden';m.el.style.clipPath='none';m.el.style.zIndex=1});run(cur,P[cur]);ui()}
 function ui(){document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',+a.dataset.nav===SCN[cur].nav));
@@ -211,11 +211,11 @@ function onKey(e){if(MOB||e.target.closest&&e.target.closest('input,textarea'))r
 let ty0=null;
 function boot(){MOB=innerWidth<760;document.body.classList.toggle('mob',MOB);document.documentElement.classList.toggle('pager',!MOB);build();
  if(MOB){cancelAnimationFrame(raf);anim=null;document.body.classList.add('still');const cv=document.getElementById('cv');cv.style.transform='';SC.forEach((m,i)=>{m.el.style.visibility='visible';m.el.style.clipPath='none';run(i,1);const cvi=m.el.querySelector('.cvi');if(cvi){const w=cvi.parentElement.clientWidth,k=Math.min(1,w/718);cvi.style.transform=`scale(${k})`;cvi.parentElement.style.height=Math.round(340*k)+'px'}});placeInd(SC[SC.length-1]);return}
- fit();if(!P.length){P=SCN.map(()=>0);done=SCN.map(()=>false)}if(done[cur])document.body.classList.add('still');paint();if(!done[cur])play(cur,P[cur]);placeInd(SC[SC.length-1])}
+ fit();center();if(!P.length){P=SCN.map(()=>0);done=SCN.map(()=>false)}if(done[cur])document.body.classList.add('still');paint();if(!done[cur])play(cur,P[cur]);placeInd(SC[SC.length-1])}
 window.LF={SCN,go,replay,get cur(){return cur},get playing(){return anim!==null},get busy(){return busy},DUR,TRMS,seek(i,p){cancelAnimationFrame(raf);anim=null;if(i!==cur){SC[cur].el.style.visibility='hidden';cur=i}SC[i].el.style.visibility='visible';SC[i].el.style.clipPath='none';P[i]=p;done[i]=p>=1;run(i,p);ui()}};
 addEventListener('wheel',onWheel,{passive:false});addEventListener('keydown',onKey);
 addEventListener('touchstart',e=>{ty0=e.touches[0].clientY},{passive:true});
 addEventListener('touchend',e=>{if(MOB||ty0===null)return;const d=ty0-e.changedTouches[0].clientY;ty0=null;if(Math.abs(d)>50)go(cur+(d>0?1:-1))},{passive:true});
 let mw=innerWidth<760;addEventListener('resize',()=>{const n=innerWidth<760;if(n!==mw){mw=n;boot()}else if(!MOB){fit();placeInd(SC[SC.length-1])}});
-document.fonts&&document.fonts.ready.then(()=>placeInd(SC[SC.length-1]));boot();
+document.fonts&&document.fonts.ready.then(()=>{placeInd(SC[SC.length-1]);if(!MOB)center()});boot();
 })();
