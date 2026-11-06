@@ -79,7 +79,7 @@ body.still .brand *{animation:none!important}
 .hxr{display:grid;grid-template-columns:minmax(0,580px) auto;justify-content:space-between;align-items:end;gap:20px 48px}.hxr .sub{margin:0;font-size:18px;max-width:580px}.hxr .cta{margin:0}.hxr .ags{grid-column:1;margin-top:0}
 .cta{display:flex;align-items:center;gap:20px;margin-top:28px}
 .ags{display:flex;align-items:center;gap:14px;margin-top:30px;color:var(--ink)}.ags small{font:500 11.5px var(--mono);letter-spacing:.04em;color:var(--faint);text-transform:uppercase;margin-right:4px}
-.ags>span:not(.sep),.ags>a{display:flex;align-items:center;line-height:0}.ags>a{color:var(--ink);transition:opacity .2s}.ags>a:hover{opacity:.6}.ags .mk{width:18px;height:18px;flex-basis:18px}.ags .sep{width:1px;height:16px;background:var(--edge)}
+.ags>span:not(.sep),.ags>a{display:flex;align-items:center;line-height:0}.ags>a{color:var(--ink)}.ags .mk{width:18px;height:18px;flex-basis:18px}.ags .sep{width:1px;height:16px;background:var(--edge)}
 .hwin{position:relative;margin:72px 0 0;padding:0 0 0}
 .atag{position:absolute;z-index:3;display:flex;align-items:center;pointer-events:none}
 .atag b{font:500 12px/1 var(--mono);color:var(--ink);background:#FFD33D;padding:7px 9px;border-radius:2px;box-shadow:0 1px 0 rgba(0,0,0,.12);white-space:nowrap}
@@ -350,4 +350,33 @@ code.typing:after{content:"";display:inline-block;width:7px;height:15px;backgrou
  .fin{margin-top:110px;padding:80px 18px 90px}
  .ft{flex-direction:column;align-items:flex-start;padding:22px 18px 32px}
 }
+/* ---------- motion layer ---------- */
+.nprog{position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:linear-gradient(90deg,#008DCC,#526CE8 50%,#8A4ED9);transform:scaleX(0);transform-origin:0 50%;opacity:0;transition:opacity .3s}.nav.sc .nprog{opacity:1}
+.links a:after{content:"";position:absolute;left:12px;right:12px;bottom:1px;height:1px;background:currentColor;transform:scaleX(0);transition:transform .35s var(--e-out)}.links a:hover:after{transform:scaleX(1)}
+.lang button{transition:background .25s,color .25s,box-shadow .25s}.lang button:not(.on):hover{color:var(--ink)}
+.btn-k{position:relative;overflow:hidden;transition:background .25s,transform .35s var(--e-out),box-shadow .35s var(--e-out)}
+.btn-k:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-18deg);pointer-events:none}
+.btn-k:hover{transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(20,20,30,.55)}.btn-k:hover:after{left:130%;transition:left .7s var(--e-out)}
+.btn-k:active,.btn-t:active,.ghs:active,.tabs button:active,.ibh button:active,.rp:active{transform:scale(.97);transition-duration:.08s}
+.ghs{transition:transform .35s var(--e-out),box-shadow .35s var(--e-out),border-color .25s}.ghs .mk{transition:transform .5s var(--e-spr)}
+.ghs:hover{transform:translateY(-1px);border-color:var(--edge);box-shadow:0 8px 18px -10px rgba(20,20,30,.35)}.ghs:hover .mk{transform:rotate(-10deg) scale(1.1)}
+.btn-t .mk{transition:transform .5s var(--e-spr)}.btn-t:hover .mk{transform:rotate(-10deg) scale(1.1)}
+.ag{position:relative;cursor:default;transition:opacity .25s,transform .45s var(--e-spr)}a.ag{cursor:pointer}
+.ags.on .ag{animation:agin .7s var(--e-spr) calc(.15s + var(--i)*70ms) backwards}.ags.on .sep{animation:sepin .5s var(--e-out) .4s backwards}
+@keyframes agin{from{opacity:0;transform:translateY(10px) scale(.5) rotate(-20deg)}}@keyframes sepin{from{transform:scaleY(0)}}
+.ags:hover .ag:not(:hover){opacity:.4}.ag:hover{transform:translateY(-3px) scale(1.18)}
+.ag:after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);padding:4px 8px;border-radius:5px;background:var(--ink);color:#fff;font:500 11px/1.3 var(--sans);white-space:nowrap;letter-spacing:0;text-transform:none;opacity:0;transform:translate(-50%,4px);pointer-events:none;transition:opacity .2s,transform .3s var(--e-out)}
+.ag:hover:after{opacity:1;transform:translate(-50%,0)}
+.pn,.pain h3{transition:color .3s,transform .45s var(--e-out)}.pi{transition:transform .5s var(--e-spr),box-shadow .3s,color .3s}.pi .ic{transition:transform .5s var(--e-spr)}
+.pain:hover .pn{color:var(--acc)}.pain:hover h3{transform:translateX(6px)}.pain:hover .pi{transform:translateY(-2px);color:var(--acc);box-shadow:0 8px 18px -8px rgba(82,108,232,.45),inset 0 0 0 1px rgba(82,108,232,.3)}.pain:hover .pi .ic{transform:rotate(-12deg) scale(1.1)}
+.kick .ic{transition:transform .5s var(--e-spr)}.sec-h:hover .kick .ic,.sth:hover .kick .ic{transform:rotate(-12deg) scale(1.15)}
+.stn{transition:opacity .4s,transform .6s var(--e-out)}.stp:hover .stn{transform:translateX(4px)}
+.stage{transition:box-shadow .4s}.stage:hover{box-shadow:inset 0 0 0 1px var(--edge)}
+.stage:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(123,97,255,.10),transparent 65%)}.stage:hover:after{opacity:1}
+.rp{transition:opacity .4s var(--e-out),color .2s,transform .3s var(--e-out),box-shadow .3s}.rp:hover{transform:translateY(-1px);box-shadow:var(--lift2)}.rp .ic{transition:transform .6s var(--e-out)}.rp:hover .ic{transform:rotate(-360deg)}
+.ibh button{transition:background .2s,color .2s,transform .2s}.ibh button.ok{color:#4ade80}.ibh button.ok .ic{animation:okpop .45s var(--e-spr)}@keyframes okpop{from{transform:scale(.3);opacity:0}}
+.play i{position:relative}.play i:before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);animation:ring 2.4s var(--e-out) infinite}@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+.vframe{transition:box-shadow .5s var(--e-out),transform .5s var(--e-out)}.vframe:not(.on):hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--rule),0 30px 60px -30px rgba(20,20,30,.45)}
+.ft a:not(.brand){transition:text-decoration-color .25s,color .25s}.ft a:not(.brand):hover{text-decoration-color:var(--ink)}
+body.still .ag,body.still .sep,body.still .play i:before{animation:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

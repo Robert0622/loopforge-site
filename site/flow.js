@@ -179,14 +179,14 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  const MD=document.querySelector('meta[name=description]');window.LF_ZH_META=window.LF_ZH_META||[document.title,MD?MD.content:''];document.title=Z(LF_ZH_META[0],'LoopForge · Open-source, self-improving cloud platform for AI development');if(MD)MD.content=Z(LF_ZH_META[1],'LoopForge is an open-source, self-hosted cloud platform for AI development: 24/7 cloud workspaces, a shared conversation with one Main Bot, SOPs with hard gates, scheduled and issue automation, and a review after every run that improves the process.');
  const GH='https://github.com/Tencent/LoopForge',XU='https://x.com/loopforgege',ids=['why','story','video','deploy'];
  const c=t.hero,w=t.why,arrow=`<span class="ar">${ic('arrow')}</span>`;
- document.getElementById('app').innerHTML=`<header class="nav"><div class="nbar"><a class="brand" href="#top">${LOGO(1)}<span>LoopForge</span></a><span class="sp"></span>
+ document.getElementById('app').innerHTML=`<header class="nav"><i class="nprog"></i><div class="nbar"><a class="brand" href="#top">${LOGO(1)}<span>LoopForge</span></a><span class="sp"></span>
  <div class="links">${t.nav.map((n,i)=>`<a href="#${ids[i]}" data-nav="${ids[i]}">${n}</a>`).join('')}</div>
  <div class="lang"><button data-l="zh" class="${L==='zh'?'on':''}" aria-label="${Z('中文','Chinese')}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></div>
  <a class="ghs" href="${GH}" target="_blank" rel="noopener">${mark('gh')}<span>GitHub</span></a><a class="btn-k sm" href="${TRY()}">${t.try}${arrow}</a></div></header>
  <main>
  <section class="hero u" id="top" data-u="hero"><div class="hx"><div class="hxl"><span class="kick rv" data-at=".02"><i class="led"></i>${Z('MIT 开源 · 可自主部署','MIT licensed · self-hosted')}</span>${head({h:c.h,em:c.em},'h1')}</div>
   <div class="hxr"><p class="sub rv" data-at=".16">${c.sub}</p><div class="cta rv" data-at=".22"><a class="btn-k" href="${TRY()}">${t.try}${arrow}</a><a class="btn-t" href="#deploy">${c.deploy}${arrow}</a></div>
-  <div class="ags rv" data-at=".28"><small>${c.exec}</small>${EXECS.map(a=>`<span title="${a[1]}">${mark(a[0])}</span>`).join('')}<span class="sep"></span><a href="${GH}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">${mark('gh')}</a><a href="${XU}" target="_blank" rel="noopener" title="X" aria-label="X">${mark('x')}</a></div></div></div>
+  <div class="ags rv" data-at=".28"><small>${c.exec}</small>${EXECS.map((a,i)=>`<span class="ag" style="--i:${i}" data-tip="${a[1]}" aria-label="${a[1]}">${mark(a[0])}</span>`).join('')}<span class="sep"></span><a class="ag" style="--i:${EXECS.length}" href="${GH}" target="_blank" rel="noopener" data-tip="GitHub" aria-label="GitHub">${mark('gh')}</a><a class="ag" style="--i:${EXECS.length+1}" href="${XU}" target="_blank" rel="noopener" data-tip="X" aria-label="X">${mark('x')}</a></div></div></div>
   <div class="hwin">${TAGS().map((g,i)=>`<span class="atag ${g[1]} rv" data-at="${f2(.5+i*.06)}" style="top:${g[2]}%"><b>${g[0]}</b><i></i></span>`).join('')}${hero(t)}</div></section>
  <section class="why wrap u" id="why" data-u="why"><div class="sec-h"><span class="kick">${ic('gauge')}${Z('团队痛点','Why LoopForge')}</span>${head(w)}</div>
   <div class="pains">${w.pains.map((x,i)=>`<div class="pain rv" data-at="${(.18+i*.05).toFixed(2)}"><span class="pn">${x[0]}</span><span class="pi">${ic(PIC[i])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div></section>
@@ -209,7 +209,8 @@ function build(){const t=T[L];document.documentElement.lang=L==='zh'?'zh-CN':'en
  U.forEach(m=>{const b=m.el.querySelector('.rp');if(b)b.addEventListener('click',()=>{reset(m);play(m)})});
  app.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.l===L)return;L=b.dataset.l;localStorage.setItem('lf-lang',L);const u=new URL(location);u.searchParams.set('lang',L);history.replaceState(null,'',u);boot()}));
  const ins=U.find(m=>m.n==='install');ins.el.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ins.manual=true;pick(ins,b.dataset.id,!RM.matches)}));
- ins.el.querySelector('[data-copy]').addEventListener('click',e=>{const b=e.currentTarget;navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent+'\n'+ins.is.textContent);b.lastChild.textContent=t.install.copied;setTimeout(()=>b.lastChild.textContent=t.install.copy,1400)});
+ ins.el.querySelector('[data-copy]').addEventListener('click',e=>{const b=e.currentTarget;navigator.clipboard&&navigator.clipboard.writeText(ins.ic.textContent+'\n'+ins.is.textContent);b.classList.add('ok');b.innerHTML=ic('check')+t.install.copied;clearTimeout(b._t);b._t=setTimeout(()=>{b.classList.remove('ok');b.innerHTML=ic('copy')+t.install.copy},1400)});
+ app.querySelectorAll('.stage').forEach(g=>g.addEventListener('pointermove',e=>{const r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true}));
  const vf=app.querySelector('.vframe'),v=vf.querySelector('video');
  vf.querySelector('.play').addEventListener('click',()=>{vf.classList.add('on');v.controls=true;v.play()});
 }
@@ -271,7 +272,8 @@ function fit(){document.querySelectorAll('.fit').forEach(f=>{const z=f.firstElem
 function onScroll(){const y=innerHeight*.45;let on=null;
  document.querySelectorAll('main>section[id]').forEach(s=>{if(s.getBoundingClientRect().top<y)on=s.id});
  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',a.dataset.nav===on));
- document.querySelector('.nav').classList.toggle('sc',scrollY>8)}
+ document.querySelector('.nav').classList.toggle('sc',scrollY>8);
+ const pg=document.querySelector('.nprog'),mx=document.documentElement.scrollHeight-innerHeight;if(pg)pg.style.transform=`scaleX(${mx>0?(scrollY/mx).toFixed(4):0})`}
 function boot(){const keep=scrollY,prev=U.map(m=>m.done);build();if(prev.length===U.length)U.forEach((m,i)=>{m.done=prev[i];if(m.done)m.p=1});
  U.forEach(m=>run(m,m.p));fit();watch();onScroll();scrollTo(0,keep)}
 window.LF={get units(){return U},play,reset,fit};
