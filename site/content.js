@@ -1,7 +1,7 @@
 window.LF_T={
 zh:{
  nav:['平台','为什么','经验变流程','共享上下文','看得见交付','部署'],
- try:'预览平台',demo:'示例数据',
+ try:'观看演示',demo:'示例数据',
  req:'修复订单导出的时区错误',
  hero:{k:'LoopForge · 团队共享的云端 AI 研发工作空间',h:'个人用 AI 拼手速，<br>团队用 AI 拼流程。',em:'拼流程',
   sub:'LoopForge 把团队经验和多 Agent 协作装进同一条流水线：让团队的经验成为工作流，让每个需求带着上下文走向交付。',
@@ -65,7 +65,7 @@ zh:{
 },
 en:{
  nav:['Platform','Why','Workflows','Shared context','Visibility','Deploy'],
- try:'Preview the platform',demo:'demo data',
+ try:'Watch the demo',demo:'demo data',
  req:'Fix timezone bug in order export',
  hero:{k:'LoopForge · shared cloud workspace for AI dev',h:'Solo devs race with AI.<br>Teams win with process.',em:'process',
   sub:'LoopForge puts your team\'s know-how and multi-agent collaboration on one pipeline: your team\'s experience becomes the workflow, and every requirement carries its context all the way to delivery.',

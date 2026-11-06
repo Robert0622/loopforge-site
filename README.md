@@ -2,17 +2,15 @@
 
 **在线访问 / Live:** https://loopforge.cn/
 
-这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页是一页一屏的翻页介绍（滚轮、方向键或触摸滑动翻页，手机上改为顺序滚动，遵守 `prefers-reduced-motion`）：平台、为什么、经验变流程、门禁打回、共享上下文、投入与交付、人在环上、智能评测、部署。中英文案在 `site/content.js`，场景与翻页逻辑在 `site/flow.js`，样式在 `site/site.css`。每页右侧是 HTML/CSS 绘制的示意界面：SOP 节点、门禁命令、评测维度与权重与平台一致，需求、数字和对话为示例数据（看板与评测页标注“示例数据”）；真实界面请看 `demo/` 录制预览。旧的 Local 分段故事保留在 `local.html`，不再作为平台的主体介绍。
+这是 [Tencent/LoopForge](https://github.com/Tencent/LoopForge) 的**非官方**社区介绍页。首页是一页一屏的翻页介绍（滚轮、方向键或触摸滑动翻页，手机上改为顺序滚动，遵守 `prefers-reduced-motion`）：平台、为什么、经验变流程、门禁打回、共享上下文、投入与交付、人在环上、智能评测、部署。中英文案在 `site/content.js`，场景与翻页逻辑在 `site/flow.js`，样式在 `site/site.css`。每页右侧是 HTML/CSS 绘制的示意界面：SOP 节点、门禁命令、评测维度与权重与平台一致，需求、数字和对话为示例数据（看板与评测页标注“示例数据”）；产品演示视频见 `demo/`。旧的 Local 分段故事保留在 `local.html`，不再作为平台的主体介绍。
 
-**平台真实前端录制预览:** https://loopforge.cn/demo/ 。`demo/` 直接复制上游 `web/` 中的前端（来源基线见 `LF_RECORDINGS.meta`），只适配 `/demo/` 静态资源路径并接入内存回放层。接口数据来自一个只装公共目录、无模型/Git凭据的独立本地实例；脚本与审批运行及产物是真实录制，Agent SOP 的配置来自平台公共模板的真实项目副本。未录制的写操作默认拒绝，审批演示只在浏览器切换录制状态，不发网络请求、不执行脚本。无需登录或 API Key，请勿输入凭据。
+**产品演示视频:** https://loopforge.cn/demo/ 。`demo/` 是一个独立的视频播放页（`demo/index.html` + `demo.css` + `demo.js`，视频与封面在 `demo/media/`）：80 秒产品演示，自定义播放控件，进度条上标出 9 个章节，右侧章节列表可点击跳转并随播放高亮；默认静音自动播放（遵守 `prefers-reduced-motion`），快捷键 空格/K 播放暂停、←/→ 快退快进 5 秒、M 静音、F 全屏、1–9 跳章节。中英文跟随首页的 `?lang=` / `lf-lang`。页面 CSP 为 `connect-src 'none'`，除静态文件外不发请求。视频按 H.264 1080p、`+faststart` 编码，需由支持 Range 请求的服务器提供才能拖动进度（GitHub Pages 支持；本地可用 `npx http-server`）。
 
-重新打包：`python3 build-demo.py --source /path/to/LoopForge/web --capture /path/to/local/capture [--esbuild /path/to/esbuild]`。脚本把前端合并为带内容哈希的 `lf.<hash>.js` / `lf.<hash>.css`，英文词典 `i18n-en.<hash>.js` 只在英文模式加载，并更新首页 `<!--demo-prefetch-->` 区块；传入 esbuild 时压缩，装了 Pillow 时缩小 logo。原始录制文件可能包含登录请求，不能提交；打包仅保留成功 GET 响应，并移除敏感字段和本地运行路径。初始版本不包含工作区 VS Code、实时模型运行或任意修改保存能力。
-
-原 `playground/` 是手工模拟，已不作为平台预览入口。LoopForge 以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
+原 `playground/` 是手工模拟，现在跳转到 `demo/` 演示视频。LoopForge 以 [MIT 协议](https://github.com/Tencent/LoopForge/blob/main/LICENSE) 开源。
 
 An **unofficial** community intro page for [Tencent/LoopForge](https://github.com/Tencent/LoopForge), focused on the self-hosted platform. The original Local story is retained at `local.html`.
 
-`demo/` bundles the upstream Web UI with recorded responses from a clean local instance: browse SOPs, their designer, requirements, runs and real script-generated artifacts. Approval switches between recorded states in memory; unsupported writes are denied. No model calls, credentials or server are required. The preview does not include the workspace VS Code or arbitrary execution. `playground/` redirects to this real-UI preview. LoopForge is [MIT licensed](https://github.com/Tencent/LoopForge/blob/main/LICENSE).
+`demo/` is a standalone player for the 80-second product video, with custom controls, chapter markers on the timeline and a clickable chapter list that follows playback. It autoplays muted (respecting `prefers-reduced-motion`) and loads nothing but its static files (CSP `connect-src 'none'`). `playground/` redirects to it. LoopForge is [MIT licensed](https://github.com/Tencent/LoopForge/blob/main/LICENSE).
 
 ## 演示数据 / Demo data
 
