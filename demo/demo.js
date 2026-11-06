@@ -3,15 +3,22 @@
 const qs=new URLSearchParams(location.search);
 let L=qs.get('lang')||localStorage.getItem('lf-lang')||((navigator.language||'').startsWith('zh')?'zh':'en');if(L!=='zh'&&L!=='en')L='zh';
 const Z=(a,b)=>L==='zh'?a:b;
-const SRC='media/loopforge-promo.mp4?v=12',POSTER='media/loopforge-promo.jpg?v=12',GH='https://github.com/Tencent/LoopForge';
+const XU='https://x.com/loopforgege',SRC='media/loopforge-promo.mp4?v=12',POSTER='media/loopforge-promo.jpg?v=12',GH='https://github.com/Tencent/LoopForge';
 let lgN=0;
-const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
+const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path class="lgp" pathLength="100" d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
 const I={
  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>',
  pause:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></svg>',
  vol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
  mute:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="m16 9 5 6M21 9l-5 6"/></svg>',
  fs:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+ arrow:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+ copy:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9h11v11H9zM5 15V4h11"/></svg>',
+ check:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l4.5 4.5 10.5-10.5"/></svg>',
+ term:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4zM7.5 9.5 10 12l-2.5 2.5M12.5 15h4"/></svg>',
+ film:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM10 8.5v7l5.5-3.5z"/></svg>',
+ gh:'<svg class="mk" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>',
+ x:'<svg class="mk" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>',
  replay:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 4v4h4"/></svg>',
 };
 // Start times match the title cards in the video.
@@ -28,22 +35,23 @@ const CH=[
  [72.5,'开源部署','Open source','MIT 协议，clone 后跑一个安装脚本','MIT licensed; clone and run one install script'],
 ];
 const mmss=s=>{s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const nn=i=>String(i+1).padStart(2,'0');
 document.documentElement.lang=L==='zh'?'zh-CN':'en';
 document.title=Z('LoopForge · 演示视频','LoopForge · Demo video');
 const home='../'+(L==='en'?'?lang=en':'');
 const app=document.getElementById('app');
 app.innerHTML=`
-<nav><div class="wrap"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><a class="back" href="${home}">← ${Z('返回首页','Home')}</a><span class="sp"></span>
-<span class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">ZH</button>/<button data-l="en" class="${L==='en'?'on':''}">EN</button></span>
-<a class="pill gh" href="${GH}" target="_blank" rel="noopener">GitHub</a><a class="pill f" href="${GH}#readme" target="_blank" rel="noopener">${Z('自己部署','Self-host')} →</a></div></nav>
-<main class="wrap">
-<header class="hd rv"><h1>${Z('<em>80 秒</em>看懂 LoopForge','LoopForge in <em>80 seconds</em>')}</h1>
-<p class="lede">${Z('从一句话提需求，到多个 Agent 在云端并行开发、提交 PR，再到给运行打分复盘，完整演示一遍。','From a one-line request to agents working in parallel in the cloud, a pull request, and a scored review of the run.')}</p></header>
-<section class="stage rv d1">
-<figure class="fig">
-<div class="win"><div class="wbar" aria-hidden="true"><i></i><i></i><i></i><span>LoopForge · ${Z('实机演示','Walkthrough')}</span><span class="r">1:20</span></div>
+<header class="nav"><div class="nbar"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><a class="back" href="${home}"><span class="ar">${I.arrow}</span>${Z('返回首页','Home')}</a><span class="sp"></span>
+<span class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></span>
+<a class="ghs" href="${GH}" target="_blank" rel="noopener">${I.gh}<span>GitHub</span></a><a class="btn-k sm" href="#deploy">${Z('快速部署','Self-host')}<span class="ar">${I.arrow}</span></a></div></header>
+<main>
+<section class="hd wrap"><span class="kick rv"><i class="led"></i>${Z('实机演示 · 1 分 20 秒','Walkthrough · 1:20')}</span>
+<h1 class="h rv d1">${Z('<em>80 秒</em>，看一个需求怎么走到 PR','From request to PR in <em>80 seconds</em>')}</h1>
+<p class="sub rv d2">${Z('一句话提需求，多个 Agent 在云端并行开发，验收不过自动打回重跑，最后提交 PR，并给这次运行打分。','One line of request, agents building in parallel in the cloud, failed checks sent back and rerun, then a pull request and a score for the run.')}</p></section>
+<section class="stage wrap rv d3">
 <div class="screen" tabindex="-1">
 <video playsinline preload="metadata" poster="${POSTER}" aria-label="${Z('LoopForge 演示视频','LoopForge demo video')}"><source src="${SRC}" type="video/mp4"></video>
+<span class="now" aria-live="polite"><b></b><span></span></span>
 <button class="big" type="button" aria-label="${Z('播放','Play')}">${I.play}</button>
 <button class="snd" type="button" hidden>${I.vol}<span>${Z('打开声音','Sound on')}</span></button>
 <div class="ctl">
@@ -52,21 +60,22 @@ app.innerHTML=`
 <div class="track" role="slider" tabindex="0" aria-label="${Z('进度','Seek')}" aria-valuemin="0" aria-valuemax="80" aria-valuenow="0"><span class="rail"></span><span class="buf"></span><span class="done"></span>${CH.map(()=>'<span class="mk"></span>').join('')}<span class="knob"></span><span class="tip"></span></div>
 <button class="mu" type="button" aria-label="${Z('静音','Mute')}">${I.vol}</button>
 <button class="fs" type="button" aria-label="${Z('全屏','Fullscreen')}">${I.fs}</button>
-</div></div></div></figure>
-<aside class="chap" aria-label="${Z('分段目录','Chapters')}"><h2><span>${Z('分段目录','CHAPTERS')}</span><span>${Z('点击跳转','click to jump')}</span></h2><ol>
-${CH.map(([t,a,b,c,d],i)=>`<li><button type="button" data-i="${i}"><time>${mmss(t)}</time><strong>${Z(a,b)}</strong><small>${Z(c,d)}</small><span class="bar"><i></i></span></button></li>`).join('')}
-</ol></aside>
-</section>
-<section class="cta"><div><h2>${Z('自己部署试试','Run it yourself')}</h2>
-<p>${Z('MIT 协议开源，需要 Docker 和 Python 3。','MIT licensed; requires Docker and Python 3.')}</p>
-<div class="cmd"><code>git clone ${GH}.git</code><button type="button" class="cp">${Z('复制','Copy')}</button></div></div>
-<div class="acts"><a class="pill f" href="${GH}#readme" target="_blank" rel="noopener">${Z('部署文档','Deploy guide')} →</a><a class="pill" href="${home}">${Z('返回首页','Back to home')}</a></div></section>
+</div></div></section>
+<section class="chap wrap" aria-label="${Z('分段目录','Chapters')}"><div class="chh"><span class="kick">${I.film}${Z('分段目录','Chapters')}</span><span class="hint">${Z('点击跳转 · 数字键 1–0 也可以','Click to jump · or press 1–0')}</span></div><ol>
+${CH.map(([t,a,b,c,d],i)=>`<li class="rv" data-d="${i}"><button type="button" data-i="${i}"><span class="ct"><b>${nn(i)}</b><time>${mmss(t)}</time></span><strong>${Z(a,b)}</strong><small>${Z(c,d)}</small><span class="bar"><i></i></span></button></li>`).join('')}
+</ol></section>
+<section class="fin wrap" id="deploy"><span class="fl">${LOGO()}</span><h2 class="h">${Z('看完了，<em>自己部署</em>跑一遍','Now <em>run it yourself</em>')}</h2>
+<p class="sub">${Z('MIT 协议开源，需要 Docker 和 Python 3。','MIT licensed; requires Docker and Python 3.')}</p>
+<div class="ibox"><div class="ibh"><i></i><i></i><i></i><span>bash</span><span class="sp"></span><button type="button" class="cp">${I.copy}<span>${Z('复制','Copy')}</span></button></div>
+<div class="row"><span>$</span><code>git clone ${GH}.git && cd LoopForge</code></div><div class="row"><span>$</span><code>bash scripts/install.sh</code></div></div>
+<div class="cta"><a class="btn-k" href="${GH}#readme" target="_blank" rel="noopener">${Z('部署文档','Deploy guide')}<span class="ar">${I.arrow}</span></a><a class="btn-t" href="${home}">${Z('回到首页','Back to home')}<span class="ar">${I.arrow}</span></a></div></section>
 </main>
-<footer><div class="wrap"><span>${Z('LoopForge 由腾讯开源，遵循 MIT 协议','LoopForge is open-sourced by Tencent under the MIT License')}</span><span>LoopForge · <a href="${GH}/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></span></div></footer>`;
+<footer class="ft"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><span>${Z('LoopForge 由腾讯开源，遵循 MIT 协议','LoopForge is open-sourced by Tencent under the MIT License')} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · <a href="${XU}" target="_blank" rel="noopener">x.com/loopforgege</a></span></footer>`;
+app.querySelectorAll('.chap li').forEach(li=>li.style.setProperty('--d',li.dataset.d));
 
 const $=s=>app.querySelector(s);
 const v=$('video'),screen=$('.screen'),big=$('.big'),snd=$('.snd'),pp=$('.pp'),mu=$('.mu'),track=$('.track'),done=$('.track .done'),buf=$('.track .buf'),knob=$('.track .knob'),tip=$('.track .tip');
-const chapBtns=[...app.querySelectorAll('.chap button')],marks=[...app.querySelectorAll('.track .mk')];
+const nowEl=$('.now'),chapBtns=[...app.querySelectorAll('.chap button')],marks=[...app.querySelectorAll('.track .mk')];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let dur=80;
 const play=()=>v.play().catch(()=>{});
@@ -85,9 +94,8 @@ function paint(){
  $('.cur').textContent=mmss(t);track.setAttribute('aria-valuenow',Math.floor(t));track.setAttribute('aria-valuetext',mmss(t));
  const c=chapAt(t);
  if(c!==last){
-  chapBtns.forEach((b,i)=>b.setAttribute('aria-current',i===c));last=c;
-  const ol=chapBtns[0].closest('ol');
-  if(c>=0&&ol.scrollHeight>ol.clientHeight){const li=chapBtns[c].parentElement;ol.scrollTo({top:li.offsetTop-ol.clientHeight/2+li.offsetHeight/2,behavior:reduced?'auto':'smooth'})}
+  chapBtns.forEach((b,i)=>{b.setAttribute('aria-current',i===c);if(i!==c)b.querySelector('.bar i').style.width='0'});last=c;
+  nowEl.classList.remove('on');if(c>=0){nowEl.firstChild.textContent=nn(c)+' / '+CH.length;nowEl.lastChild.textContent=Z(CH[c][1],CH[c][2]);void nowEl.offsetWidth;nowEl.classList.add('on')}
  }
  if(c>=0){const s=CH[c][0],e=c+1<CH.length?CH[c+1][0]:dur;chapBtns[c].querySelector('.bar i').style.width=Math.min(100,(t-s)/(e-s)*100)+'%'}
 }
@@ -123,7 +131,7 @@ const up=()=>{track.classList.remove('drag');poke()};
 track.addEventListener('pointerup',up);track.addEventListener('pointercancel',up);
 track.addEventListener('keydown',e=>{const k={ArrowLeft:-5,ArrowRight:5,ArrowDown:-10,ArrowUp:10}[e.key];if(k){e.preventDefault();e.stopPropagation();seek(v.currentTime+k)}else if(e.key==='Home'){e.preventDefault();seek(0)}else if(e.key==='End'){e.preventDefault();seek(dur)}});
 
-chapBtns.forEach((b,i)=>b.addEventListener('click',()=>{seek(CH[i][0]);play();if(innerWidth<=1100)screen.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'})}));
+chapBtns.forEach((b,i)=>b.addEventListener('click',()=>{seek(CH[i][0]);play();const r=screen.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)screen.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'})}));
 
 document.addEventListener('keydown',e=>{
  if(e.ctrlKey||e.metaKey||e.altKey||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
@@ -136,10 +144,11 @@ document.addEventListener('keydown',e=>{
  else if(/^[0-9]$/.test(e.key)){const c=CH[(+e.key+9)%10];if(c){seek(c[0]);play()}}
 });
 
-const fit=()=>{const h=$('.win').offsetHeight;$('.chap').style.setProperty('--chap-h',Math.max(320,h-34)+'px')};
-new ResizeObserver(fit).observe($('.win'));
 
-$('.cp').addEventListener('click',e=>{const b=e.currentTarget;navigator.clipboard?.writeText($('.cmd code').textContent).then(()=>{b.textContent=Z('已复制','Copied');setTimeout(()=>b.textContent=Z('复制','Copy'),1600)},()=>{})});
+$('.cp').addEventListener('click',e=>{const b=e.currentTarget,txt=[...app.querySelectorAll('.ibox code')].map(c=>c.textContent).join('\n');navigator.clipboard?.writeText(txt).then(()=>{b.classList.add('ok');b.innerHTML=I.check+'<span>'+Z('已复制','Copied')+'</span>';clearTimeout(b._t);b._t=setTimeout(()=>{b.classList.remove('ok');b.innerHTML=I.copy+'<span>'+Z('复制','Copy')+'</span>'},1600)},()=>{})});
+const nav=$('.nav'),onSc=()=>nav.classList.toggle('sc',scrollY>8);addEventListener('scroll',onSc,{passive:true});onSc();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
+app.querySelectorAll('.chap,.fin').forEach(el=>io.observe(el));
 app.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{localStorage.setItem('lf-lang',b.dataset.l);const u=new URL(location);u.searchParams.set('lang',b.dataset.l);location.replace(u)}));
 
 // Muted autoplay so the page opens on a moving scene; sound is one click away.
