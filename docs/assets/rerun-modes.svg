@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 410" width="980" height="410" font-family="'Inter Tight','PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">
+  <rect width="980" height="410" rx="16" fill="#F7F7FA" stroke="#E4E4EE"/>
+
+  <text x="32" y="40" font-size="17" font-weight="700" fill="#18181B">SOP 三种重跑与恢复方式直观对比</text>
+  <text x="320" y="40" font-size="12.5" fill="#6C6C76">绿色 = 保留原结果不重做 · 蓝色 = 本次重新执行 · 灰色 = 历史记录保留</text>
+
+  <!-- Mode 1: Retry Failed Node -->
+  <rect x="28" y="60" width="924" height="98" rx="12" fill="#FFFFFF" stroke="#E2E2EA"/>
+  <rect x="44" y="76" width="228" height="24" rx="6" fill="#FEF2F2"/>
+  <text x="54" y="92" font-size="12" font-weight="700" fill="#DC2626">方式 1 · 失败节点原地重试</text>
+  <text x="44" y="118" font-size="12" fill="#52525B">入口：顶部「↻ 重试运行」或异常卡</text>
+  <text x="44" y="138" font-size="12" fill="#52525B">「补充信息，重跑当前节点」</text>
+
+  <!-- Nodes row 1 -->
+  <rect x="304" y="84" width="118" height="48" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="363" y="105" font-size="12" font-weight="650" fill="#047857" text-anchor="middle">1. 需求定型 ✓</text>
+  <text x="363" y="122" font-size="10.5" fill="#059669" text-anchor="middle">保留不重跑</text>
+  <text x="432" y="112" font-size="14" fill="#9A9AA4">→</text>
+
+  <rect x="448" y="84" width="118" height="48" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="507" y="105" font-size="12" font-weight="650" fill="#047857" text-anchor="middle">2. 方案设计 ✓</text>
+  <text x="507" y="122" font-size="10.5" fill="#059669" text-anchor="middle">保留不重跑</text>
+  <text x="576" y="112" font-size="14" fill="#9A9AA4">→</text>
+
+  <rect x="592" y="80" width="142" height="56" rx="8" fill="#EEF0FF" stroke="#526CE8" stroke-width="2"/>
+  <text x="663" y="103" font-size="12" font-weight="700" fill="#3246B8" text-anchor="middle">3. 开发实现（曾失败）</text>
+  <text x="663" y="122" font-size="10.5" font-weight="600" fill="#526CE8" text-anchor="middle">↻ 从本节点恢复执行</text>
+  <text x="744" y="112" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="760" y="84" width="168" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="844" y="105" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">4. 测试与验收</text>
+  <text x="844" y="122" font-size="10.5" fill="#2563EB" text-anchor="middle">自动继续下游</text>
+
+  <!-- Mode 2: Rerun From Here -->
+  <rect x="28" y="174" width="924" height="98" rx="12" fill="#FFFFFF" stroke="#C9CDFD" stroke-width="1.5"/>
+  <rect x="44" y="190" width="228" height="24" rx="6" fill="#F0EDFF"/>
+  <text x="54" y="206" font-size="12" font-weight="700" fill="#684CE9">方式 2 · 选中任意节点「从这里重跑」</text>
+  <text x="44" y="232" font-size="12" fill="#52525B">入口：点拓扑图任意节点 → 下方检查器</text>
+  <text x="44" y="252" font-size="12" fill="#52525B">点「从这里重跑」（可附补充说明）</text>
+
+  <!-- Nodes row 2 -->
+  <rect x="304" y="198" width="118" height="48" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="363" y="219" font-size="12" font-weight="650" fill="#047857" text-anchor="middle">1. 需求定型 ✓</text>
+  <text x="363" y="236" font-size="10.5" fill="#059669" text-anchor="middle">上游成果完整保留</text>
+  <text x="432" y="226" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="448" y="194" width="136" height="56" rx="8" fill="#F0EDFF" stroke="#7B61FF" stroke-width="2"/>
+  <text x="516" y="217" font-size="12" font-weight="700" fill="#684CE9" text-anchor="middle">2. 方案设计（选中）</text>
+  <text x="516" y="236" font-size="10.5" font-weight="600" fill="#7B61FF" text-anchor="middle">↻ 注入新说明重跑</text>
+  <text x="594" y="226" font-size="14" fill="#7B61FF">→</text>
+
+  <rect x="610" y="198" width="134" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="677" y="219" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">3. 开发实现</text>
+  <text x="677" y="236" font-size="10.5" fill="#2563EB" text-anchor="middle">连同下游一并重跑</text>
+  <text x="754" y="226" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="770" y="198" width="158" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="849" y="219" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">4. 测试与验收</text>
+  <text x="849" y="236" font-size="10.5" fill="#2563EB" text-anchor="middle">连同下游一并重跑</text>
+
+  <!-- Mode 3: Retrigger Whole SOP -->
+  <rect x="28" y="288" width="924" height="98" rx="12" fill="#FFFFFF" stroke="#E2E2EA"/>
+  <rect x="44" y="304" width="228" height="24" rx="6" fill="#EEF0FF"/>
+  <text x="54" y="320" font-size="12" font-weight="700" fill="#3246B8">方式 3 · 整条 SOP「重新触发」</text>
+  <text x="44" y="346" font-size="12" fill="#52525B">入口：需求列表或需求详情右上角</text>
+  <text x="44" y="366" font-size="12" fill="#52525B">点「重新触发」（旧运行记录保留）</text>
+
+  <!-- Nodes row 3 -->
+  <rect x="304" y="312" width="138" height="48" rx="8" fill="#EEF0FF" stroke="#526CE8" stroke-width="1.5"/>
+  <text x="373" y="333" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">1. 需求定型（新 Run）</text>
+  <text x="373" y="350" font-size="10.5" fill="#2563EB" text-anchor="middle">从第 1 步全新启动</text>
+  <text x="452" y="340" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="468" y="312" width="138" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="537" y="333" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">2. 方案设计</text>
+  <text x="537" y="350" font-size="10.5" fill="#2563EB" text-anchor="middle">全部重新执行</text>
+  <text x="616" y="340" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="632" y="312" width="138" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="701" y="333" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">3. 开发实现</text>
+  <text x="701" y="350" font-size="10.5" fill="#2563EB" text-anchor="middle">全部重新执行</text>
+  <text x="780" y="340" font-size="14" fill="#526CE8">→</text>
+
+  <rect x="796" y="312" width="132" height="48" rx="8" fill="#EEF0FF" stroke="#93C5FD"/>
+  <text x="862" y="333" font-size="12" font-weight="650" fill="#1D4ED8" text-anchor="middle">4. 测试与验收</text>
+  <text x="862" y="350" font-size="10.5" fill="#2563EB" text-anchor="middle">全部重新执行</text>
+</svg>

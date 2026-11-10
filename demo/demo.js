@@ -3,7 +3,7 @@
 const qs=new URLSearchParams(location.search);
 let L=qs.get('lang')||localStorage.getItem('lf-lang')||((navigator.language||'').startsWith('zh')?'zh':'en');if(L!=='zh'&&L!=='en')L='zh';
 const Z=(a,b)=>L==='zh'?a:b;
-const XU='https://x.com/loopforgege',SRC=Z('media/loopforge-promo.mp4?v=12','media/loopforge-promo-en.mp4?v=12'),POSTER=Z('media/loopforge-promo.jpg?v=12','media/loopforge-promo-en.jpg?v=12'),GH='https://github.com/Tencent/LoopForge';
+const SRC=Z('media/loopforge-promo.mp4?v=12','media/loopforge-promo-en.mp4?v=12'),POSTER=Z('media/loopforge-promo.jpg?v=12','media/loopforge-promo-en.jpg?v=12'),GH='https://github.com/Tencent/LoopForge';
 let lgN=0;
 const LOGO=()=>{const g='lfg'+(++lgN);return `<svg viewBox="12 12 88 88" fill="none" aria-hidden="true"><defs><linearGradient id="${g}" x1="19" y1="20" x2="93" y2="93" gradientUnits="userSpaceOnUse"><stop stop-color="#008DCC"/><stop offset=".48" stop-color="#526CE8"/><stop offset="1" stop-color="#8A4ED9"/></linearGradient></defs><path class="lgp" pathLength="100" d="M53 72C53 59 63 52.5 73 52.5S93 59 93 72 83 91.5 73 91.5 53 85 53 72V40C53 27 44.5 20.5 36 20.5S19 27 19 40" stroke="url(#${g})" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
 const I={
@@ -41,9 +41,10 @@ const nn=i=>String(i+1).padStart(2,'0');
 document.documentElement.lang=L==='zh'?'zh-CN':'en';
 document.title=Z('LoopForge · 演示视频','LoopForge · Demo video');
 const home='../'+(L==='en'?'?lang=en':'');
+const docs='../docs/'+(L==='en'?'?lang=en':'');
 const app=document.getElementById('app');
 app.innerHTML=`
-<header class="nav"><div class="nbar"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><a class="back" href="${home}"><span class="ar">${I.arrow}</span>${Z('返回首页','Home')}</a><span class="sp"></span>
+<header class="nav"><div class="nbar"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><a class="back" href="${home}"><span class="ar">${I.arrow}</span>${Z('返回首页','Home')}</a><a class="back" href="${docs}">${Z('使用文档','Docs')}</a><span class="sp"></span>
 <span class="lang"><button data-l="zh" class="${L==='zh'?'on':''}">${Z('中','ZH')}</button><button data-l="en" class="${L==='en'?'on':''}">EN</button></span>
 <a class="ghs" href="${GH}" target="_blank" rel="noopener" aria-label="GitHub"><span class="gsw"><span class="g1">${I.gh}</span><span class="g2">${I.star}</span><i class="sk s1">${I.spk}</i><i class="sk s2">${I.spk}</i></span><span class="gtx">GitHub</span><span class="gct" hidden></span></a><a class="btn-k sm" href="#deploy">${Z('快速部署','Self-host')}<span class="ar">${I.arrow}</span></a></div></header>
 <main>
@@ -70,9 +71,9 @@ ${CH.map(([t,a,b,c,d],i)=>`<li class="rv" data-d="${i}"><button type="button" da
 <p class="sub">${Z('MIT 协议开源，需要 Docker 和 Python 3。','MIT licensed; requires Docker and Python 3.')}</p>
 <div class="ibox"><div class="ibh"><i></i><i></i><i></i><span>bash</span><span class="sp"></span><button type="button" class="cp">${I.copy}<span>${Z('复制','Copy')}</span></button></div>
 <div class="row"><span>$</span><code>git clone ${GH}.git && cd LoopForge</code></div><div class="row"><span>$</span><code>bash scripts/install.sh</code></div></div>
-<div class="cta"><a class="btn-k" href="${GH}#readme" target="_blank" rel="noopener">${Z('部署文档','Deploy guide')}<span class="ar">${I.arrow}</span></a><a class="btn-t" href="${home}">${Z('回到首页','Back to home')}<span class="ar">${I.arrow}</span></a></div></section>
+<div class="cta"><a class="btn-k" href="${docs}">${Z('使用文档','Read docs')}<span class="ar">${I.arrow}</span></a><a class="btn-t" href="${home}">${Z('回到首页','Back to home')}<span class="ar">${I.arrow}</span></a></div></section>
 </main>
-<footer class="ft"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><span>${Z('LoopForge 由腾讯开源，遵循 MIT 协议','LoopForge is open-sourced by Tencent under the MIT License')} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a> · <a href="${XU}" target="_blank" rel="noopener">x.com/loopforgege</a></span></footer>`;
+<footer class="ft"><a class="brand" href="${home}">${LOGO()}<span>LoopForge</span></a><span>${Z('LoopForge 由腾讯开源，遵循 MIT 协议','LoopForge is open-sourced by Tencent under the MIT License')} · <a href="${GH}" target="_blank" rel="noopener">github.com/Tencent/LoopForge</a></span></footer>`;
 app.querySelectorAll('.chap li').forEach(li=>li.style.setProperty('--d',li.dataset.d));
 
 const $=s=>app.querySelector(s);
