@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 390" width="980" height="390" font-family="'Inter Tight','PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <filter id="cShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#14141E" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="980" height="390" rx="16" fill="#F6F6F9"/>
+
+  <!-- Top Callout Badges -->
+  <!-- Callout 1: Host status -->
+  <rect x="64" y="22" width="210" height="48" rx="8" fill="#FFFFFF" stroke="#DCDCE6"/>
+  <text x="78" y="42" font-size="12" font-weight="700" fill="#18181B">① 运行环境状态</text>
+  <text x="78" y="59" font-size="11" fill="#6C6C76">任务在 LoopForge 云端沙箱执行</text>
+  <line x1="150" y1="70" x2="150" y2="112" stroke="#526CE8" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- Callout 2: Select Project -->
+  <rect x="300" y="22" width="250" height="48" rx="8" fill="#EEF0FF" stroke="#526CE8"/>
+  <text x="314" y="42" font-size="12" font-weight="700" fill="#3246B8">② 选择归属项目（发消息前先选）</text>
+  <text x="314" y="59" font-size="11" fill="#52525B">决定使用哪套代码仓库、角色与需求列表</text>
+  <line x1="330" y1="70" x2="255" y2="112" stroke="#526CE8" stroke-width="1.5"/>
+
+  <!-- Callout 3: @ Mentions -->
+  <rect x="580" y="22" width="336" height="48" rx="8" fill="#FFFFFF" stroke="#DCDCE6"/>
+  <text x="594" y="42" font-size="12" font-weight="700" fill="#18181B">③ 输入 @ 精准点名引用</text>
+  <text x="594" y="59" font-size="11" fill="#6C6C76">可直接点名 @角色、@需求、@SOP 流程、@技能 或 @仓库</text>
+  <line x1="680" y1="70" x2="620" y2="162" stroke="#526CE8" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- Main Composer Window -->
+  <g filter="url(#cShadow)">
+    <rect x="64" y="96" width="852" height="174" rx="16" fill="#FFFFFF" stroke="#E2E2EA" stroke-width="1.5"/>
+
+    <!-- Top Context Pills inside Composer -->
+    <rect x="86" y="112" width="122" height="28" rx="14" fill="#F4F4F6" stroke="#E4E4EA"/>
+    <circle cx="102" cy="126" r="4" fill="#338768"/>
+    <text x="114" y="130" font-size="12" font-weight="600" fill="#252529">LoopForge 云端</text>
+
+    <rect x="216" y="112" width="166" height="28" rx="14" fill="#F0EDFF" stroke="#7B61FF"/>
+    <text x="232" y="130" font-size="12" font-weight="650" fill="#684CE9">LOOP · LoopForge 体验项目 ▾</text>
+
+    <!-- Input Text -->
+    <text x="88" y="168" font-size="15" fill="#252529">帮我根据 </text>
+    <rect x="154" y="151" width="118" height="24" rx="6" fill="#EEF0FF"/>
+    <text x="162" y="167" font-size="13" font-weight="600" fill="#526CE8">@通用产品方案</text>
+    <text x="280" y="168" font-size="15" fill="#252529"> 整理一份「订单状态筛选」的需求说明，并创建工作项</text>
+
+    <!-- Bottom Toolbar Controls -->
+    <!-- Plus button -->
+    <rect x="86" y="218" width="34" height="34" rx="8" fill="#F5F5F8" stroke="#E4E4EA"/>
+    <text x="103" y="241" font-size="18" font-weight="600" fill="#52525B" text-anchor="middle">＋</text>
+
+    <!-- CLI Executor Picker -->
+    <rect x="130" y="218" width="128" height="34" rx="8" fill="#F5F5F8" stroke="#E4E4EA"/>
+    <circle cx="146" cy="235" r="5" fill="#526CE8"/>
+    <text x="158" y="239" font-size="12.5" font-weight="600" fill="#18181B">CodeBuddy ▾</text>
+
+    <!-- Model Picker -->
+    <rect x="268" y="218" width="152" height="34" rx="8" fill="#F5F5F8" stroke="#E4E4EA"/>
+    <text x="282" y="239" font-size="12.5" font-weight="500" fill="#252529">DeepSeek-V4.1 ▾</text>
+
+    <!-- Effort Picker -->
+    <rect x="430" y="218" width="84" height="34" rx="8" fill="#F5F5F8" stroke="#E4E4EA"/>
+    <text x="472" y="239" font-size="12.5" font-weight="500" fill="#252529" text-anchor="middle">默认 ▾</text>
+
+    <!-- Permission Picker -->
+    <rect x="524" y="218" width="116" height="34" rx="8" fill="#E8F4EE" stroke="#A7F3D0"/>
+    <text x="582" y="239" font-size="12.5" font-weight="650" fill="#047857" text-anchor="middle">每次确认 ▾</text>
+
+    <!-- Send Arrow -->
+    <rect x="860" y="218" width="36" height="34" rx="9" fill="#7B61FF"/>
+    <text x="878" y="240" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">↑</text>
+  </g>
+
+  <!-- Bottom Callout Badges -->
+  <!-- Callout 4: Plus -->
+  <line x1="103" y1="252" x2="103" y2="302" stroke="#526CE8" stroke-width="1.5"/>
+  <rect x="40" y="302" width="156" height="64" rx="8" fill="#FFFFFF" stroke="#DCDCE6"/>
+  <text x="52" y="322" font-size="12" font-weight="700" fill="#18181B">④ 附件与高级设置</text>
+  <text x="52" y="340" font-size="11" fill="#6C6C76">上传图片/文件、引用需求</text>
+  <text x="52" y="355" font-size="11" fill="#6C6C76">或开启「运行环境选择」</text>
+
+  <!-- Callout 5: CLI & Model -->
+  <line x1="194" y1="252" x2="290" y2="302" stroke="#526CE8" stroke-width="1.5"/>
+  <line x1="344" y1="252" x2="344" y2="302" stroke="#526CE8" stroke-width="1.5"/>
+  <rect x="208" y="302" width="268" height="64" rx="8" fill="#FFFFFF" stroke="#DCDCE6"/>
+  <text x="220" y="322" font-size="12" font-weight="700" fill="#18181B">⑤ CLI 执行器（9 选 1）与模型 / 思考强度</text>
+  <text x="220" y="340" font-size="11" fill="#6C6C76">可选 CodeBuddy / Codex / Claude / Kimi / DeepSeek 等</text>
+  <text x="220" y="355" font-size="11" fill="#6C6C76">已有回复的对话切换 CLI 时会自动开启新对话</text>
+
+  <!-- Callout 6: Permission Mode -->
+  <line x1="582" y1="252" x2="582" y2="302" stroke="#047857" stroke-width="1.5"/>
+  <rect x="490" y="302" width="276" height="64" rx="8" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <text x="502" y="322" font-size="12" font-weight="700" fill="#047857">⑥ 权限模式（新手保持「每次确认」）</text>
+  <text x="502" y="340" font-size="11" fill="#065F46">• 每次确认：写数据前先弹确认卡（最安全）</text>
+  <text x="502" y="355" font-size="11" fill="#065F46">• 帮我批准：低风险自动放行 · 完全权限：直接执行</text>
+
+  <!-- Callout 7: Send / Queue / Steer -->
+  <line x1="878" y1="252" x2="862" y2="302" stroke="#7B61FF" stroke-width="1.5"/>
+  <rect x="780" y="302" width="166" height="64" rx="8" fill="#FFFFFF" stroke="#DCDCE6"/>
+  <text x="792" y="322" font-size="12" font-weight="700" fill="#18181B">⑦ 发送、排队与引导</text>
+  <text x="792" y="340" font-size="11" fill="#6C6C76">回复中继续发消息会排队；</text>
+  <text x="792" y="355" font-size="11" fill="#6C6C76">点「引导」可当场打断纠偏</text>
+</svg>
