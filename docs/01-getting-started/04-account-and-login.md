@@ -17,17 +17,9 @@
 
 ---
 
-### 情况二：全新安装的机器（第一个账号自动成为管理员）
+### 情况二：自己装好的服务（第一个账号自动成为管理员）
 
-如果你是第一次在自己的电脑或云服务器上部署开源版 LoopForge，只需在终端执行以下 3 行命令（需预装 Git、Python 3 与 Docker）：
-
-```bash
-git clone https://github.com/Tencent/LoopForge.git
-cd LoopForge
-./start.sh
-```
-
-服务启动后，在浏览器打开终端打印出的访问地址（默认是 `http://localhost:8090`）：
+安装步骤在 [安装与启动](00-install.md)。服务起来后，用浏览器打开终端打印的地址（默认是 `http://localhost:8090`）：
 
 1. 登录卡片顶部会显示一条提示：**「这是首次启动。创建的第一个账号将成为平台管理员。」**
 2. 填写你想要的管理员用户名、密码（至少 6 位）并确认密码，点击提交。
@@ -50,4 +42,4 @@ cd LoopForge
 
 ---
 
-← 上一篇：[界面布局与导航速览](03-interface-tour.md) | [返回文档总目录](../README.md) | 下一篇：[第一步：3 分钟免配置体验](05-try-without-key.md) →
+← 上一篇：[安装与启动](00-install.md) | [返回文档总目录](../README.md) | 下一篇：[第一步：3 分钟免配置体验](05-try-without-key.md) →
