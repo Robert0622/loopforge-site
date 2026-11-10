@@ -105,4 +105,4 @@ Cursor / CodeBuddy（用户级 JSON）：
 
 ---
 
-← 上一篇：[S06 · 看懂项目的用量和交付](06-usage-and-delivery.md) | [返回文档总目录](../README.md) | 下一篇：[S08 · 把需求交给 SOP 跑完](08-requirement-through-sop.md) →
+← 上一篇：[S06 · 看懂项目的用量和交付](06-usage-and-delivery.md) | [返回文档总目录](../README.md) | 下一篇：[S08 · 在对话里澄清需求，交给 SOP 跑完](08-requirement-through-sop.md) →
