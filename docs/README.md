@@ -3,7 +3,7 @@
 > 本手册面向所有使用 **LoopForge** 的团队成员（包括完全没有编程基础的产品、设计、运营与测试同学，以及负责搭建环境的研发与管理员）。
 >
 > - **在线阅读（带多级目录导航与中英切换）**：打开官网 [`/docs/`](index.html)
-> - **快速上手路径**：先看 [认识 LoopForge](01-getting-started/01-what-is-loopforge.md) → [3 分钟免配置体验](01-getting-started/05-try-without-key.md) → [配置模型 API Key](01-getting-started/06-configure-api-key.md) → [发起第一个任务](01-getting-started/07-first-conversation.md)
+> - **快速上手路径**：先看 [认识 LoopForge](01-getting-started/01-what-is-loopforge.md) → [安装与启动](01-getting-started/00-install.md) → [3 分钟免配置体验](01-getting-started/05-try-without-key.md) → [配置模型 API Key](01-getting-started/06-configure-api-key.md) → [发起第一个任务](01-getting-started/07-first-conversation.md)
 
 ---
 
@@ -15,6 +15,7 @@
 - [核心概念白话词典](01-getting-started/02-core-concepts.md) — 在开始操作前，花 2 分钟了解页面上最常出现的 10 个词。你可以把整套系统想象成一家分工明确的「AI 软件工坊」。
 - [界面布局与导航速览](01-getting-started/03-interface-tour.md) — 登录 LoopForge 后，整个界面由「左侧全局图标栏」「中间二级面板」和「右侧主工作区」三部分组成，干净清爽、不会迷路。
 - **10 分钟上手实操**
+  - [安装与启动](01-getting-started/00-install.md) — 用 Git、Docker 和三行命令把开源版装到自己的电脑或云服务器上，并分清平台安装和 Local 工作流安装。
   - [账号注册与首次登录](01-getting-started/04-account-and-login.md) — 无论你是访问同事搭建好的团队网址，还是自己用 Docker 启动服务，只需 1 分钟即可完成登录并进入默认体验项目。
   - [第一步：3 分钟免配置体验](01-getting-started/05-try-without-key.md) — 不用申请模型 API Key，也不用绑定 GitHub 仓库。点击首页的「一键体验」，亲手走完一次「脚本执行 → 人工审批 → 产物交付」的真实流程。
   - [第二步：配置模型 API Key](01-getting-started/06-configure-api-key.md) — 当你希望和 Main Bot 自由聊天、让 AI 撰写文档或编写代码时，需要在「个人配置」中填入对应执行器的 API Key。

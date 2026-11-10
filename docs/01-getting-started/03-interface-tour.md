@@ -53,4 +53,4 @@
 
 ---
 
-← 上一篇：[核心概念白话词典](02-core-concepts.md) | [返回文档总目录](../README.md) | 下一篇：[账号注册与首次登录](04-account-and-login.md) →
+← 上一篇：[核心概念白话词典](02-core-concepts.md) | [返回文档总目录](../README.md) | 下一篇：[安装与启动](00-install.md) →
