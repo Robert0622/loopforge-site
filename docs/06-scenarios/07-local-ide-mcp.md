@@ -8,6 +8,8 @@
 
 **你要准备的**：用户级 MCP 配置、个人 Token、完整 HTTPS /mcp 地址。
 
+> **在你自己的部署里**：本地装好一个支持 MCP 的客户端：Codex、Cursor、Claude Code、CodeBuddy 之一。
+
 
 ## 先分清两种 MCP
 
@@ -63,6 +65,8 @@ Cursor / CodeBuddy（用户级 JSON）：
 ```
 
 ## 第 4 步：重载客户端，试一下
+
+在本地客户端里发一句话试试，例如（示例写法）：
 
 ```text
 使用 LoopForge MCP：先列出我能访问的项目，选择“公共案例 · 发布就绪实验室”，

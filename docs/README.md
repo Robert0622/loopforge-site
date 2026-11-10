@@ -65,4 +65,4 @@
 - [S05 · 让 AI 每天定时干活](06-scenarios/05-scheduled-jobs.md) — 设置一个定时任务，平台到点自动启动 SOP，7×24 小时运行，不需要你的电脑开着；关键步骤仍停下来等人确认。
 - [S06 · 看懂项目的用量和交付](06-scenarios/06-usage-and-delivery.md) — 在一个页面里看到：跑了多少、交付了多少、花了多少 Token、每个成员的情况。
 - [S07 · 在本地 IDE 里使用云端平台](06-scenarios/07-local-ide-mcp.md) — 用 MCP 把你本地的 Codex、Cursor、Claude Code、CodeBuddy 接到 LoopForge，不切网页也能查项目、派流程。
-- [S08 · 把需求交给 SOP 跑完](06-scenarios/08-requirement-through-sop.md) — 聊天适合探索；正式交付要按固定步骤走。AI 按 SOP 一步步执行，到关键节点停下来等你拍板，每一步都留下记录。
+- [S08 · 把需求交给 SOP 跑完](06-scenarios/08-requirement-through-sop.md) — 聊天适合探索；正式交付要按固定步骤走。平台按 SOP 一步步执行，到关键节点停下来等你拍板，每一步都留下记录。
