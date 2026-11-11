@@ -101,7 +101,9 @@ function renderMarkdown(md) {
     if (im) {
       const alt = im[1];
       const src = im[2];
-      html += `<figure><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">${alt ? `<figcaption>${inlineMd(alt)}</figcaption>` : ''}</figure>`;
+      const fail = L === 'en' ? 'Image failed to load' : '图片没有加载出来';
+      const loading = L === 'en' ? 'Loading' : '加载中';
+      html += `<figure class="d-fig is-loading"><span class="d-fig-media" data-fail="${esc(fail)}" data-loading="${esc(loading)}"><img src="${esc(src)}" alt="${esc(alt)}"></span>${alt ? `<figcaption>${inlineMd(alt)}</figcaption>` : ''}</figure>`;
       i++;
       continue;
     }
@@ -279,6 +281,7 @@ function render(scrollTop = true) {
           <div class="d-search">
             ${IC_SEARCH}
             <input type="search" id="dSearchInput" autocomplete="off">
+            <kbd aria-hidden="true">/</kbd>
           </div>
           <nav id="dSideTree"></nav>
         </aside>
@@ -350,6 +353,21 @@ function render(scrollTop = true) {
   document.getElementById('dTitle').textContent = page.title;
   document.getElementById('dLead').textContent = page.lead;
   document.getElementById('dBody').innerHTML = bodyHtml;
+  document.querySelectorAll('#dBody figure.d-fig').forEach(fig => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const done = () => fig.classList.remove('is-loading');
+    const fail = () => {
+      fig.classList.remove('is-loading');
+      fig.classList.add('is-error');
+    };
+    if (img.complete && img.naturalWidth > 0) done();
+    else if (img.complete && img.naturalWidth === 0) fail();
+    else {
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', fail, { once: true });
+    }
+  });
 
   const pagerHtml = [
     prevItem ? `<a class="d-page-card prev" href="#${prevItem.id}"><small>← ${esc(d.ui.prev)}</small><b>${esc(prevItem.title)}</b></a>` : '',

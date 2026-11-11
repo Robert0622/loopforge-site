@@ -93,7 +93,7 @@
   </g>
 
   <!-- Bottom Bar: 9 Executors + MCP / Rules / Skills -->
-  <rect x="34" y="344" width="910" height="46" rx="10" fill="#18181B"/>
-  <text x="54" y="372" font-size="12.5" font-weight="650" fill="#FFFFFF">底层引擎与能力底座：</text>
-  <text x="184" y="372" font-size="12" fill="#D4D4D8">9 大 Coding Agent CLI（CodeBuddy · Codex · Claude Code · OpenCode · Cursor · Antigravity · Kimi · Pi · DeepSeek） + MCP / 规则 / 技能</text>
+  <rect x="34" y="340" width="910" height="58" rx="10" fill="#18181B"/>
+  <text x="54" y="364" font-size="12.5" font-weight="650" fill="#FFFFFF">底层引擎与能力底座 · 9 大 Coding Agent CLI</text>
+  <text x="54" y="384" font-size="12" fill="#D4D4D8">CodeBuddy · Codex · Claude Code · OpenCode · Cursor · Antigravity · Kimi · Pi · DeepSeek · MCP / 规则 / 技能</text>
 </svg>
