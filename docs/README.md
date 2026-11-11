@@ -57,12 +57,12 @@
 
 ### 六、真实使用场景
 
-- [场景总览](06-scenarios/00-overview.md) — 8 个在开源版 LoopForge 上真实跑过的使用场景。截图都是真实页面，每一步都可以照着在自己的项目里做一遍。
-- [S01 · 在云端做出第一个小工具](06-scenarios/01-cloud-first-tool.md) — 一句话描述需求，AI 在云端工作区写代码、跑测试，产出可以下载和直接打开的文件。电脑关机了，云端依然在跑。
-- [S02 · 和同事在同一个会话里接力](06-scenarios/02-shared-session-handoff.md) — 需求讨论、实现和 Review 都在同一个会话里完成，接手的人不用重新解释背景。
-- [S03 · 用聊天把团队经验存成资产](06-scenarios/03-save-team-assets.md) — 把"谁来做、怎么检查、按什么顺序"存成角色、Skill 和 SOP，以后直接复用，不用每次粘长提示词。
-- [S04 · 用 @ 调用角色、清单和 SOP](06-scenarios/04-mention-assets.md) — 在输入框里输入 @，直接选中团队资产，让对应角色按清单干活。
-- [S05 · 让 AI 每天定时干活](06-scenarios/05-scheduled-jobs.md) — 设置一个定时任务，平台到点自动启动 SOP，7×24 小时运行，不需要你的电脑开着；关键步骤仍停下来等人确认。
-- [S06 · 看懂项目的用量和交付](06-scenarios/06-usage-and-delivery.md) — 在一个页面里看到：跑了多少、交付了多少、花了多少 Token、每个成员的情况。
-- [S07 · 在本地 IDE 里使用云端平台](06-scenarios/07-local-ide-mcp.md) — 用 MCP 把你本地的 Codex、Cursor、Claude Code、CodeBuddy 接到 LoopForge，不切网页也能查项目、派流程。
-- [S08 · 在对话里澄清需求，交给 SOP 跑完](06-scenarios/08-requirement-through-sop.md) — 不用离开对话：先把需求聊清楚，AI 自动建好需求单；再从对话里发起 SOP，在会话侧边栏里看着它一个节点一个节点跑完。
+- [场景总览](06-scenarios/00-overview.md) — 8 个我们自己在用、也推荐你用的场景，全部在一个演示项目里真实跑过。
+- [S01 · 在云端让 AI 写个小工具](06-scenarios/01-cloud-first-tool.md) — 一句话说需求，AI 在云端工作区里写代码、跑测试。发完就可以关电脑，云端依然在跑。
+- [S02 · 和同事在同一个会话里接力](06-scenarios/02-shared-session-handoff.md) — 需求讨论、实现和 Review 都在同一个会话里，接手的人直接看历史，不用重新讲背景。
+- [S03 · 把好用的做法存成团队资产](06-scenarios/03-save-team-assets.md) — 用一段话让 AI 把"谁来做、按什么查、按什么顺序"存成角色、检查清单和 SOP，团队里谁都能直接复用。
+- [S04 · 用 @ 调用团队资产](06-scenarios/04-mention-assets.md) — 输入 @ 选中团队的角色和检查清单，让它按团队标准办事；结论每一条都有依据。
+- [S05 · 定时任务，7×24 小时自动跑](06-scenarios/05-scheduled-jobs.md) — 一句话设好定时任务，到点自动启动 SOP；关掉页面也照跑，需要人的地方停下来等你。
+- [S06 · 看用量和交付](06-scenarios/06-usage-and-delivery.md) — 一个页面看清：开了多少会话、建了多少需求、跑了多少 SOP、花了多少 Token、交付了什么。
+- [S07 · 在本地 IDE 里用平台](06-scenarios/07-local-ide-mcp.md) — 把本地的 Codex、Cursor、Claude Code、CodeBuddy 通过 MCP 接到 LoopForge，不开网页也能查进度、派任务。
+- [S08 · 对话里理清需求，交给 SOP 跑完](06-scenarios/08-requirement-through-sop.md) — 先和 AI 把需求聊清楚，它自动建好需求单；再从同一个对话发起 SOP，在侧边栏里看着它一步步跑完。
