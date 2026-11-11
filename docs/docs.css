@@ -235,7 +235,7 @@ button,input{font:inherit;color:inherit}
 .d-search input{
   width:100%;
   height:36px;
-  padding:0 12px 0 32px;
+  padding:0 36px 0 32px;
   border:1px solid var(--edge);
   border-radius:8px;
   background:var(--raised);
@@ -245,6 +245,24 @@ button,input{font:inherit;color:inherit}
   transition:border-color .18s,box-shadow .18s;
 }
 .d-search input::placeholder{color:var(--faint)}
+.d-search input::-webkit-search-cancel-button,
+.d-search input::-webkit-search-decoration{appearance:none}
+.d-search kbd{
+  position:absolute;
+  right:8px;
+  top:8px;
+  min-width:20px;
+  height:20px;
+  padding:0 5px;
+  border:1px solid var(--edge);
+  border-radius:5px;
+  background:var(--paper);
+  color:var(--mute);
+  font:500 11px/18px var(--mono);
+  text-align:center;
+  pointer-events:none;
+}
+.d-search:has(input:not(:placeholder-shown)) kbd{opacity:0}
 .d-search input:focus{
   outline:none;
   border-color:var(--acc);
@@ -263,22 +281,24 @@ button,input{font:inherit;color:inherit}
   margin-bottom:18px;
 }
 .d-sec-title{
-  margin:14px 8px 6px;
-  font-size:11.5px;
-  font-weight:700;
-  letter-spacing:.03em;
-  color:var(--ink);
-  text-transform:uppercase;
+  margin:18px 10px 4px;
+  font-size:15px;
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:0;
+  color:var(--faint);
+  text-transform:none;
 }
+.d-sec:first-child .d-sec-title{margin-top:2px}
 .d-link{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  min-height:33px;
-  margin:2px 0;
+  min-height:32px;
+  margin:1px 0;
   padding:5px 10px;
   border-radius:8px;
-  font-size:13.5px;
+  font-size:13px;
   font-weight:450;
   line-height:1.4;
   color:var(--mute);
@@ -291,7 +311,6 @@ button,input{font:inherit;color:inherit}
 .d-link.on{
   background:var(--acc-soft);
   color:var(--acc);
-  font-weight:600;
 }
 details.d-sub{
   margin:3px 0;
@@ -303,8 +322,9 @@ details.d-sub>summary{
   min-height:33px;
   padding:5px 10px;
   border-radius:8px;
-  font-size:13.5px;
-  font-weight:550;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.4;
   color:var(--tx);
   cursor:pointer;
   list-style:none;
@@ -332,7 +352,6 @@ details.d-sub[open]>summary::after{
 }
 details.d-sub.has-on>summary{
   color:var(--ink);
-  font-weight:650;
 }
 .d-sub-list{
   margin:2px 0 6px 13px;
@@ -501,12 +520,59 @@ details.d-sub.has-on>summary{
   background:var(--raised);
   box-shadow:var(--lift2);
 }
+.d-fig-media{
+  position:relative;
+  min-height:0;
+  background:#fff;
+}
+.d-fig.is-loading .d-fig-media{
+  min-height:240px;
+  overflow:hidden;
+  background:#e4e4de;
+}
+.d-fig.is-loading .d-fig-media::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.72),transparent);
+  animation:d-shimmer 1.15s ease-in-out infinite;
+}
+.d-fig.is-loading .d-fig-media::after{
+  content:attr(data-loading);
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  color:var(--mute);
+  font-size:13px;
+}
 .d-body figure img{
   display:block;
   width:100%;
   max-height:540px;
   object-fit:contain;
   background:#fff;
+  opacity:1;
+  transition:opacity .18s ease;
+}
+.d-fig.is-loading img{opacity:0}
+.d-fig.is-error .d-fig-media{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:160px;
+  background:var(--deep);
+  animation:none;
+}
+.d-fig.is-error img{display:none}
+.d-fig.is-error .d-fig-media::after{
+  content:attr(data-fail);
+  color:var(--mute);
+  font-size:13px;
+}
+@keyframes d-shimmer{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
 }
 .d-body figcaption{
   padding:10px 16px;
@@ -578,19 +644,22 @@ details.d-sub.has-on>summary{
 }
 .d-toc a{
   display:block;
-  padding:5px 0;
+  padding:5px 0 5px 8px;
+  margin-left:-8px;
   font-size:12.5px;
+  font-weight:450;
   line-height:1.45;
   color:var(--mute);
-  transition:color .15s;
+  border-radius:6px;
+  transition:color .15s,background .15s;
 }
 .d-toc a.sub-h3{
-  padding-left:12px;
+  padding-left:20px;
   font-size:12px;
 }
 .d-toc a:hover,.d-toc a.on{
   color:var(--acc);
-  font-weight:550;
+  background:var(--acc-soft);
 }
 
 /* ---------- Responsive Breakpoints ---------- */
